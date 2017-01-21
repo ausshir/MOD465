@@ -27,16 +27,21 @@ title('RX Filter Frequency Response');
 %% TX Filter
 % SRRC 17 Points, Variable Window, 0.25 Rolloff
 
-tx_beta = 0.25;
+tx_beta = 0.35;
 tx_span = 17;
+tx_kshape = 2.5;
+tx_fd = 0.23563;
 
-tx_h_srrc = rcosine(F_s/N_sps,F_s,'sqrt',tx_beta,2);
+tx_h_srrc = rcosine(tx_fd,F_s,'sqrt',tx_rolloff,tx_fd*(tx_span-1)/2);
 
-tx_w = kaiser(tx_span, 1).';
-
+tx_window = kaiser(tx_span, tx_kshape).';
 tx_h_srrc = (tx_h_srrc .* tx_w);
 
-[H_tx, w_tx] = freqz(tx_h_srrc); 
+[H_tx, w_tx] = freqz(tx_h_srrc);    
+G_tx_c_candidate = max(20*log10(abs(H_tx(205:512))));
+
+%w_tx = linspace(0,2*pi,512);
+%H_tx = fft(tx_h_srrc, 512);
 
 figure(1);
 subplot(2,2,3);
@@ -46,8 +51,8 @@ subplot(2,2,4);
 hold off;
 plot(w_tx/(2*pi), 20*log10(abs(H_tx)),'b');
 hold on;
-plot(w_tx(205:512)/(2*pi), 20*log10(abs(H_tx(205:512))),'r');
-title(strcat('TX Filter Frequency Response. Stopband Gain = ',num2str(max(20*log10(abs(H_tx(205:512)))))));
+plot(w_tx(204:512)/(2*pi), 20*log10(abs(H_tx(204:512))),'r');
+title(strcat('TX Filter Frequency Response. Stopband Gain = ',num2str(G_tx_c_candidate)));
 hold off;
 
 
@@ -57,7 +62,7 @@ hold off;
 
 h_sys = conv(tx_h_srrc, rcv_h_srrc);
 h_isi_norm = (h_sys)/max(h_sys);
-isi = sum(downsample(h_isi_norm,4).^2) - 1;
+isi = sum(downsample(h_isi_norm,4).^2) - 1;  
 
 MER = 10*log10(1/isi)
 

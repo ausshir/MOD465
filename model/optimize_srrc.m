@@ -1,4 +1,4 @@
-function [MER, G_tx_c, R, B, FD] = optimize_srrc(R_low, R_high, B_low, B_high, FD_low, FD_high, delta)
+function [MER, G_tx_c, R, B, FD] = optimize_srrc(R_low, R_high, B_low, B_high, FD_low, FD_high, delta, stopband)
 % Usage [MER, G_tx_c, R, B] = optimize_srrc(R_low=0.15, R_high=0.35, B_low=1, B_high=7, FD_low = (1/12), FD_high = (1/2), delta=0.001)
 %   Note: Fd = F_s/N_sps ~ 1/4;
 
@@ -25,7 +25,7 @@ function [MER, G_tx_c, R, B, FD] = optimize_srrc(R_low, R_high, B_low, B_high, F
   rcv_beta = 0.25;
   rcv_span = 17;
   
-  rcv_h_srrc = rcosine(F_s/N_sps,F_s,'sqrt',rcv_beta,(rcv_span-1)/N_sps/2);
+  rcv_h_srrc = firrcos(rcv_span-1,1/(2*N_sps),rcv_beta,1,'rolloff','sqrt')
 
   % Optimize TX Filter for ideal specs
   
@@ -36,18 +36,20 @@ function [MER, G_tx_c, R, B, FD] = optimize_srrc(R_low, R_high, B_low, B_high, F
       for tx_fd = FD_low:delta:FD_high
     
         n = n+1;
-        printf("Running iteration %d on R=%d B=%d FD=%d\r", n, tx_rolloff, tx_kshape, tx_fd);  
+        %%fprintf('Running iteration %d on R=%d B=%d FD=%d\r', n, tx_rolloff, tx_kshape, tx_fd);  
         
-        tx_h_srrc = rcosine(tx_fd,F_s,'sqrt',tx_rolloff,tx_fd*(tx_span-1)/2);
+        %%tx_h_srrc = rcosine(tx_fd,F_s,'sqrt',tx_rolloff,tx_fd*(tx_span-1)/2);
+        
+        tx_h_srrc = firrcos(tx_span-1,tx_fd,tx_rolloff,1,'rolloff','sqrt');
         
         if(length(tx_h_srrc) == 17)
           tx_window = kaiser(tx_span, tx_kshape).';
           tx_h_srrc = (tx_h_srrc .* tx_window);
           
-          [H_tx, w_tx] = freqz(tx_h_srrc);
+          [tx_H, tx_rad] = freqz(tx_h_srrc);
           % using FFT for more speed
           %H_tx = fft(tx_h_srrc, 512);
-          G_tx_c_candidate = max(20*log10(abs(H_tx(205:512))));
+          G_tx_c_candidate = max(20*log10(abs(tx_H(205:512))));
                
           % Calculate ISI
           h_sys = conv(tx_h_srrc, rcv_h_srrc);
@@ -57,14 +59,14 @@ function [MER, G_tx_c, R, B, FD] = optimize_srrc(R_low, R_high, B_low, B_high, F
           MER_candidate = 10*log10(1/isi);
           
           % Save if a new optimal value is found
-          if(G_tx_c_candidate < -40)
+          if(G_tx_c_candidate < stopband)
             if(MER_candidate > MER)
               G_tx_c = G_tx_c_candidate;
               MER = MER_candidate;
               B = tx_kshape;
               R = tx_rolloff;
               FD = tx_fd;
-              printf("                                                              Found new best MER %d that meets specs: @ R=%d B=%d FD=%d\r", MER, tx_rolloff, tx_kshape, tx_fd);
+              fprintf('                                                              Found new best MER %d that meets specs: @ R=%d B=%d FD=%d\r', MER, tx_rolloff, tx_kshape, tx_fd);
             end
           end
         
@@ -74,4 +76,5 @@ function [MER, G_tx_c, R, B, FD] = optimize_srrc(R_low, R_high, B_low, B_high, F
     end
   end
   
-endfunction
+
+  

@@ -63,7 +63,7 @@ end
 
 rcv_h_srrc_18sd = round(rcv_h_srrc * 2^17);
 
-fprintf('\nKaiser Filter 18''sd Coefficients\n');
+fprintf('\nRX Filter 18''sd Coefficients\n');
 for i = 1:17
     if(rcv_h_srrc_18sd(i) < 0)
         fprintf('b[%2.0f] = -18''sd %6d;\n', i-1, -rcv_h_srrc_18sd(i))
@@ -72,12 +72,22 @@ for i = 1:17
     end
 end
 
-fprintf('\nKaiser Filter 18''sd Coefficients (symmetric / headroom)\n');
-rcv_h_srrc_18sd = round(remove_headroom(rcv_h_srrc) * 2^17);
-for i = 1:8
+fprintf('\nRX Filter 18''sd Coefficients (symmetric / headroom)\n');
+rcv_h_srrc_18sd = round(remove_headroom(rcv_h_srrc, 0.999) * 2^17);
+for i = 1:9
     if(rcv_h_srrc_18sd(i) < 0)
         fprintf('b[%2.0f] = -18''sd %6d;\n', i-1, -rcv_h_srrc_18sd(i))
     else
         fprintf('b[%2.0f] =  18''sd %6d;\n', i-1, rcv_h_srrc_18sd(i))
+    end
+end
+
+fprintf('\nTX Filter 18''sd Coefficients (symmetric / headroom)\n');
+tx_h_srrc_18sd = round(remove_headroom(tx_h_srrc, 0.999) * 2^17);
+for i = 1:9
+    if(tx_h_srrc_18sd(i) < 0)
+        fprintf('b[%2.0f] = -18''sd %6d;\n', i-1, -tx_h_srrc_18sd(i))
+    else
+        fprintf('b[%2.0f] =  18''sd %6d;\n', i-1, tx_h_srrc_18sd(i))
     end
 end

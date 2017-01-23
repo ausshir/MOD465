@@ -3,10 +3,10 @@ module approx_brick_wall_filt_with_masks (
 			input [17:0] data_mask, coef_mask,
 		   input signed [17:0] x_in,
 		   output reg signed [17:0] y   );
-			
-integer i;	
-reg signed [17:0]	b[15:0];				 
-reg signed [17:0]	x[30:0];	
+
+integer i;
+reg signed [17:0]	b[15:0];
+reg signed [17:0]	x[30:0];
 reg signed [35:0] mult_out[15:0];
 reg signed [17:0] sum_level_1[15:0];
 reg signed [17:0] sum_level_2[7:0];
@@ -49,7 +49,7 @@ sum_level_2[i] = (mult_out[2*i][34:17] + mult_out[2*i+1][34:17])
 always @ *
 for(i=0;i<=3;i=i+1)
 sum_level_3[i] = sum_level_2[2*i] + sum_level_2[2*i+1];
-			
+
 
 
 always @ *
@@ -63,7 +63,7 @@ sum_level_5 = sum_level_4[0] + sum_level_4[1];
 always @ (posedge clk)
 y = sum_level_5;
 
-	
+
 always @ *
    begin
    b[0] =  -18'sd   3566;
@@ -87,5 +87,4 @@ always @ *
 
 
 
-endmodule	
-	
+endmodule

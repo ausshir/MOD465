@@ -120,11 +120,12 @@ grid on
 figure(5)
 % Scatter with heat
 scatter3(fd_list,rolloff_list,kshape_list,MER_list,MER_list,'filled')    % draw the scatter plot
-
-xlabel('FD')
-ylabel('Rolloff')
-zlabel('KShape')
+ax = gca;
+ax.XDir = 'reverse';
+view(-31,14)
+xlabel('W. Longitude')
+ylabel('N. Latitude')
+zlabel('% Rural Population')
 
 cb = colorbar;                                     % create and label the colorbar
-cb.Label.String = 'MER';
-rotate3d on;
+cb.Label.String = 'Fatalities per 100M vehicle-miles';

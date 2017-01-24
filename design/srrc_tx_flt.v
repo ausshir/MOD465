@@ -1,103 +1,107 @@
-`ifndef _SRRC_RX_FLT_V_
-`define _SRRC_RX_FLT_V_
+`ifndef _SRRC_TX_FLT_V_
+`define _SRRC_TX_FLT_V_
 
-module srrc_rx_flt (input clk,
+module srrc_tx_flt (input clk,
                     input reset,
 		            input signed [17:0] in,
 	                output reg signed [17:0] out);
 
-integer i;
-reg signed [17:0]	b[8:0];
-reg signed [17:0]	x[16:0];
-reg signed [35:0] mult_out[8:0];
-reg signed [17:0] sum_level_1[8:0];
-reg signed [17:0] sum_level_2[4:0];
-reg signed [17:0] sum_level_3[2:0];
-reg signed [17:0] sum_level_4[1:0];
+    integer i;
+    reg signed [17:0]	b[8:0];
+    reg signed [17:0]	x[16:0];
+    reg signed [35:0] mult_out[8:0];
+    reg signed [17:0] sum_level_1[8:0];
+    reg signed [17:0] sum_level_2[4:0];
+    reg signed [17:0] sum_level_3[2:0];
+    reg signed [17:0] sum_level_4[1:0];
 
-// Input and shift register
-// May need to sign extend input
-always @*
-    if(reset)
-        x[0] = 18'b0;
-    else
-        x[0] = { in[17:0] };
-
-// Shift Register
-always @ (posedge clk)
-    for( i=1; i<17;i=i+1)
+    // Input and shift register
+    // May need to sign extend input
+    always @*
         if(reset)
-            x[i] = 18'b0;
+            x[0] = 18'b0;
         else
-            x[i] <= x[i-1];
+            x[0] = { in[17:0] };
 
-always @ *
-    for(i=0;i<=15;i=i+1)
+    // Shift Register
+    always @ (posedge clk)
+        for( i=1; i<17;i=i+1)
+            if(reset)
+                x[i] <= 18'b0;
+            else
+                x[i] <= x[i-1];
+
+    always @ *
+        for(i=0;i<=7;i=i+1)
+            if(reset) begin
+                sum_level_1[i] <= 15'b0;
+                sum_level_1[8] <= 15'b0;
+            end
+            else begin
+                sum_level_1[i] <= x[i]+x[16-i];
+                sum_level_1[8] <= x[8];
+            end
+
+    // always @ (posedge clk) // For pipelining
+    always @ *
+        for(i=0;i<=8; i=i+1)
+            if(reset)
+                mult_out[i] = 16'b0;
+            else
+                mult_out[i] = sum_level_1[i] * b[i];
+
+    always @ *
+        for(i=0;i<=3;i=i+1)
+            if(reset) begin
+                sum_level_2[i] <= 17'b0;
+                sum_level_2[4] <= 17'b0;
+            end
+            else begin
+                sum_level_2[i] <= mult_out[2*i][34:17] + mult_out[2*i+1][34:17];
+                sum_level_2[4] <= mult_out[8][34:17];
+            end
+
+    always @ *
+        for(i=0;i<=1;i=i+1)
+            if(reset) begin
+                sum_level_3[i] <= 17'b0;
+                sum_level_3[2] <= 17'b0;
+            end
+            else begin
+                sum_level_3[i] <= sum_level_2[2*i] + sum_level_2[2*i+1];
+                sum_level_3[2] <= sum_level_2[4];
+            end
+
+    always @ *
+        //for(i=0;i<=0;i=i+1)
+            if(reset) begin
+                sum_level_4[0] <= 18'b0;
+                sum_level_4[1] <= 18'b0;
+            end
+            else begin
+                sum_level_4[0] <= sum_level_3[0] + sum_level_3[2];
+                sum_level_4[1] <= sum_level_3[1];
+            end
+
+    always @ (posedge clk)
         if(reset)
-            sum_level_1[i] = 15'b0;
+            out = 0;
         else
-            sum_level_1[i] = x[i]+x[16-i];
+            out = sum_level_4[0] + sum_level_4[1];
 
-always @ *
-    if(reset)
-        sum_level_1[8] = 1'b0;
-    else
-        sum_level_1[8] = x[8];
 
-// always @ (posedge clk) // For pipelining
-always @ *
-    for(i=0;i<=8; i=i+1)
+    always @* begin
         if(reset)
-            mult_out[i] = 16'b0;
-        else
-            mult_out[i] = sum_level_1[i] * b[i];
-
-always @ *
-    for(i=0;i<=8;i=i+1)
-        if(reset)
-            sum_level_2[i] = 8'b0;
-        else begin
-            sum_level_2[i] <= mult_out[2*i][34:17] + mult_out[2*i+1][34:17];
-            sum_level_2[4] <= mult_out[8][34:17];
-        end
-
-always @ *
-    for(i=0;i<=4;i=i+1)
-        if(reset)
-            sum_level_3[i] = 4'b0;
-        else begin
-            sum_level_3[i] <= sum_level_2[2*i] + sum_level_2[2*i+1];
-            sum_level_3[2] <= sum_level_2[4];
-        end
-
-always @ *
-    for(i=0;i<=2;i=i+1)
-        if(reset)
-            sum_level_4[i] = 18'b0;
-        else begin
-            sum_level_4[0] <= sum_level_3[0] + sum_level_3[2];
-            sum_level_4[1] <= sum_level_3[1];
-        end
-
-always @ (posedge clk)
-    if(reset)
-        out = 0;
-    else
-        out = sum_level_4[0] + sum_level_4[1];
-
-
-always @* begin
-    if(reset)
-        b[ 0] =  18'sd    314;
-        b[ 1] = -18'sd   2115;
-        b[ 2] = -18'sd   5743;
-        b[ 3] = -18'sd   6936;
-        b[ 4] = -18'sd    719;
-        b[ 5] =  18'sd  15367;
-        b[ 6] =  18'sd  37897;
-        b[ 7] =  18'sd  57966;
-        b[ 8] =  18'sd  66023;
-end
+            b[ 0] =  18'sd    314;
+            b[ 1] = -18'sd   2115;
+            b[ 2] = -18'sd   5743;
+            b[ 3] = -18'sd   6936;
+            b[ 4] = -18'sd    719;
+            b[ 5] =  18'sd  15367;
+            b[ 6] =  18'sd  37897;
+            b[ 7] =  18'sd  57966;
+            b[ 8] =  18'sd  66023;
+    end
 
 endmodule
 `endif

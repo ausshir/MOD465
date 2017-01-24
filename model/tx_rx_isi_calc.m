@@ -30,6 +30,7 @@ tx_h_srrc = (tx_h_srrc .* tx_w);
 
 G_tx_c_candidate = max(20*log10(abs(tx_H(205:512))));
 
+figure(1);
 hold off;
 plot(tx_rad/(2*pi), 20*log10(abs(tx_H)));
 hold on;
@@ -76,6 +77,7 @@ fprintf('\nRX Filter 18''sd Coefficients (symmetric / headroom)\n');
 rcv_h_srrc_18sd = round(remove_headroom(rcv_h_srrc, 0.999) * 2^17);
 for i = 1:9
     if(rcv_h_srrc_18sd(i) < 0)
+
         fprintf('b[%2.0f] = -18''sd %6d;\n', i-1, -rcv_h_srrc_18sd(i))
     else
         fprintf('b[%2.0f] =  18''sd %6d;\n', i-1, rcv_h_srrc_18sd(i))
@@ -89,5 +91,27 @@ for i = 1:9
         fprintf('b[%2.0f] = -18''sd %6d;\n', i-1, -tx_h_srrc_18sd(i))
     else
         fprintf('b[%2.0f] =  18''sd %6d;\n', i-1, tx_h_srrc_18sd(i))
+    end
+end
+
+fprintf('\nTX Filter 18''sd Positive LUT Coefficients (headroom)\n');
+tx_h_srrc_18sd = round(remove_headroom(tx_h_srrc, 0.999) * 2^17);
+for i = 1:17
+    if(tx_h_srrc_18sd(i) < 0)
+        fprintf('PRECOMP_P[%2.0f] = -18''sd %6d;\n', i-1, -tx_h_srrc_18sd(i))
+    else
+
+        fprintf('PRECOMP_P[%2.0f] =  18''sd %6d;\n', i-1, tx_h_srrc_18sd(i))
+    end
+end
+
+fprintf('\nTX Filter 18''sd Negative LUT Coefficients (headroom)\n');
+tx_h_srrc_18sd = -round(remove_headroom(tx_h_srrc, 0.999) * 2^17);
+for i = 1:17
+    if(tx_h_srrc_18sd(i) < 0)
+        fprintf('PRECOMP_N[%2.0f] = -18''sd %6d;\n', i-1, -tx_h_srrc_18sd(i))
+    else
+
+        fprintf('PRECOMP_N[%2.0f] =  18''sd %6d;\n', i-1, tx_h_srrc_18sd(i))
     end
 end

@@ -16,10 +16,15 @@ module lab_exam_1(
 							output	DAC_CLK_B,
 							output	DAC_MODE,
 							output	DAC_WRT_A,
-							output	DAC_WRT_B
+							output	DAC_WRT_B,
+							output	signed [17:0] srrc_out,
+							output	signed [17:0] srrc_input,
+							output	[1:0]	i_sym,
+							output	sys_clk,
+							output	sam_clk_ena,
+							output	sym_clk_ena
 							);
 			  
-
 
 //**************************************************				
 //					DECLARATIONS					
@@ -87,12 +92,13 @@ module lab_exam_1(
 // **********************************************************
 // Main Code
 // **********************************************************
-wire sys_clk, sam_clk, sam_clk_ena, sym_clk_ena, sym_clk, q1;
-					
+//wire sys_clk, sam_clk, sam_clk_ena, sym_clk_ena, sym_clk, q1;
+wire sam_clk, sym_clk, q1;
+						
 
-wire signed [17:0]srrc_out, srrc_input;
+//wire signed [17:0]srrc_out, srrc_input;
 wire [13:0] DAC_out;
-wire [1:0] i_sym; //value of symbol
+//wire [1:0] i_sym; //value of symbol
 
  EE465_filter_test_baseband SRRC_test(
 						   .clock_50(clock_50),
@@ -108,12 +114,20 @@ wire [1:0] i_sym; //value of symbol
 							);
 
 //Connect your TX filter here					
-ee465_gold_standard_srrc filly(
-			.sys_clk(sys_clk), 		//system clock, your design may not use this
-			.sam_clk(sam_clk_ena), 	//sampling clock
-			.sig_in(srrc_input), 	//4-ASK input value 1s17
-			.sig_out(srrc_out) 		//output of SRRC filter 1s17
-			);
+//ee465_gold_standard_srrc filly(
+//			.sys_clk(sys_clk), 		//system clock, your design may not use this
+//			.sam_clk(sam_clk_ena), 	//sampling clock
+//			.sig_in(srrc_input), 	//4-ASK input value 1s17
+//			.sig_out(srrc_out) 		//output of SRRC filter 1s17
+//			);
+
+
+//srrc_tx_lut_flt tx_m_flt(.clk(sam_clk_ena),
+//							.reset(~KEY[3]),
+//							.symbol_clk(sym_clk_ena),
+//							.in(srrc_input),
+//							.out(srrc_out));
+							
 			
 // *********************************************************
 // Code for your MER circuit goes below here

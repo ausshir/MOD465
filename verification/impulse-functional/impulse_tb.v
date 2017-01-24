@@ -23,6 +23,13 @@ module impulse_tb();
         #100 reset = 0;
     end
 
+    // Log File
+    integer file;
+    initial begin
+        file = $fopen("impulse.csv","w");
+        $fwrite(file,"time,sim_impulse_response\n");
+    end
+
     // Impulse Generation
     reg [4:0] imp_count;
     reg signed [17:0] stimulus;
@@ -42,8 +49,27 @@ module impulse_tb();
             stimulus = 18'h0;
     end
 
+    reg filewrite;
+    always @(posedge clk_tb) begin
+        if(reset)
+            filewrite = 0;
+        else if(imp_count == 5'd31)
+            filewrite = 1;
+        else if(imp_count == 5'd31 && filewrite == 1) begin
+            filewrite = 0;
+        end
+        else if(filewrite)
+            $fwrite(file,"%d,%d\n", $time, response);
+    end
+
     // Instantiate SUT
     srrc_rx_flt sut(clk_tb, reset, stimulus, response);
+
+    // end the simulation
+    initial begin
+        #3250 $fclose("impulse.csv");
+        $stop;
+    end
 
 endmodule
 `endif

@@ -2,9 +2,10 @@
 `define _SRRC_RX_FLT_V_
 
 module srrc_rx_flt (input clk,
+						  input sam_clk,
                     input reset,
-		            input signed [17:0] in,
-	                output reg signed [17:0] out);
+		              input signed [17:0] in,
+	                 output reg signed [17:0] out);
 
     integer i;
     reg signed [17:0]	b[8:0];
@@ -25,6 +26,7 @@ module srrc_rx_flt (input clk,
 
     // Shift Register
     always @ (posedge clk)
+		if(sam_clk)
         for( i=1; i<17;i=i+1)
             if(reset)
                 x[i] <= 18'b0;
@@ -84,6 +86,7 @@ module srrc_rx_flt (input clk,
             end
 
     always @ (posedge clk)
+		if(sam_clk)
         if(reset)
             out = 0;
         else
@@ -91,7 +94,6 @@ module srrc_rx_flt (input clk,
 
 
     always @* begin
-        if(reset)
             b[ 0] =  18'sd   3259;
             b[ 1] = -18'sd   3378;
             b[ 2] = -18'sd  10461;

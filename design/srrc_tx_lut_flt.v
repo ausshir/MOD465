@@ -6,7 +6,7 @@
 module srrc_tx_lut_flt (input clk,
 								input sam_clk,
 								input sym_clk,
-								input reset,	
+								input reset,
 								input signed [17:0] in,
 								output reg signed [17:0] out);
 
@@ -97,8 +97,8 @@ module srrc_tx_lut_flt (input clk,
 			PRECOMP_N2[13] =  18'sd   2601;
 			PRECOMP_N2[14] =  18'sd   2154;
 			PRECOMP_N2[15] =  18'sd    793;
-			PRECOMP_N2[16] = -18'sd    118;		
-			
+			PRECOMP_N2[16] = -18'sd    118;
+
 			SYMBOL_P1 =  18'sd 49151; //0.375 with 131071 max +FS
 			SYMBOL_P2 =  18'sd 16383; //0.125
 			SYMBOL_N1 = -18'sd 16384; //-0.125
@@ -131,12 +131,12 @@ module srrc_tx_lut_flt (input clk,
 
     always @(negedge clk)
 		if(sym_clk)
-        for(i = 1; i <= 3; i = i+1)        
+        for(i = 1; i <= 3; i = i+1)
 			 if(reset)
 				  bin[i] <= 18'd0;
 			 else
 				  bin[i] <= bin[i-1];
-		
+
 		always @(negedge clk)
 			if(sam_clk)
 				if(reset)
@@ -150,7 +150,7 @@ module srrc_tx_lut_flt (input clk,
         for(i = 0; i <= 3; i = i+1)
 				if(reset)
                 bin_out[i] <= 18'd0;
-            
+
 				else if(bin[i] == SYMBOL_P1)
                 case (count4)
                     2'd0: bin_out[i] <= PRECOMP_P1[4*i];
@@ -159,7 +159,7 @@ module srrc_tx_lut_flt (input clk,
                     2'd3: bin_out[i] <= PRECOMP_P1[4*i+3];
                     default: bin_out[i] <= 17'd0;
                 endcase
-				
+
 				else if(bin[i] == SYMBOL_P2)
                 case (count4)
                     2'd0: bin_out[i] <= PRECOMP_P2[4*i];
@@ -168,7 +168,7 @@ module srrc_tx_lut_flt (input clk,
                     2'd3: bin_out[i] <= PRECOMP_P2[4*i+3];
                     default: bin_out[i] <= 17'd0;
                 endcase
-					 
+
 				else if(bin[i] == SYMBOL_N1)
                 case (count4)
                     2'd0: bin_out[i] <= PRECOMP_N1[4*i];

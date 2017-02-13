@@ -35,5 +35,7 @@ module lfsr_22_max(input clk,
     assign sym_out = fb_reg[3:0];
     assign seq_out = fb_reg;
 
+
+
 endmodule
 `endif

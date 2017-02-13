@@ -4,8 +4,8 @@
 module mapper_16_qam(input clk,
                      input clk_en,
                      input [3:0] data,
-                     output reg [17:0] in_phs_sig,
-                     output reg [17:0] quad_sig);
+                     output signed reg [17:0] in_phs_sig,
+                     output signed reg [17:0] quad_sig);
 
     parameter SYMBOL_P1 = 18'sd 49151; //0.375 with 131071 max +FS
     parameter SYMBOL_P2 = 18'sd 16383; //0.125

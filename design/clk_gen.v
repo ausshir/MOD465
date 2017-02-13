@@ -8,7 +8,7 @@
 
 module clk_gen( input clk_in,
                 input reset,
-                output sys_clk,
+                output reg sys_clk,
                 output sam_clk,
                 output sym_clk,
                 output sam_clk_ena,
@@ -17,13 +17,18 @@ module clk_gen( input clk_in,
 
     reg [4:0] down_count;
 
-    always @(posedge clk_in)
+    always @(posedge clk_in, reset)
         if(reset)
-            down_count = 5'b11111;
+            sys_clk = 0;
+        else
+            sys_clk = ~sys_clk;
+
+    always @(posedge clk_in, reset)
+        if(reset)
+            down_count = 4'b1111;
         else
             down_count = down_count - 1;
 
-    assign sys_clk = down_count[0];
     assign sam_clk = down_count[2];
     assign sym_clk = down_count[4];
     assign clk_phase = ~(down_count[4:1]);

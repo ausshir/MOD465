@@ -1,0 +1,1125 @@
+Analysis & Synthesis report for deliverable2
+Mon Feb 13 23:37:41 2017
+Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Full Version
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Analysis & Synthesis DSP Block Usage Summary
+  9. Registers Protected by Synthesis
+ 10. Registers Removed During Synthesis
+ 11. Removed Registers Triggering Further Register Optimizations
+ 12. General Register Statistics
+ 13. Inverted Register Statistics
+ 14. Source assignments for MER_device:bbx_mer15
+ 15. Source assignments for Top-level Entity: |d2_exam_top
+ 16. Port Connectivity Checks: "err_dc_gen:err_dc_gen_mod"
+ 17. Port Connectivity Checks: "err_sq_gen:err_sq_gen_mod"
+ 18. Port Connectivity Checks: "ref_level_gen:ref_level_gen_mod"
+ 19. Port Connectivity Checks: "lfsr_22_max:lfsr_data_mod"
+ 20. Port Connectivity Checks: "clk_gen:clk_gen_mod"
+ 21. Elapsed Time Per Partition
+ 22. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2013 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++---------------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                          ;
++------------------------------------+--------------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Mon Feb 13 23:37:41 2017            ;
+; Quartus II 32-bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Full Version ;
+; Revision Name                      ; deliverable2                                     ;
+; Top-level Entity Name              ; d2_exam_top                                      ;
+; Family                             ; Cyclone IV E                                     ;
+; Total logic elements               ; 438                                              ;
+;     Total combinational functions  ; 314                                              ;
+;     Dedicated logic registers      ; 319                                              ;
+; Total registers                    ; 319                                              ;
+; Total pins                         ; 114                                              ;
+; Total virtual pins                 ; 0                                                ;
+; Total memory bits                  ; 0                                                ;
+; Embedded Multiplier 9-bit elements ; 6                                                ;
+; Total PLLs                         ; 0                                                ;
++------------------------------------+--------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                        ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                     ; Setting            ; Default Value      ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                     ; EP4CE115F29C7      ;                    ;
+; Top-level entity name                                                      ; d2_exam_top        ; deliverable2       ;
+; Family name                                                                ; Cyclone IV E       ; Cyclone IV GX      ;
+; Use smart compilation                                                      ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                                ; Off                ; Off                ;
+; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
+; Preserve fewer node names                                                  ; On                 ; On                 ;
+; Disable OpenCore Plus hardware evaluation                                  ; Off                ; Off                ;
+; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                               ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                   ; Auto               ; Auto               ;
+; Safe State Machine                                                         ; Off                ; Off                ;
+; Extract Verilog State Machines                                             ; On                 ; On                 ;
+; Extract VHDL State Machines                                                ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                  ; On                 ; On                 ;
+; Parallel Synthesis                                                         ; On                 ; On                 ;
+; DSP Block Balancing                                                        ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                         ; On                 ; On                 ;
+; Power-Up Don't Care                                                        ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                ; Off                ;
+; Remove Duplicate Registers                                                 ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                ; Off                ;
+; Optimization Technique                                                     ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                         ; 70                 ; 70                 ;
+; Auto Carry Chains                                                          ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                ; Off                ;
+; Auto ROM Replacement                                                       ; On                 ; On                 ;
+; Auto RAM Replacement                                                       ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                 ; On                 ; On                 ;
+; Auto Shift Register Replacement                                            ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                            ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                 ; On                 ;
+; Strict RAM Replacement                                                     ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                          ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                ; Off                ;
+; Auto RAM Block Balancing                                                   ; On                 ; On                 ;
+; Auto RAM to Logic Cell Conversion                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                      ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                              ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                    ; On                 ; On                 ;
+; Report Parameter Settings                                                  ; On                 ; On                 ;
+; Report Source Assignments                                                  ; On                 ; On                 ;
+; Report Connectivity Checks                                                 ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                ; Off                ;
+; Synchronization Register Chain Length                                      ; 2                  ; 2                  ;
+; PowerPlay Power Optimization                                               ; Normal compilation ; Normal compilation ;
+; HDL message level                                                          ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                         ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                ; 100                ;
+; Clock MUX Protection                                                       ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                ; Off                ; Off                ;
+; Block Design Naming                                                        ; Auto               ; Auto               ;
+; SDC constraint protection                                                  ; Off                ; Off                ;
+; Synthesis Effort                                                           ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                       ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                         ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                     ; On                 ; On                 ;
+; Synthesis Seed                                                             ; 1                  ; 1                  ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 4           ;
+; Maximum allowed            ; 2           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 2           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processor 2            ; < 0.1%      ;
+;     Processors 3-4         ;   0.0%      ;
++----------------------------+-------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                                                                   ;
++----------------------------------------------------------------------------------+-----------------+----------------------------------------+----------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path                                                 ; Used in Netlist ; File Type                              ; File Name with Absolute Path                                                     ; Library ;
++----------------------------------------------------------------------------------+-----------------+----------------------------------------+----------------------------------------------------------------------------------+---------+
+; MER_device_15.qxp                                                                ; yes             ; User File                              ; /home/aus892/engr-ece/EE465/MOD465/exams/deliverable2/MER_device_15.qxp          ;         ;
+; ../../design/slicer_4_ask.v                                                      ; yes             ; User Verilog HDL File                  ; /home/aus892/engr-ece/EE465/MOD465/design/slicer_4_ask.v                         ;         ;
+; ../../design/ref_level_gen.v                                                     ; yes             ; User Verilog HDL File                  ; /home/aus892/engr-ece/EE465/MOD465/design/ref_level_gen.v                        ;         ;
+; ../../design/mapper_16_qam.v                                                     ; yes             ; User Verilog HDL File                  ; /home/aus892/engr-ece/EE465/MOD465/design/mapper_16_qam.v                        ;         ;
+; ../../design/mapper_4_ask_ref.v                                                  ; yes             ; User Verilog HDL File                  ; /home/aus892/engr-ece/EE465/MOD465/design/mapper_4_ask_ref.v                     ;         ;
+; ../../design/lfsr_22_max.v                                                       ; yes             ; User Verilog HDL File                  ; /home/aus892/engr-ece/EE465/MOD465/design/lfsr_22_max.v                          ;         ;
+; ../../design/err_sq_gen.v                                                        ; yes             ; User Verilog HDL File                  ; /home/aus892/engr-ece/EE465/MOD465/design/err_sq_gen.v                           ;         ;
+; ../../design/err_dc_gen.v                                                        ; yes             ; User Verilog HDL File                  ; /home/aus892/engr-ece/EE465/MOD465/design/err_dc_gen.v                           ;         ;
+; ../../design/clk_gen.v                                                           ; yes             ; User Verilog HDL File                  ; /home/aus892/engr-ece/EE465/MOD465/design/clk_gen.v                              ;         ;
+; d2_exam_top.v                                                                    ; yes             ; User Verilog HDL File                  ; /home/aus892/engr-ece/EE465/MOD465/exams/deliverable2/d2_exam_top.v              ;         ;
+; /home/aus892/engr-ece/EE465/MOD465/design/defines.vh                             ; yes             ; Auto-Found Unspecified File            ; /home/aus892/engr-ece/EE465/MOD465/design/defines.vh                             ;         ;
+; /opt/altera/13.0SP1/quartus/libraries/megafunctions/sld_signaltap_impl.vhd       ; yes             ; Encrypted Megafunction                 ; /opt/altera/13.0SP1/quartus/libraries/megafunctions/sld_signaltap_impl.vhd       ;         ;
+; /opt/altera/13.0SP1/quartus/libraries/megafunctions/sld_ela_control.vhd          ; yes             ; Encrypted Megafunction                 ; /opt/altera/13.0SP1/quartus/libraries/megafunctions/sld_ela_control.vhd          ;         ;
+; /opt/altera/13.0SP1/quartus/libraries/megafunctions/sld_mbpmg.vhd                ; yes             ; Encrypted Megafunction                 ; /opt/altera/13.0SP1/quartus/libraries/megafunctions/sld_mbpmg.vhd                ;         ;
+; /opt/altera/13.0SP1/quartus/libraries/megafunctions/sld_ela_trigger_flow_mgr.vhd ; yes             ; Encrypted Megafunction                 ; /opt/altera/13.0SP1/quartus/libraries/megafunctions/sld_ela_trigger_flow_mgr.vhd ;         ;
+; /opt/altera/13.0SP1/quartus/libraries/megafunctions/sld_buffer_manager.vhd       ; yes             ; Encrypted Megafunction                 ; /opt/altera/13.0SP1/quartus/libraries/megafunctions/sld_buffer_manager.vhd       ;         ;
+; /opt/altera/13.0SP1/quartus/libraries/megafunctions/sld_rom_sr.vhd               ; yes             ; Encrypted Megafunction                 ; /opt/altera/13.0SP1/quartus/libraries/megafunctions/sld_rom_sr.vhd               ;         ;
+; /opt/altera/13.0SP1/quartus/libraries/megafunctions/sld_hub.vhd                  ; yes             ; Encrypted Megafunction                 ; /opt/altera/13.0SP1/quartus/libraries/megafunctions/sld_hub.vhd                  ;         ;
+; /opt/altera/13.0SP1/quartus/libraries/megafunctions/sld_jtag_hub.vhd             ; yes             ; Encrypted Megafunction                 ; /opt/altera/13.0SP1/quartus/libraries/megafunctions/sld_jtag_hub.vhd             ;         ;
+; E:/SSD_Verilog/EE465/2017/MER_test/fpdiv.hex                                     ; yes             ; Auto-Found Memory Initialization File  ; E:/SSD_Verilog/EE465/2017/MER_test/fpdiv.hex                                     ;         ;
++----------------------------------------------------------------------------------+-----------------+----------------------------------------+----------------------------------------------------------------------------------+---------+
+
+
++---------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                               ;
++---------------------------------------------+-----------------------------+
+; Resource                                    ; Usage                       ;
++---------------------------------------------+-----------------------------+
+; Estimated Total logic elements              ; 438                         ;
+;                                             ;                             ;
+; Total combinational functions               ; 314                         ;
+; Logic element usage by number of LUT inputs ;                             ;
+;     -- 4 input functions                    ; 11                          ;
+;     -- 3 input functions                    ; 122                         ;
+;     -- <=2 input functions                  ; 181                         ;
+;                                             ;                             ;
+; Logic elements by mode                      ;                             ;
+;     -- normal mode                          ; 175                         ;
+;     -- arithmetic mode                      ; 139                         ;
+;                                             ;                             ;
+; Total registers                             ; 319                         ;
+;     -- Dedicated logic registers            ; 319                         ;
+;     -- I/O registers                        ; 0                           ;
+;                                             ;                             ;
+; I/O pins                                    ; 114                         ;
+; Embedded Multiplier 9-bit elements          ; 6                           ;
+; Maximum fan-out node                        ; clk_gen:clk_gen_mod|sys_clk ;
+; Maximum fan-out                             ; 284                         ;
+; Total fan-out                               ; 1908                        ;
+; Average fan-out                             ; 2.20                        ;
++---------------------------------------------+-----------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                        ;
++--------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node           ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                      ; Library Name ;
++--------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------+--------------+
+; |d2_exam_top                         ; 314 (18)          ; 319 (62)     ; 0           ; 6            ; 0       ; 3         ; 114  ; 0            ; |d2_exam_top                                                             ; work         ;
+;    |MER_device:bbx_mer15|            ; 193 (191)         ; 174 (138)    ; 0           ; 6            ; 0       ; 3         ; 0    ; 0            ; |d2_exam_top|MER_device:bbx_mer15                                        ; work         ;
+;       |delay_chain:dc_I|             ; 0 (0)             ; 36 (36)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |d2_exam_top|MER_device:bbx_mer15|delay_chain:dc_I                       ; work         ;
+;       |lpm_mult:Mult0|               ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |d2_exam_top|MER_device:bbx_mer15|lpm_mult:Mult0                         ; work         ;
+;          |mult_v9t:auto_generated|   ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |d2_exam_top|MER_device:bbx_mer15|lpm_mult:Mult0|mult_v9t:auto_generated ; work         ;
+;       |lpm_mult:Mult1|               ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |d2_exam_top|MER_device:bbx_mer15|lpm_mult:Mult1                         ; work         ;
+;          |mult_66t:auto_generated|   ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |d2_exam_top|MER_device:bbx_mer15|lpm_mult:Mult1|mult_66t:auto_generated ; work         ;
+;       |lpm_mult:Mult2|               ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |d2_exam_top|MER_device:bbx_mer15|lpm_mult:Mult2                         ; work         ;
+;          |mult_46t:auto_generated|   ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |d2_exam_top|MER_device:bbx_mer15|lpm_mult:Mult2|mult_46t:auto_generated ; work         ;
+;       |mapper:C1_map|                ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |d2_exam_top|MER_device:bbx_mer15|mapper:C1_map                          ; work         ;
+;       |mapper:C2_map|                ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |d2_exam_top|MER_device:bbx_mer15|mapper:C2_map                          ; work         ;
+;    |clk_gen:clk_gen_mod|             ; 8 (8)             ; 6 (6)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |d2_exam_top|clk_gen:clk_gen_mod                                         ; work         ;
+;    |lfsr_22_max:lfsr_data_mod|       ; 15 (15)           ; 22 (22)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |d2_exam_top|lfsr_22_max:lfsr_data_mod                                   ; work         ;
+;    |mapper_16_qam:mapper_16_qam_mod| ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |d2_exam_top|mapper_16_qam:mapper_16_qam_mod                             ; work         ;
+;    |ref_level_gen:ref_level_gen_mod| ; 18 (18)           ; 53 (53)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |d2_exam_top|ref_level_gen:ref_level_gen_mod                             ; work         ;
+;    |slicer_4_ask:slicer_4_ask_mod|   ; 61 (61)           ; 2 (2)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |d2_exam_top|slicer_4_ask:slicer_4_ask_mod                               ; work         ;
++--------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++-----------------------------------------------------+
+; Analysis & Synthesis DSP Block Usage Summary        ;
++---------------------------------------+-------------+
+; Statistic                             ; Number Used ;
++---------------------------------------+-------------+
+; Simple Multipliers (9-bit)            ; 0           ;
+; Simple Multipliers (18-bit)           ; 3           ;
+; Embedded Multiplier Blocks            ; --          ;
+; Embedded Multiplier 9-bit elements    ; 6           ;
+; Signed Embedded Multipliers           ; 3           ;
+; Unsigned Embedded Multipliers         ; 0           ;
+; Mixed Sign Embedded Multipliers       ; 0           ;
+; Variable Sign Embedded Multipliers    ; 0           ;
+; Dedicated Input Shift Register Chains ; 0           ;
++---------------------------------------+-------------+
+Note: number of Embedded Multiplier Blocks used is only available after a successful fit.
+
+
++--------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Protected by Synthesis                                                                                                     ;
++----------------------+------------------------------------------------------------------+--------------------------------------------+
+; Register Name        ; Protected by Synthesis Attribute or Preserve Register Assignment ; Not to be Touched by Netlist Optimizations ;
++----------------------+------------------------------------------------------------------+--------------------------------------------+
+; registered_ADC_A[0]  ; yes                                                              ; yes                                        ;
+; registered_ADC_A[13] ; yes                                                              ; yes                                        ;
+; registered_ADC_A[12] ; yes                                                              ; yes                                        ;
+; registered_ADC_A[11] ; yes                                                              ; yes                                        ;
+; registered_ADC_A[10] ; yes                                                              ; yes                                        ;
+; registered_ADC_A[9]  ; yes                                                              ; yes                                        ;
+; registered_ADC_A[8]  ; yes                                                              ; yes                                        ;
+; registered_ADC_A[7]  ; yes                                                              ; yes                                        ;
+; registered_ADC_A[6]  ; yes                                                              ; yes                                        ;
+; registered_ADC_A[5]  ; yes                                                              ; yes                                        ;
+; registered_ADC_A[4]  ; yes                                                              ; yes                                        ;
+; registered_ADC_A[3]  ; yes                                                              ; yes                                        ;
+; registered_ADC_A[2]  ; yes                                                              ; yes                                        ;
+; registered_ADC_A[1]  ; yes                                                              ; yes                                        ;
++----------------------+------------------------------------------------------------------+--------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                        ;
++--------------------------------------------------+----------------------------------------+
+; Register name                                    ; Reason for Removal                     ;
++--------------------------------------------------+----------------------------------------+
+; sym_in_delay[0][3]                               ; Stuck at GND due to stuck port data_in ;
+; sym_in_delay[0][2]                               ; Stuck at GND due to stuck port data_in ;
+; sym_in_delay[3][3]                               ; Stuck at GND due to stuck port data_in ;
+; sym_in_delay[3][2]                               ; Stuck at GND due to stuck port data_in ;
+; ref_level_gen:ref_level_gen_mod|dec_var_abs[17]  ; Stuck at GND due to stuck port data_in ;
+; ref_level_gen:ref_level_gen_mod|acc_full[18..39] ; Lost fanout                            ;
+; Total Number of Removed Registers = 27           ;                                        ;
++--------------------------------------------------+----------------------------------------+
+
+
++-----------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                             ;
++--------------------+---------------------------+----------------------------------------+
+; Register name      ; Reason for Removal        ; Registers Removed due to This Register ;
++--------------------+---------------------------+----------------------------------------+
+; sym_in_delay[0][3] ; Stuck at GND              ; sym_in_delay[3][3]                     ;
+;                    ; due to stuck port data_in ;                                        ;
+; sym_in_delay[0][2] ; Stuck at GND              ; sym_in_delay[3][2]                     ;
+;                    ; due to stuck port data_in ;                                        ;
++--------------------+---------------------------+----------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 319   ;
+; Number of registers using Synchronous Clear  ; 18    ;
+; Number of registers using Synchronous Load   ; 3     ;
+; Number of registers using Asynchronous Clear ; 81    ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 213   ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++---------------------------------------------------+
+; Inverted Register Statistics                      ;
++-----------------------------------------+---------+
+; Inverted Register                       ; Fan out ;
++-----------------------------------------+---------+
+; clk_gen:clk_gen_mod|down_count[1]       ; 2       ;
+; clk_gen:clk_gen_mod|down_count[2]       ; 2       ;
+; clk_gen:clk_gen_mod|down_count[3]       ; 2       ;
+; lfsr_22_max:lfsr_data_mod|fb_reg[0]     ; 4       ;
+; lfsr_22_max:lfsr_data_mod|fb_reg[1]     ; 17      ;
+; lfsr_22_max:lfsr_data_mod|fb_reg[2]     ; 1       ;
+; lfsr_22_max:lfsr_data_mod|fb_reg[21]    ; 1       ;
+; clk_gen:clk_gen_mod|down_count[0]       ; 2       ;
+; lfsr_22_max:lfsr_data_mod|fb_reg[20]    ; 1       ;
+; lfsr_22_max:lfsr_data_mod|fb_reg[19]    ; 2       ;
+; lfsr_22_max:lfsr_data_mod|fb_reg[18]    ; 1       ;
+; lfsr_22_max:lfsr_data_mod|fb_reg[16]    ; 1       ;
+; lfsr_22_max:lfsr_data_mod|fb_reg[14]    ; 1       ;
+; lfsr_22_max:lfsr_data_mod|fb_reg[13]    ; 1       ;
+; lfsr_22_max:lfsr_data_mod|fb_reg[11]    ; 1       ;
+; lfsr_22_max:lfsr_data_mod|fb_reg[10]    ; 1       ;
+; lfsr_22_max:lfsr_data_mod|fb_reg[9]     ; 1       ;
+; lfsr_22_max:lfsr_data_mod|fb_reg[8]     ; 1       ;
+; lfsr_22_max:lfsr_data_mod|fb_reg[6]     ; 1       ;
+; lfsr_22_max:lfsr_data_mod|fb_reg[4]     ; 1       ;
+; Total number of inverted registers = 20 ;         ;
++-----------------------------------------+---------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------+
+; Source assignments for MER_device:bbx_mer15                                                                                         ;
++--------------------------------------------------------------------------------+--------------------+------+------------------------+
+; Assignment                                                                     ; Value              ; From ; To                     ;
++--------------------------------------------------------------------------------+--------------------+------+------------------------+
+; LOCATION                                                                       ; PIN_V24            ;      ; ADC_CLK_A              ;
+; LOCATION                                                                       ; PIN_V23            ;      ; ADC_CLK_B              ;
+; LOCATION                                                                       ; PIN_T22            ;      ; ADC_DA[0]              ;
+; LOCATION                                                                       ; PIN_L22            ;      ; ADC_DA[10]             ;
+; LOCATION                                                                       ; PIN_L21            ;      ; ADC_DA[11]             ;
+; LOCATION                                                                       ; PIN_U26            ;      ; ADC_DA[12]             ;
+; LOCATION                                                                       ; PIN_U25            ;      ; ADC_DA[13]             ;
+; LOCATION                                                                       ; PIN_T21            ;      ; ADC_DA[1]              ;
+; LOCATION                                                                       ; PIN_R23            ;      ; ADC_DA[2]              ;
+; LOCATION                                                                       ; PIN_R22            ;      ; ADC_DA[3]              ;
+; LOCATION                                                                       ; PIN_R21            ;      ; ADC_DA[4]              ;
+; LOCATION                                                                       ; PIN_P21            ;      ; ADC_DA[5]              ;
+; LOCATION                                                                       ; PIN_P26            ;      ; ADC_DA[6]              ;
+; LOCATION                                                                       ; PIN_P25            ;      ; ADC_DA[7]              ;
+; LOCATION                                                                       ; PIN_N26            ;      ; ADC_DA[8]              ;
+; LOCATION                                                                       ; PIN_N25            ;      ; ADC_DA[9]              ;
+; LOCATION                                                                       ; PIN_V22            ;      ; ADC_DB[0]              ;
+; LOCATION                                                                       ; PIN_L28            ;      ; ADC_DB[10]             ;
+; LOCATION                                                                       ; PIN_L27            ;      ; ADC_DB[11]             ;
+; LOCATION                                                                       ; PIN_J26            ;      ; ADC_DB[12]             ;
+; LOCATION                                                                       ; PIN_J25            ;      ; ADC_DB[13]             ;
+; LOCATION                                                                       ; PIN_U22            ;      ; ADC_DB[1]              ;
+; LOCATION                                                                       ; PIN_V28            ;      ; ADC_DB[2]              ;
+; LOCATION                                                                       ; PIN_V27            ;      ; ADC_DB[3]              ;
+; LOCATION                                                                       ; PIN_U28            ;      ; ADC_DB[4]              ;
+; LOCATION                                                                       ; PIN_U27            ;      ; ADC_DB[5]              ;
+; LOCATION                                                                       ; PIN_R28            ;      ; ADC_DB[6]              ;
+; LOCATION                                                                       ; PIN_R27            ;      ; ADC_DB[7]              ;
+; LOCATION                                                                       ; PIN_V26            ;      ; ADC_DB[8]              ;
+; LOCATION                                                                       ; PIN_V25            ;      ; ADC_DB[9]              ;
+; LOCATION                                                                       ; PIN_T25            ;      ; ADC_OEB_A              ;
+; LOCATION                                                                       ; PIN_T26            ;      ; ADC_OEB_B              ;
+; LOCATION                                                                       ; PIN_Y28            ;      ; ADC_OTR_A              ;
+; LOCATION                                                                       ; PIN_Y27            ;      ; ADC_OTR_B              ;
+; LOCATION                                                                       ; PIN_G23            ;      ; DAC_CLK_A              ;
+; LOCATION                                                                       ; PIN_G24            ;      ; DAC_CLK_B              ;
+; LOCATION                                                                       ; PIN_D27            ;      ; DAC_DA[0]              ;
+; LOCATION                                                                       ; PIN_M27            ;      ; DAC_DA[10]             ;
+; LOCATION                                                                       ; PIN_M28            ;      ; DAC_DA[11]             ;
+; LOCATION                                                                       ; PIN_K21            ;      ; DAC_DA[12]             ;
+; LOCATION                                                                       ; PIN_K22            ;      ; DAC_DA[13]             ;
+; LOCATION                                                                       ; PIN_D28            ;      ; DAC_DA[1]              ;
+; LOCATION                                                                       ; PIN_E27            ;      ; DAC_DA[2]              ;
+; LOCATION                                                                       ; PIN_E28            ;      ; DAC_DA[3]              ;
+; LOCATION                                                                       ; PIN_F27            ;      ; DAC_DA[4]              ;
+; LOCATION                                                                       ; PIN_F28            ;      ; DAC_DA[5]              ;
+; LOCATION                                                                       ; PIN_G27            ;      ; DAC_DA[6]              ;
+; LOCATION                                                                       ; PIN_G28            ;      ; DAC_DA[7]              ;
+; LOCATION                                                                       ; PIN_K27            ;      ; DAC_DA[8]              ;
+; LOCATION                                                                       ; PIN_K28            ;      ; DAC_DA[9]              ;
+; LOCATION                                                                       ; PIN_F24            ;      ; DAC_DB[0]              ;
+; LOCATION                                                                       ; PIN_K25            ;      ; DAC_DB[10]             ;
+; LOCATION                                                                       ; PIN_K26            ;      ; DAC_DB[11]             ;
+; LOCATION                                                                       ; PIN_L23            ;      ; DAC_DB[12]             ;
+; LOCATION                                                                       ; PIN_L24            ;      ; DAC_DB[13]             ;
+; LOCATION                                                                       ; PIN_F25            ;      ; DAC_DB[1]              ;
+; LOCATION                                                                       ; PIN_D26            ;      ; DAC_DB[2]              ;
+; LOCATION                                                                       ; PIN_C27            ;      ; DAC_DB[3]              ;
+; LOCATION                                                                       ; PIN_F26            ;      ; DAC_DB[4]              ;
+; LOCATION                                                                       ; PIN_E26            ;      ; DAC_DB[5]              ;
+; LOCATION                                                                       ; PIN_G25            ;      ; DAC_DB[6]              ;
+; LOCATION                                                                       ; PIN_G26            ;      ; DAC_DB[7]              ;
+; LOCATION                                                                       ; PIN_H25            ;      ; DAC_DB[8]              ;
+; LOCATION                                                                       ; PIN_H26            ;      ; DAC_DB[9]              ;
+; LOCATION                                                                       ; PIN_H24            ;      ; DAC_MODE               ;
+; LOCATION                                                                       ; PIN_H23            ;      ; DAC_WRT_A              ;
+; LOCATION                                                                       ; PIN_M25            ;      ; DAC_WRT_B              ;
+; LOCATION                                                                       ; PIN_B7             ;      ; I2C_SCLK               ;
+; LOCATION                                                                       ; PIN_A8             ;      ; I2C_SDAT               ;
+; LOCATION                                                                       ; PIN_M23            ;      ; KEY[0]                 ;
+; LOCATION                                                                       ; PIN_M21            ;      ; KEY[1]                 ;
+; LOCATION                                                                       ; PIN_N21            ;      ; KEY[2]                 ;
+; LOCATION                                                                       ; PIN_R24            ;      ; KEY[3]                 ;
+; LOCATION                                                                       ; PIN_E21            ;      ; LEDG[0]                ;
+; LOCATION                                                                       ; PIN_E22            ;      ; LEDG[1]                ;
+; LOCATION                                                                       ; PIN_E25            ;      ; LEDG[2]                ;
+; LOCATION                                                                       ; PIN_E24            ;      ; LEDG[3]                ;
+; LOCATION                                                                       ; PIN_G19            ;      ; LEDR[0]                ;
+; LOCATION                                                                       ; PIN_J15            ;      ; LEDR[10]               ;
+; LOCATION                                                                       ; PIN_H16            ;      ; LEDR[11]               ;
+; LOCATION                                                                       ; PIN_J16            ;      ; LEDR[12]               ;
+; LOCATION                                                                       ; PIN_H17            ;      ; LEDR[13]               ;
+; LOCATION                                                                       ; PIN_F15            ;      ; LEDR[14]               ;
+; LOCATION                                                                       ; PIN_G15            ;      ; LEDR[15]               ;
+; LOCATION                                                                       ; PIN_G16            ;      ; LEDR[16]               ;
+; LOCATION                                                                       ; PIN_H15            ;      ; LEDR[17]               ;
+; LOCATION                                                                       ; PIN_F19            ;      ; LEDR[1]                ;
+; LOCATION                                                                       ; PIN_E19            ;      ; LEDR[2]                ;
+; LOCATION                                                                       ; PIN_F21            ;      ; LEDR[3]                ;
+; LOCATION                                                                       ; PIN_F18            ;      ; LEDR[4]                ;
+; LOCATION                                                                       ; PIN_E18            ;      ; LEDR[5]                ;
+; LOCATION                                                                       ; PIN_J19            ;      ; LEDR[6]                ;
+; LOCATION                                                                       ; PIN_H19            ;      ; LEDR[7]                ;
+; LOCATION                                                                       ; PIN_J17            ;      ; LEDR[8]                ;
+; LOCATION                                                                       ; PIN_G17            ;      ; LEDR[9]                ;
+; LOCATION                                                                       ; PIN_J27            ;      ; OSC_SMA_ADC4           ;
+; LOCATION                                                                       ; PIN_J28            ;      ; SMA_DAC4               ;
+; LOCATION                                                                       ; PIN_AB28           ;      ; SW[0]                  ;
+; LOCATION                                                                       ; PIN_AC24           ;      ; SW[10]                 ;
+; LOCATION                                                                       ; PIN_AB24           ;      ; SW[11]                 ;
+; LOCATION                                                                       ; PIN_AB23           ;      ; SW[12]                 ;
+; LOCATION                                                                       ; PIN_AA24           ;      ; SW[13]                 ;
+; LOCATION                                                                       ; PIN_AA23           ;      ; SW[14]                 ;
+; LOCATION                                                                       ; PIN_AA22           ;      ; SW[15]                 ;
+; LOCATION                                                                       ; PIN_Y24            ;      ; SW[16]                 ;
+; LOCATION                                                                       ; PIN_Y23            ;      ; SW[17]                 ;
+; LOCATION                                                                       ; PIN_AC28           ;      ; SW[1]                  ;
+; LOCATION                                                                       ; PIN_AC27           ;      ; SW[2]                  ;
+; LOCATION                                                                       ; PIN_AD27           ;      ; SW[3]                  ;
+; LOCATION                                                                       ; PIN_AB27           ;      ; SW[4]                  ;
+; LOCATION                                                                       ; PIN_AC26           ;      ; SW[5]                  ;
+; LOCATION                                                                       ; PIN_AD26           ;      ; SW[6]                  ;
+; LOCATION                                                                       ; PIN_AB26           ;      ; SW[7]                  ;
+; LOCATION                                                                       ; PIN_AC25           ;      ; SW[8]                  ;
+; LOCATION                                                                       ; PIN_AB25           ;      ; SW[9]                  ;
+; LOCATION                                                                       ; PIN_B14            ;      ; clock_27               ;
+; LOCATION                                                                       ; PIN_Y2             ;      ; clock_50               ;
+; ADV_NETLIST_OPT_SYNTH_WYSIWYG_REMAP                                            ; OFF                ;      ;                        ;
+; SYNCHRONIZATION_REGISTER_CHAIN_LENGTH                                          ; 2                  ;      ;                        ;
+; OPTIMIZE_POWER_DURING_SYNTHESIS                                                ; NORMAL COMPILATION ;      ;                        ;
+; TXPMA_SLEW_RATE                                                                ; LOW                ;      ;                        ;
+; ADCE_ENABLED                                                                   ; AUTO               ;      ;                        ;
+; BLOCK_RAM_TO_MLAB_CELL_CONVERSION                                              ; ON                 ;      ;                        ;
+; BLOCK_RAM_AND_MLAB_EQUIVALENT_POWER_UP_CONDITIONS                              ; AUTO               ;      ;                        ;
+; BLOCK_RAM_AND_MLAB_EQUIVALENT_PAUSED_READ_CAPABILITIES                         ; CARE               ;      ;                        ;
+; OPTIMIZE_POWER_DURING_FITTING                                                  ; NORMAL COMPILATION ;      ;                        ;
+; PHYSICAL_SYNTHESIS_COMBO_LOGIC_FOR_AREA                                        ; OFF                ;      ;                        ;
+; PHYSICAL_SYNTHESIS_COMBO_LOGIC                                                 ; OFF                ;      ;                        ;
+; PHYSICAL_SYNTHESIS_REGISTER_DUPLICATION                                        ; OFF                ;      ;                        ;
+; PHYSICAL_SYNTHESIS_MAP_LOGIC_TO_MEMORY_FOR_AREA                                ; OFF                ;      ;                        ;
+; PHYSICAL_SYNTHESIS_REGISTER_RETIMING                                           ; OFF                ;      ;                        ;
+; PHYSICAL_SYNTHESIS_ASYNCHRONOUS_SIGNAL_PIPELINING                              ; OFF                ;      ;                        ;
+; ENABLE_BENEFICIAL_SKEW_OPTIMIZATION                                            ; ON                 ;      ;                        ;
+; FORM_DDR_CLUSTERING_CLIQUE                                                     ; OFF                ;      ;                        ;
+; POWER_REPORT_SIGNAL_ACTIVITY                                                   ; OFF                ;      ;                        ;
+; POWER_REPORT_POWER_DISSIPATION                                                 ; OFF                ;      ;                        ;
+; ARRIAIIGX_RX_CDR_LOCKUP_FIX_OVERRIDE                                           ; OFF                ;      ;                        ;
+; MUX_RESTRUCTURE                                                                ; AUTO               ;      ;                        ;
+; MLAB_ADD_TIMING_CONSTRAINTS_FOR_MIXED_PORT_FEED_THROUGH_MODE_SETTING_DONT_CARE ; OFF                ;      ;                        ;
+; STATE_MACHINE_PROCESSING                                                       ; AUTO               ;      ;                        ;
+; SAFE_STATE_MACHINE                                                             ; OFF                ;      ;                        ;
+; IGNORE_VERILOG_INITIAL_CONSTRUCTS                                              ; OFF                ;      ;                        ;
+; VERILOG_CONSTANT_LOOP_LIMIT                                                    ; 5000               ;      ;                        ;
+; VERILOG_NON_CONSTANT_LOOP_LIMIT                                                ; 250                ;      ;                        ;
+; INFER_RAMS_FROM_RAW_LOGIC                                                      ; ON                 ;      ;                        ;
+; DSP_BLOCK_BALANCING                                                            ; AUTO               ;      ;                        ;
+; NOT_GATE_PUSH_BACK                                                             ; ON                 ;      ;                        ;
+; REMOVE_REDUNDANT_LOGIC_CELLS                                                   ; OFF                ;      ;                        ;
+; REMOVE_DUPLICATE_REGISTERS                                                     ; ON                 ;      ;                        ;
+; IGNORE_CARRY_BUFFERS                                                           ; OFF                ;      ;                        ;
+; IGNORE_CASCADE_BUFFERS                                                         ; OFF                ;      ;                        ;
+; IGNORE_GLOBAL_BUFFERS                                                          ; OFF                ;      ;                        ;
+; IGNORE_ROW_GLOBAL_BUFFERS                                                      ; OFF                ;      ;                        ;
+; IGNORE_LCELL_BUFFERS                                                           ; OFF                ;      ;                        ;
+; MAX7000_IGNORE_LCELL_BUFFERS                                                   ; AUTO               ;      ;                        ;
+; IGNORE_SOFT_BUFFERS                                                            ; ON                 ;      ;                        ;
+; MAX7000_IGNORE_SOFT_BUFFERS                                                    ; OFF                ;      ;                        ;
+; AUTO_GLOBAL_CLOCK_MAX                                                          ; ON                 ;      ;                        ;
+; AUTO_GLOBAL_OE_MAX                                                             ; ON                 ;      ;                        ;
+; MAX_AUTO_GLOBAL_REGISTER_CONTROLS                                              ; ON                 ;      ;                        ;
+; AUTO_IMPLEMENT_IN_ROM                                                          ; OFF                ;      ;                        ;
+; APEX20K_TECHNOLOGY_MAPPER                                                      ; LUT                ;      ;                        ;
+; OPTIMIZATION_TECHNIQUE                                                         ; BALANCED           ;      ;                        ;
+; STRATIXII_OPTIMIZATION_TECHNIQUE                                               ; BALANCED           ;      ;                        ;
+; CYCLONE_OPTIMIZATION_TECHNIQUE                                                 ; BALANCED           ;      ;                        ;
+; CYCLONEII_OPTIMIZATION_TECHNIQUE                                               ; BALANCED           ;      ;                        ;
+; STRATIX_OPTIMIZATION_TECHNIQUE                                                 ; BALANCED           ;      ;                        ;
+; MAXII_OPTIMIZATION_TECHNIQUE                                                   ; BALANCED           ;      ;                        ;
+; MAX7000_OPTIMIZATION_TECHNIQUE                                                 ; SPEED              ;      ;                        ;
+; APEX20K_OPTIMIZATION_TECHNIQUE                                                 ; BALANCED           ;      ;                        ;
+; MERCURY_OPTIMIZATION_TECHNIQUE                                                 ; AREA               ;      ;                        ;
+; FLEX6K_OPTIMIZATION_TECHNIQUE                                                  ; AREA               ;      ;                        ;
+; FLEX10K_OPTIMIZATION_TECHNIQUE                                                 ; AREA               ;      ;                        ;
+; ALLOW_XOR_GATE_USAGE                                                           ; ON                 ;      ;                        ;
+; AUTO_LCELL_INSERTION                                                           ; ON                 ;      ;                        ;
+; CARRY_CHAIN_LENGTH                                                             ; 48                 ;      ;                        ;
+; FLEX6K_CARRY_CHAIN_LENGTH                                                      ; 32                 ;      ;                        ;
+; FLEX10K_CARRY_CHAIN_LENGTH                                                     ; 32                 ;      ;                        ;
+; MERCURY_CARRY_CHAIN_LENGTH                                                     ; 48                 ;      ;                        ;
+; STRATIX_CARRY_CHAIN_LENGTH                                                     ; 70                 ;      ;                        ;
+; STRATIXII_CARRY_CHAIN_LENGTH                                                   ; 70                 ;      ;                        ;
+; CASCADE_CHAIN_LENGTH                                                           ; 2                  ;      ;                        ;
+; PARALLEL_EXPANDER_CHAIN_LENGTH                                                 ; 16                 ;      ;                        ;
+; MAX7000_PARALLEL_EXPANDER_CHAIN_LENGTH                                         ; 4                  ;      ;                        ;
+; AUTO_CARRY_CHAINS                                                              ; ON                 ;      ;                        ;
+; AUTO_CASCADE_CHAINS                                                            ; ON                 ;      ;                        ;
+; AUTO_PARALLEL_EXPANDERS                                                        ; ON                 ;      ;                        ;
+; AUTO_OPEN_DRAIN_PINS                                                           ; ON                 ;      ;                        ;
+; AUTO_ROM_RECOGNITION                                                           ; ON                 ;      ;                        ;
+; AUTO_RAM_RECOGNITION                                                           ; ON                 ;      ;                        ;
+; AUTO_DSP_RECOGNITION                                                           ; ON                 ;      ;                        ;
+; AUTO_SHIFT_REGISTER_RECOGNITION                                                ; AUTO               ;      ;                        ;
+; ALLOW_SHIFT_REGISTER_MERGING_ACROSS_HIERARCHIES                                ; AUTO               ;      ;                        ;
+; AUTO_CLOCK_ENABLE_RECOGNITION                                                  ; ON                 ;      ;                        ;
+; STRICT_RAM_RECOGNITION                                                         ; OFF                ;      ;                        ;
+; ALLOW_SYNCH_CTRL_USAGE                                                         ; ON                 ;      ;                        ;
+; FORCE_SYNCH_CLEAR                                                              ; OFF                ;      ;                        ;
+; AUTO_RAM_TO_LCELL_CONVERSION                                                   ; OFF                ;      ;                        ;
+; AUTO_RESOURCE_SHARING                                                          ; OFF                ;      ;                        ;
+; ALLOW_ANY_RAM_SIZE_FOR_RECOGNITION                                             ; OFF                ;      ;                        ;
+; ALLOW_ANY_ROM_SIZE_FOR_RECOGNITION                                             ; OFF                ;      ;                        ;
+; ALLOW_ANY_SHIFT_REGISTER_SIZE_FOR_RECOGNITION                                  ; OFF                ;      ;                        ;
+; MAX7000_FANIN_PER_CELL                                                         ; 100                ;      ;                        ;
+; SYNTH_TIMING_DRIVEN_SYNTHESIS                                                  ; ON                 ;      ;                        ;
+; IGNORE_MAX_FANOUT_ASSIGNMENTS                                                  ; OFF                ;      ;                        ;
+; USE_HIGH_SPEED_ADDER                                                           ; AUTO               ;      ;                        ;
+; SYNTH_GATED_CLOCK_CONVERSION                                                   ; OFF                ;      ;                        ;
+; BLOCK_DESIGN_NAMING                                                            ; AUTO               ;      ;                        ;
+; SHIFT_REGISTER_RECOGNITION_ACLR_SIGNAL                                         ; ON                 ;      ;                        ;
+; AUTO_MERGE_PLLS                                                                ; ON                 ;      ;                        ;
+; IGNORE_MODE_FOR_MERGE                                                          ; OFF                ;      ;                        ;
+; SLOW_SLEW_RATE                                                                 ; OFF                ;      ;                        ;
+; PCI_IO                                                                         ; OFF                ;      ;                        ;
+; TURBO_BIT                                                                      ; ON                 ;      ;                        ;
+; WEAK_PULL_UP_RESISTOR                                                          ; OFF                ;      ;                        ;
+; ENABLE_BUS_HOLD_CIRCUITRY                                                      ; OFF                ;      ;                        ;
+; AUTO_GLOBAL_MEMORY_CONTROLS                                                    ; OFF                ;      ;                        ;
+; AUTO_PACKED_REGISTERS_STRATIXII                                                ; AUTO               ;      ;                        ;
+; AUTO_PACKED_REGISTERS_MAXII                                                    ; AUTO               ;      ;                        ;
+; AUTO_PACKED_REGISTERS_CYCLONE                                                  ; AUTO               ;      ;                        ;
+; AUTO_PACKED_REGISTERS                                                          ; OFF                ;      ;                        ;
+; AUTO_PACKED_REGISTERS_STRATIX                                                  ; AUTO               ;      ;                        ;
+; NORMAL_LCELL_INSERT                                                            ; ON                 ;      ;                        ;
+; CARRY_OUT_PINS_LCELL_INSERT                                                    ; ON                 ;      ;                        ;
+; XSTL_INPUT_ALLOW_SE_BUFFER                                                     ; OFF                ;      ;                        ;
+; TREAT_BIDIR_AS_OUTPUT                                                          ; OFF                ;      ;                        ;
+; AUTO_TURBO_BIT                                                                 ; ON                 ;      ;                        ;
+; AUTO_GLOBAL_CLOCK                                                              ; ON                 ;      ;                        ;
+; AUTO_GLOBAL_OE                                                                 ; ON                 ;      ;                        ;
+; AUTO_GLOBAL_REGISTER_CONTROLS                                                  ; ON                 ;      ;                        ;
+; SYNCHRONIZER_IDENTIFICATION                                                    ; OFF                ;      ;                        ;
+; M144K_BLOCK_READ_CLOCK_DUTY_CYCLE_DEPENDENCY                                   ; OFF                ;      ;                        ;
+; CLAMPING_DIODE                                                                 ; OFF                ;      ;                        ;
+; IMPLEMENT_MLAB_IN_16_BIT_DEEP_MODE                                             ; OFF                ;      ;                        ;
+; OPTIMIZE_POWER_DURING_SYNTHESIS                                                ; NORMAL_COMPILATION ;      ;                        ;
+; NOT_GATE_PUSH_BACK                                                             ; ON                 ;      ; modified_post_count[0] ;
+; NOT_GATE_PUSH_BACK                                                             ; ON                 ;      ; modified_post_count[1] ;
+; NOT_GATE_PUSH_BACK                                                             ; ON                 ;      ; modified_post_count[2] ;
+; NOT_GATE_PUSH_BACK                                                             ; ON                 ;      ; modified_post_count[3] ;
+; NOT_GATE_PUSH_BACK                                                             ; ON                 ;      ; modified_post_count[4] ;
+; NOT_GATE_PUSH_BACK                                                             ; ON                 ;      ; modified_post_count[5] ;
+; NOT_GATE_PUSH_BACK                                                             ; ON                 ;      ; modified_post_count[6] ;
+; NOT_GATE_PUSH_BACK                                                             ; ON                 ;      ; modified_post_count[7] ;
+; NOT_GATE_PUSH_BACK                                                             ; ON                 ;      ; modified_post_count[8] ;
+; NOT_GATE_PUSH_BACK                                                             ; ON                 ;      ; modified_post_count[9] ;
+; NOT_GATE_PUSH_BACK                                                             ; OFF                ;      ; clr_reg                ;
+; REMOVE_REDUNDANT_LOGIC_CELLS                                                   ; OFF                ;      ;                        ;
+; IGNORE_LCELL_BUFFERS                                                           ; OFF                ;      ;                        ;
+; POWER_UP_LEVEL                                                                 ; LOW                ;      ; clr_reg                ;
+; AUTO_ROM_RECOGNITION                                                           ; OFF                ;      ;                        ;
+; NOT_GATE_PUSH_BACK                                                             ; OFF                ;      ;                        ;
+; POWER_UP_LEVEL                                                                 ; LOW                ;      ;                        ;
+; AUTO_SHIFT_REGISTER_RECOGNITION                                                ; OFF                ;      ;                        ;
++--------------------------------------------------------------------------------+--------------------+------+------------------------+
+
+
++--------------------------------------------------------------------+
+; Source assignments for Top-level Entity: |d2_exam_top              ;
++------------------------------+-------+------+----------------------+
+; Assignment                   ; Value ; From ; To                   ;
++------------------------------+-------+------+----------------------+
+; PRESERVE_REGISTER            ; on    ; -    ; registered_ADC_A[0]  ;
+; PRESERVE_FANOUT_FREE_NODE    ; on    ; -    ; registered_ADC_A[0]  ;
+; PRESERVE_REGISTER            ; on    ; -    ; registered_ADC_B[0]  ;
+; PRESERVE_FANOUT_FREE_NODE    ; on    ; -    ; registered_ADC_B[0]  ;
+; PRESERVE_REGISTER            ; on    ; -    ; registered_ADC_A[13] ;
+; PRESERVE_FANOUT_FREE_NODE    ; on    ; -    ; registered_ADC_A[13] ;
+; PRESERVE_REGISTER            ; on    ; -    ; registered_ADC_A[12] ;
+; PRESERVE_FANOUT_FREE_NODE    ; on    ; -    ; registered_ADC_A[12] ;
+; PRESERVE_REGISTER            ; on    ; -    ; registered_ADC_A[11] ;
+; PRESERVE_FANOUT_FREE_NODE    ; on    ; -    ; registered_ADC_A[11] ;
+; PRESERVE_REGISTER            ; on    ; -    ; registered_ADC_A[10] ;
+; PRESERVE_FANOUT_FREE_NODE    ; on    ; -    ; registered_ADC_A[10] ;
+; PRESERVE_REGISTER            ; on    ; -    ; registered_ADC_A[9]  ;
+; PRESERVE_FANOUT_FREE_NODE    ; on    ; -    ; registered_ADC_A[9]  ;
+; PRESERVE_REGISTER            ; on    ; -    ; registered_ADC_A[8]  ;
+; PRESERVE_FANOUT_FREE_NODE    ; on    ; -    ; registered_ADC_A[8]  ;
+; PRESERVE_REGISTER            ; on    ; -    ; registered_ADC_A[7]  ;
+; PRESERVE_FANOUT_FREE_NODE    ; on    ; -    ; registered_ADC_A[7]  ;
+; PRESERVE_REGISTER            ; on    ; -    ; registered_ADC_A[6]  ;
+; PRESERVE_FANOUT_FREE_NODE    ; on    ; -    ; registered_ADC_A[6]  ;
+; PRESERVE_REGISTER            ; on    ; -    ; registered_ADC_A[5]  ;
+; PRESERVE_FANOUT_FREE_NODE    ; on    ; -    ; registered_ADC_A[5]  ;
+; PRESERVE_REGISTER            ; on    ; -    ; registered_ADC_A[4]  ;
+; PRESERVE_FANOUT_FREE_NODE    ; on    ; -    ; registered_ADC_A[4]  ;
+; PRESERVE_REGISTER            ; on    ; -    ; registered_ADC_A[3]  ;
+; PRESERVE_FANOUT_FREE_NODE    ; on    ; -    ; registered_ADC_A[3]  ;
+; PRESERVE_REGISTER            ; on    ; -    ; registered_ADC_A[2]  ;
+; PRESERVE_FANOUT_FREE_NODE    ; on    ; -    ; registered_ADC_A[2]  ;
+; PRESERVE_REGISTER            ; on    ; -    ; registered_ADC_A[1]  ;
+; PRESERVE_FANOUT_FREE_NODE    ; on    ; -    ; registered_ADC_A[1]  ;
+; PRESERVE_REGISTER            ; on    ; -    ; registered_ADC_B[13] ;
+; PRESERVE_FANOUT_FREE_NODE    ; on    ; -    ; registered_ADC_B[13] ;
+; PRESERVE_REGISTER            ; on    ; -    ; registered_ADC_B[12] ;
+; PRESERVE_FANOUT_FREE_NODE    ; on    ; -    ; registered_ADC_B[12] ;
+; PRESERVE_REGISTER            ; on    ; -    ; registered_ADC_B[11] ;
+; PRESERVE_FANOUT_FREE_NODE    ; on    ; -    ; registered_ADC_B[11] ;
+; PRESERVE_REGISTER            ; on    ; -    ; registered_ADC_B[10] ;
+; PRESERVE_FANOUT_FREE_NODE    ; on    ; -    ; registered_ADC_B[10] ;
+; PRESERVE_REGISTER            ; on    ; -    ; registered_ADC_B[9]  ;
+; PRESERVE_FANOUT_FREE_NODE    ; on    ; -    ; registered_ADC_B[9]  ;
+; PRESERVE_REGISTER            ; on    ; -    ; registered_ADC_B[8]  ;
+; PRESERVE_FANOUT_FREE_NODE    ; on    ; -    ; registered_ADC_B[8]  ;
+; PRESERVE_REGISTER            ; on    ; -    ; registered_ADC_B[7]  ;
+; PRESERVE_FANOUT_FREE_NODE    ; on    ; -    ; registered_ADC_B[7]  ;
+; PRESERVE_REGISTER            ; on    ; -    ; registered_ADC_B[6]  ;
+; PRESERVE_FANOUT_FREE_NODE    ; on    ; -    ; registered_ADC_B[6]  ;
+; PRESERVE_REGISTER            ; on    ; -    ; registered_ADC_B[5]  ;
+; PRESERVE_FANOUT_FREE_NODE    ; on    ; -    ; registered_ADC_B[5]  ;
+; PRESERVE_REGISTER            ; on    ; -    ; registered_ADC_B[4]  ;
+; PRESERVE_FANOUT_FREE_NODE    ; on    ; -    ; registered_ADC_B[4]  ;
+; PRESERVE_REGISTER            ; on    ; -    ; registered_ADC_B[3]  ;
+; PRESERVE_FANOUT_FREE_NODE    ; on    ; -    ; registered_ADC_B[3]  ;
+; PRESERVE_REGISTER            ; on    ; -    ; registered_ADC_B[2]  ;
+; PRESERVE_FANOUT_FREE_NODE    ; on    ; -    ; registered_ADC_B[2]  ;
+; PRESERVE_REGISTER            ; on    ; -    ; registered_ADC_B[1]  ;
+; PRESERVE_FANOUT_FREE_NODE    ; on    ; -    ; registered_ADC_B[1]  ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; DAC_OUT[0]           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; DAC_OUT[0]           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; DAC_OUT[1]           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; DAC_OUT[1]           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; DAC_OUT[2]           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; DAC_OUT[2]           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; DAC_OUT[3]           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; DAC_OUT[3]           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; DAC_OUT[4]           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; DAC_OUT[4]           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; DAC_OUT[5]           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; DAC_OUT[5]           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; DAC_OUT[6]           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; DAC_OUT[6]           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; DAC_OUT[7]           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; DAC_OUT[7]           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; DAC_OUT[8]           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; DAC_OUT[8]           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; DAC_OUT[9]           ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; DAC_OUT[9]           ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; DAC_OUT[10]          ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; DAC_OUT[10]          ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; DAC_OUT[11]          ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; DAC_OUT[11]          ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; DAC_OUT[12]          ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; DAC_OUT[12]          ;
+; IGNORE_LCELL_BUFFERS         ; off   ; -    ; DAC_OUT[13]          ;
+; REMOVE_REDUNDANT_LOGIC_CELLS ; off   ; -    ; DAC_OUT[13]          ;
++------------------------------+-------+------+----------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "err_dc_gen:err_dc_gen_mod"                                                                    ;
++----------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port           ; Type   ; Severity ; Details                                                                             ;
++----------------+--------+----------+-------------------------------------------------------------------------------------+
+; acc_dc_err_out ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++----------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "err_sq_gen:err_sq_gen_mod"                                                                    ;
++----------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port           ; Type   ; Severity ; Details                                                                             ;
++----------------+--------+----------+-------------------------------------------------------------------------------------+
+; acc_sq_err_out ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++----------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "ref_level_gen:ref_level_gen_mod"                                                         ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port      ; Type   ; Severity ; Details                                                                             ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; avg_power ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "lfsr_22_max:lfsr_data_mod"                                                                                                                                                        ;
++----------------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port           ; Type   ; Severity ; Details                                                                                                                                                                 ;
++----------------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; seq_out        ; Output ; Warning  ; Output or bidir port (22 bits) is smaller than the port expression (23 bits) it drives.  The 1 most-significant bit(s) in the port expression will be connected to GND. ;
+; seq_out[21..0] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                                                     ;
++----------------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "clk_gen:clk_gen_mod"                                                                     ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port      ; Type   ; Severity ; Details                                                                             ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; sam_clk   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; sym_clk   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; clk_phase ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:00     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II 32-bit Analysis & Synthesis
+    Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Full Version
+    Info: Processing started: Mon Feb 13 23:37:38 2017
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off deliverable2 -c deliverable2
+Info (11104): Parallel Compilation has detected 4 hyper-threaded processors. However, the extra hyper-threaded processors will not be used by default. Parallel Compilation will use 2 of the 2 physical processors detected instead.
+Info (12021): Found 1 design units, including 1 entities, in source file MER_device_15.qxp
+    Info (12023): Found entity 1: MER_device
+Info (12021): Found 1 design units, including 1 entities, in source file /home/aus892/engr-ece/EE465/MOD465/design/srrc_tx_lut_flt.v
+    Info (12023): Found entity 1: srrc_tx_lut_flt
+Info (12021): Found 1 design units, including 1 entities, in source file /home/aus892/engr-ece/EE465/MOD465/design/srrc_tx_flt.v
+    Info (12023): Found entity 1: srrc_tx_flt
+Info (12021): Found 1 design units, including 1 entities, in source file /home/aus892/engr-ece/EE465/MOD465/design/srrc_rx_flt.v
+    Info (12023): Found entity 1: srrc_rx_flt
+Info (12021): Found 1 design units, including 1 entities, in source file /home/aus892/engr-ece/EE465/MOD465/design/slicer_4_ask.v
+    Info (12023): Found entity 1: slicer_4_ask
+Info (12021): Found 1 design units, including 1 entities, in source file /home/aus892/engr-ece/EE465/MOD465/design/ref_level_gen.v
+    Info (12023): Found entity 1: ref_level_gen
+Info (12021): Found 1 design units, including 1 entities, in source file /home/aus892/engr-ece/EE465/MOD465/design/mapper_16_qam.v
+    Info (12023): Found entity 1: mapper_16_qam
+Info (12021): Found 1 design units, including 1 entities, in source file /home/aus892/engr-ece/EE465/MOD465/design/mapper_4_ask_ref.v
+    Info (12023): Found entity 1: mapper_4_ask_ref
+Info (12021): Found 1 design units, including 1 entities, in source file /home/aus892/engr-ece/EE465/MOD465/design/lfsr_22_max.v
+    Info (12023): Found entity 1: lfsr_22_max
+Info (12021): Found 1 design units, including 1 entities, in source file /home/aus892/engr-ece/EE465/MOD465/design/err_sq_gen.v
+    Info (12023): Found entity 1: err_sq_gen
+Info (12021): Found 1 design units, including 1 entities, in source file /home/aus892/engr-ece/EE465/MOD465/design/err_dc_gen.v
+    Info (12023): Found entity 1: err_dc_gen
+Info (12021): Found 1 design units, including 1 entities, in source file /home/aus892/engr-ece/EE465/MOD465/design/clk_gen.v
+    Info (12023): Found entity 1: clk_gen
+Info (12021): Found 1 design units, including 1 entities, in source file d2_exam_top.v
+    Info (12023): Found entity 1: d2_exam_top
+Info (12127): Elaborating entity "d2_exam_top" for the top level hierarchy
+Warning (10036): Verilog HDL or VHDL warning at d2_exam_top.v(38): object "registered_ADC_B" assigned a value but never read
+Warning (10858): Verilog HDL warning at d2_exam_top.v(40): object DAC_OUT used but never assigned
+Warning (10030): Net "PRE_DAC" at d2_exam_top.v(39) has no driver or initial value, using a default initial value '0'
+Warning (10030): Net "DAC_OUT" at d2_exam_top.v(40) has no driver or initial value, using a default initial value '0'
+Warning (10034): Output port "LEDG[5..4]" at d2_exam_top.v(6) has no driver
+Info (12128): Elaborating entity "MER_device" for hierarchy "MER_device:bbx_mer15"
+Info (12128): Elaborating entity "clk_gen" for hierarchy "clk_gen:clk_gen_mod"
+Info (12128): Elaborating entity "lfsr_22_max" for hierarchy "lfsr_22_max:lfsr_data_mod"
+Info (12128): Elaborating entity "mapper_16_qam" for hierarchy "mapper_16_qam:mapper_16_qam_mod"
+Info (12128): Elaborating entity "ref_level_gen" for hierarchy "ref_level_gen:ref_level_gen_mod"
+Info (12128): Elaborating entity "slicer_4_ask" for hierarchy "slicer_4_ask:slicer_4_ask_mod"
+Info (12128): Elaborating entity "mapper_4_ask_ref" for hierarchy "mapper_4_ask_ref:mapper_4_ask_mod"
+Info (12128): Elaborating entity "err_sq_gen" for hierarchy "err_sq_gen:err_sq_gen_mod"
+Info (12128): Elaborating entity "err_dc_gen" for hierarchy "err_dc_gen:err_dc_gen_mod"
+Warning (12240): Synthesis found one or more imported partitions that will be treated as black boxes for timing analysis during synthesis
+Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Info (13000): Registers with preset signals will power-up high
+Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "LEDG[4]" is stuck at GND
+    Warning (13410): Pin "LEDG[5]" is stuck at GND
+    Warning (13410): Pin "ADC_OEB_A" is stuck at VCC
+    Warning (13410): Pin "ADC_OEB_B" is stuck at VCC
+    Warning (13410): Pin "DAC_MODE" is stuck at VCC
+Info (286031): Timing-Driven Synthesis is running on partition "Top"
+Info (17049): 22 registers lost all their fanouts during netlist optimizations.
+Info (35026): Attempting to remove 152 I/O cell(s) that do not connect to top-level pins or have illegal connectivity
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|sam_en~input"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|sam_en"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_out[0]~output"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_out[0]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_out[1]~output"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_out[1]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_out[2]~output"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_out[2]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_out[3]~output"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_out[3]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_out[4]~output"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_out[4]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_out[5]~output"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_out[5]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_out[6]~output"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_out[6]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_out[7]~output"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_out[7]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_out[8]~output"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_out[8]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_out[9]~output"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_out[9]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_out[10]~output"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_out[10]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_out[11]~output"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_out[11]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_out[12]~output"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_out[12]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_out[13]~output"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_out[13]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_out[14]~output"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_out[14]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_out[15]~output"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_out[15]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_out[16]~output"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_out[16]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_out[17]~output"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_out[17]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_out[0]~output"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_out[0]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_out[1]~output"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_out[1]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_out[2]~output"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_out[2]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_out[3]~output"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_out[3]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_out[4]~output"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_out[4]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_out[5]~output"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_out[5]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_out[6]~output"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_out[6]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_out[7]~output"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_out[7]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_out[8]~output"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_out[8]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_out[9]~output"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_out[9]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_out[10]~output"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_out[10]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_out[11]~output"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_out[11]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_out[12]~output"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_out[12]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_out[13]~output"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_out[13]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_out[14]~output"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_out[14]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_out[15]~output"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_out[15]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_out[16]~output"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_out[16]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_out[17]~output"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_out[17]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|sym_en~input"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|sym_en"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|clk~input"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|clk"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|reset~input"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|reset"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_in[0]~input"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_in[0]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_in[0]~input"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_in[0]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_in[1]~input"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_in[1]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_in[2]~input"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_in[2]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_in[3]~input"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_in[3]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_in[4]~input"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_in[4]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_in[5]~input"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_in[5]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_in[6]~input"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_in[6]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_in[7]~input"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_in[7]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_in[8]~input"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_in[8]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_in[9]~input"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_in[9]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_in[10]~input"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_in[10]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_in[11]~input"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_in[11]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_in[12]~input"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_in[12]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_in[13]~input"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_in[13]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_in[14]~input"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_in[14]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_in[15]~input"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_in[15]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_in[16]~input"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_in[16]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_in[17]~input"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|I_in[17]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_in[1]~input"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_in[1]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_in[2]~input"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_in[2]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_in[3]~input"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_in[3]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_in[4]~input"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_in[4]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_in[5]~input"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_in[5]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_in[6]~input"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_in[6]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_in[7]~input"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_in[7]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_in[8]~input"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_in[8]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_in[9]~input"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_in[9]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_in[10]~input"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_in[10]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_in[11]~input"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_in[11]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_in[12]~input"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_in[12]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_in[13]~input"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_in[13]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_in[14]~input"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_in[14]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_in[15]~input"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_in[15]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_in[16]~input"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_in[16]"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_in[17]~input"
+    Info (35027): Removed I/O cell "MER_device:bbx_mer15|Q_in[17]"
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (35003): Optimize away 252 nodes that do not fanout to OUTPUT or BIDIR pins
+    Info (35004): Node: "MER_device:bbx_mer15|sum_Q[17]"
+    Info (35004): Node: "MER_device:bbx_mer15|sum_Q[18]"
+    Info (35004): Node: "MER_device:bbx_mer15|sum_Q[19]"
+    Info (35004): Node: "MER_device:bbx_mer15|sum_Q[20]"
+    Info (35004): Node: "MER_device:bbx_mer15|sum_Q[21]"
+    Info (35004): Node: "MER_device:bbx_mer15|sum_Q[22]"
+    Info (35004): Node: "MER_device:bbx_mer15|sum_Q[23]"
+    Info (35004): Node: "MER_device:bbx_mer15|sum_Q[24]"
+    Info (35004): Node: "MER_device:bbx_mer15|sum_Q[25]"
+    Info (35004): Node: "MER_device:bbx_mer15|sum_Q[26]"
+    Info (35004): Node: "MER_device:bbx_mer15|sum_Q[27]"
+    Info (35004): Node: "MER_device:bbx_mer15|sum_Q[28]"
+    Info (35004): Node: "MER_device:bbx_mer15|sum_Q[29]"
+    Info (35004): Node: "MER_device:bbx_mer15|sum_Q[30]"
+    Info (35004): Node: "MER_device:bbx_mer15|sum_Q[31]"
+    Info (35004): Node: "MER_device:bbx_mer15|sum_Q[32]"
+    Info (35004): Node: "MER_device:bbx_mer15|sum_Q[33]"
+    Info (35004): Node: "MER_device:bbx_mer15|sum_Q[34]"
+    Info (35004): Node: "MER_device:bbx_mer15|lpm_mult:Mult5|mult_46t:auto_generated|mac_out2"
+    Info (35004): Node: "MER_device:bbx_mer15|lpm_mult:Mult4|mult_66t:auto_generated|mac_out2"
+    Info (35004): Node: "MER_device:bbx_mer15|lpm_mult:Mult3|mult_v9t:auto_generated|mac_out2"
+    Info (35004): Node: "MER_device:bbx_mer15|lpm_mult:Mult5|mult_46t:auto_generated|mac_mult1"
+    Info (35004): Node: "MER_device:bbx_mer15|lpm_mult:Mult4|mult_66t:auto_generated|mac_mult1"
+    Info (35004): Node: "MER_device:bbx_mer15|lpm_mult:Mult3|mult_v9t:auto_generated|mac_mult1"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_chain:dc_Q|d[1][0]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_chain:dc_Q|d[1][1]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_chain:dc_Q|d[1][2]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_chain:dc_Q|d[1][3]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_chain:dc_Q|d[1][4]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_chain:dc_Q|d[1][5]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_chain:dc_Q|d[1][6]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_chain:dc_Q|d[1][7]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_chain:dc_Q|d[1][8]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_chain:dc_Q|d[1][9]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_chain:dc_Q|d[1][10]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_chain:dc_Q|d[1][11]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_chain:dc_Q|d[1][12]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_chain:dc_Q|d[1][13]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_chain:dc_Q|d[1][14]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_chain:dc_Q|d[1][15]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_chain:dc_Q|d[1][16]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_chain:dc_Q|d[1][17]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_chain:dc_Q|d[0][0]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_chain:dc_Q|d[0][1]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_chain:dc_Q|d[0][2]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_chain:dc_Q|d[0][3]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_chain:dc_Q|d[0][4]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_chain:dc_Q|d[0][5]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_chain:dc_Q|d[0][6]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_chain:dc_Q|d[0][7]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_chain:dc_Q|d[0][8]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_chain:dc_Q|d[0][9]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_chain:dc_Q|d[0][10]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_chain:dc_Q|d[0][11]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_chain:dc_Q|d[0][12]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_chain:dc_Q|d[0][13]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_chain:dc_Q|d[0][14]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_chain:dc_Q|d[0][15]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_chain:dc_Q|d[0][16]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_chain:dc_Q|d[0][17]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[0][0]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[2][0]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[2][1]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[2][2]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[2][3]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[2][4]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[2][5]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[2][6]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[2][7]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[2][8]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[2][9]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[2][10]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[2][11]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[2][12]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[2][13]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[2][14]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[2][15]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[2][16]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[2][17]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[1][0]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[1][1]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[1][2]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[1][3]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[1][4]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[1][5]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[1][6]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[1][7]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[1][8]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[1][9]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[1][10]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[1][11]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[1][12]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[1][13]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[1][14]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[1][15]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[1][16]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[1][17]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[0][1]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[0][2]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[0][3]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[0][4]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[0][5]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[0][6]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[0][7]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[0][8]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[0][9]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[0][10]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[0][11]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[0][12]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[0][13]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[0][14]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[0][15]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[0][16]"
+    Info (35004): Node: "MER_device:bbx_mer15|delay_Q[0][17]"
+Info (21057): Implemented 559 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 51 input pins
+    Info (21059): Implemented 63 output pins
+    Info (21061): Implemented 439 logic cells
+    Info (21062): Implemented 6 DSP elements
+Info: Quartus II 32-bit Analysis & Synthesis was successful. 0 errors, 13 warnings
+    Info: Peak virtual memory: 371 megabytes
+    Info: Processing ended: Mon Feb 13 23:37:41 2017
+    Info: Elapsed time: 00:00:03
+    Info: Total CPU time (on all processors): 00:00:02
+
+

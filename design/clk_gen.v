@@ -17,17 +17,17 @@ module clk_gen( input clk_in,
 
     reg [4:0] down_count;
 
-    always @(posedge clk_in, reset)
+    always @(posedge clk_in or posedge reset)
         if(reset)
             sys_clk = 0;
         else
             sys_clk = ~sys_clk;
 
-    always @(posedge clk_in, reset)
+    always @(posedge clk_in or posedge reset)
         if(reset)
             down_count = 4'b1111;
         else
-            down_count = down_count - 1;
+            down_count = down_count - 4'b1;
 
     assign sam_clk = down_count[2];
     assign sym_clk = down_count[4];

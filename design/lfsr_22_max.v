@@ -4,6 +4,8 @@
 // Maximal length LFSR with 22 taps using (Tap 21 XNOR Tap 22)
 //  Made to output a random 2-bit number to simulate binary data payloads
 
+`include "defines.vh"
+
 module lfsr_22_max(input clk,
                    input clk_en,
                    input reset,
@@ -12,18 +14,16 @@ module lfsr_22_max(input clk,
 
     reg [21:0] fb_reg;
 
-    parameter LFSR_SEED = 21'b111010110111101010111;
-
     integer i;
-    always @(posedge clk, reset)
+    always @(posedge clk or posedge reset)
         if(reset)
             fb_reg[21] <= 1'b1;
         else if(clk_en)
             fb_reg[21] <= fb_reg[20] ~^ fb_reg[19];
 
-    always @(posedge clk, reset)
+    always @(posedge clk or posedge reset)
         if(reset)
-            fb_reg[20:0] <= LFSR_SEED;
+            fb_reg[20:0] <= `LFSR_SEED;
         else if(clk_en) begin
             for(i=1; i<=20; i=i+1) begin
                 fb_reg[i] <= fb_reg[i-1];

@@ -11,12 +11,17 @@ module err_sq_gen(input clk,
                   input signed [17:0] err,
                   output reg signed [38:0] acc_sq_err_out);
 
+    // Function to truncate numbers cleanly :)
+    function [17:0] trunc_36_to_18(input [35:0] val36);
+      trunc_36_to_18 = val36[34:17];
+    endfunction
+
     reg [17:0] sq_err;
     always @(posedge clk or posedge reset)
         if(reset)
             sq_err = 18'd0;
         else if(clk_en)
-            sq_err = (err * err);
+            sq_err = trunc_36_to_18(err * err);
 
     reg [17+`LFSR_LEN:0] acc_sq_err;
     always @(posedge clk or posedge reset)

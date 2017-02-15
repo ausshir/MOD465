@@ -13,6 +13,11 @@ module ref_level_gen(input clk,
                     output reg signed [17:0] ref_level,
                     output reg signed [17:0] avg_power);
 
+    // Function to truncate numbers cleanly :)
+    function [17:0] trunc_36_to_18(input [35:0] val36);
+        trunc_36_to_18 = val36[34:17];
+    endfunction
+
     // Create the absolute value to accumulate an average (inverted MSB)
     reg signed [17:0] dec_var_abs;
     always @(posedge clk or posedge reset)
@@ -36,11 +41,16 @@ module ref_level_gen(input clk,
             ref_level = acc_full[17:0];
 
     // NOTE Perhaps this should be pipelined but this is a problem for future me
+    reg signed [17:0] avg_power_intermediate;
     always @(posedge clk or posedge reset)
-        if(reset)
-            avg_power = 17'd0;
-        else
-            avg_power = ((ref_level * ref_level) * `REF_POWER);
+        if(reset) begin
+            avg_power <= 17'd0;
+            avg_power_intermediate <= 17'd0;
+        end
+        else begin
+            avg_power_intermediate <= trunc_36_to_18(ref_level * ref_level);
+            avg_power <= trunc_36_to_18(avg_power_intermediate * `REF_POWER);
+        end
 
 endmodule
 `endif

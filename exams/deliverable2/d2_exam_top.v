@@ -17,25 +17,28 @@ module d2_exam_top(input clock_50,
                    output    DAC_WRT_A,
                    output    DAC_WRT_B
 
-                   // Outputs from internal data
+                   // Outputs from internal data for viewing
+
                    );
 
 
 
     // LED Sanity Check
-    always @ *
+    always @*
         LEDR = SW;
 
-    always @ *
+    always @*
         LEDG[3:0] = KEY[3:0];
+    always @*
+        LEDG[5:4] = 2'b0;
 
     // Reset Switch on KEY0
     wire reset;
     assign reset = ~KEY[0];
 
     // ADC and DAC Setup
-    (* noprune *)reg [13:0] registered_ADC_A;
-    (* noprune *)reg [13:0] registered_ADC_B;
+    (* noprune *) reg [13:0] registered_ADC_A;
+    (* noprune *) reg [13:0] registered_ADC_B;
     (* noprune *) reg signed [17:0] PRE_DAC;
     (* keep *) wire [13:0] DAC_OUT;
 
@@ -69,7 +72,7 @@ module d2_exam_top(input clock_50,
     //     Note1: that there are two devices and they have the same module name
     //        Make sure to remove the unused one from the project when compiling
     //     Note2: Active low reset
-    wire signed [17:0] inphase_out, quadrature_out;
+    (*keep*) wire signed [17:0] inphase_out, quadrature_out;
     MER_device bbx_mer15(.clk(sys_clk),
                          .reset(~reset),
                          .sym_en(sym_clk_ena),
@@ -84,9 +87,9 @@ module d2_exam_top(input clock_50,
     //     Note1: the enables occur just before the clock edges to be clocked on sys_clk to help keep
     //          clock domains synchronized
 
-    wire sys_clk, sam_clk, sym_clk;
-    wire sam_clk_ena, sym_clk_ena;
-    wire [3:0] clk_phase;
+    (*keep*) wire sys_clk, sam_clk, sym_clk;
+    (*keep*) wire sam_clk_ena, sym_clk_ena;
+    (*keep*) wire [3:0] clk_phase;
     clk_gen clk_gen_mod(.clk_in(clock_50),
                         .reset(reset),
                         .sys_clk(sys_clk),
@@ -97,8 +100,8 @@ module d2_exam_top(input clock_50,
                         .clk_phase(clk_phase));
 
     // 22-bit LFSR for generating random data to evaluate performance
-    wire [3:0] data_stream_in;
-	 wire [22:0] lfsr_sequence;
+    (*keep*) wire [3:0] data_stream_in;
+    (*keep*) wire [21:0] lfsr_sequence;
     lfsr_22_max lfsr_data_mod(.clk(sys_clk),
                               .clk_en(sym_clk_ena),
                               .reset(reset),
@@ -106,7 +109,7 @@ module d2_exam_top(input clock_50,
                               .sym_out(data_stream_in));
 
     // 16-QAM Mapper using parameters
-    wire signed [17:0] inphase_in, quadrature_in;
+    (*keep*) wire signed [17:0] inphase_in, quadrature_in;
     mapper_16_qam mapper_16_qam_mod(.clk(sys_clk),
                                     .clk_en(sym_clk_ena),
                                     .data(data_stream_in),
@@ -115,7 +118,8 @@ module d2_exam_top(input clock_50,
 
     // Reference level generation for calibrating slicing
     //      Needed due to unknown channel attenuation
-    wire signed [17:0] ref_level, avg_power;
+    (*keep*) wire signed [17:0] ref_level, avg_power;
+    (*noprune*) reg [17:0] avg_power_out;
     ref_level_gen ref_level_gen_mod(.clk(sys_clk),
                                     .clk_en(sym_clk_ena),
                                     .reset(reset),
@@ -123,8 +127,13 @@ module d2_exam_top(input clock_50,
                                     .ref_level(ref_level),
                                     .avg_power(avg_power));
 
+    // TODO: Output this onto a display & signaltap
+    always @(posedge sys_clk)
+        avg_power_out = avg_power;
+
+
     // 4-ASK Slicer to collect only the inphase stream
-    wire [1:0] data_stream_out;
+    (*keep*) wire [1:0] data_stream_out;
     slicer_4_ask slicer_4_ask_mod(.clk(sys_clk),
                                   .clk_en(sym_clk_ena),
                                   .in_phs_sig(inphase_out),
@@ -135,8 +144,9 @@ module d2_exam_top(input clock_50,
 
     // Signal Verification Modules
     // Re-Mapper to 4-ASK on inphase using reference level in order to compare results
-    wire signed [17:0] inphase_out_mapped;
-    wire signed [17:0] diff_err;
+    (*keep*) wire signed [17:0] inphase_out_mapped;
+    (*keep*) wire signed [17:0] diff_err;
+    (*noprune*) reg signed [17:0] diff_err_out;
     mapper_4_ask_ref mapper_4_ask_mod(.clk(sys_clk),
                                     .clk_en(sym_clk_ena),
                                     .data(data_stream_out),
@@ -144,21 +154,28 @@ module d2_exam_top(input clock_50,
                                     .in_phs_sig(inphase_out_mapped));
 
     assign diff_err = inphase_out - inphase_out_mapped;
+    always @(posedge sys_clk)
+        diff_err_out = diff_err;
 
     // Squared and DC error calculation for MER
-    wire [38:0] acc_sq_err_out;
+    (*keep*) wire [38:0] acc_sq_err_out;
+    (*noprune*) reg [38:0] acc_sq_err_out_reg;
     err_sq_gen err_sq_gen_mod(.clk(sys_clk),
                               .clk_en(sym_clk_ena),
                               .reset(reset),
                               .err(diff_err),
                               .acc_sq_err_out(acc_sq_err_out));
-    wire [17:0] dc_err;
-    wire [38:0] acc_dc_err_out;
+    (*keep*) wire [38:0] acc_dc_err_out;
+    (*noprune*) reg [38:0] acc_dc_err_out_reg;
     err_dc_gen err_dc_gen_mod(.clk(sys_clk),
                               .clk_en(sym_clk_ena),
                               .reset(reset),
                               .err(diff_err),
                               .acc_dc_err_out(acc_dc_err_out));
+    always @(posedge sys_clk) begin
+        acc_sq_err_out_reg = acc_sq_err_out;
+        acc_dc_err_out_reg = acc_dc_err_out;
+    end
 
     // Symbol error indicator
     //  Note1: The input symbol must be delayed by N clock cycles to synchronize
@@ -172,15 +189,15 @@ module d2_exam_top(input clock_50,
         for(n = 0; n < (`SYM_DELAY-1); n = n+1)
             sym_in_delay[n+1] = sym_in_delay[n];
 
-    reg sym_correct, sym_error;
+    (*noprune*) reg sym_correct, sym_error;
     always @(posedge sys_clk) begin
         sym_correct <= data_stream_out == sym_in_delay[3];
         sym_error   <= data_stream_out != sym_in_delay[3];
     end
-	 
-	 always @* begin
-	     LEDG[7] = sym_correct;
-	     LEDG[6] = sym_error;
+
+    always @* begin
+        LEDG[7] <= sym_correct;
+        LEDG[6] <= sym_error;
     end
 
 

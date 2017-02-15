@@ -1,1 +1,4 @@
 v1
+DSP_BALANCING_IMPLEMENTATION,DSP_BLOCKS,err_sq_gen:err_sq_gen_mod|lpm_mult:Mult0|mult_c6t:auto_generated|mac_out2,
+DSP_BALANCING_IMPLEMENTATION,DSP_BLOCKS,ref_level_gen:ref_level_gen_mod|lpm_mult:Mult0|mult_c6t:auto_generated|mac_out2,
+DSP_BALANCING_IMPLEMENTATION,DSP_BLOCKS,ref_level_gen:ref_level_gen_mod|lpm_mult:Mult1|mult_0at:auto_generated|mac_out2,

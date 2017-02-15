@@ -1,5 +1,5 @@
 EDA Netlist Writer report for deliverable2
-Mon Feb 13 23:38:30 2017
+Wed Feb 15 15:52:07 2017
 Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Full Version
 
 
@@ -36,7 +36,7 @@ applicable agreement for further details.
 +-------------------------------------------------------------------+
 ; EDA Netlist Writer Summary                                        ;
 +---------------------------+---------------------------------------+
-; EDA Netlist Writer Status ; Successful - Mon Feb 13 23:38:30 2017 ;
+; EDA Netlist Writer Status ; Successful - Wed Feb 15 15:52:07 2017 ;
 ; Revision Name             ; deliverable2                          ;
 ; Top-level Entity Name     ; d2_exam_top                           ;
 ; Family                    ; Cyclone IV E                          ;
@@ -88,7 +88,7 @@ applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus II 32-bit EDA Netlist Writer
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Full Version
-    Info: Processing started: Mon Feb 13 23:38:29 2017
+    Info: Processing started: Wed Feb 15 15:52:02 2017
 Info: Command: quartus_eda --read_settings_files=off --write_settings_files=off deliverable2 -c deliverable2
 Info (204019): Generated file deliverable2_7_1200mv_85c_slow.vo in folder "/home/aus892/engr-ece/EE465/MOD465/exams/deliverable2/simulation/modelsim/" for EDA simulation tool
 Info (204019): Generated file deliverable2_7_1200mv_0c_slow.vo in folder "/home/aus892/engr-ece/EE465/MOD465/exams/deliverable2/simulation/modelsim/" for EDA simulation tool
@@ -99,9 +99,9 @@ Info (204019): Generated file deliverable2_7_1200mv_0c_v_slow.sdo in folder "/ho
 Info (204019): Generated file deliverable2_min_1200mv_0c_v_fast.sdo in folder "/home/aus892/engr-ece/EE465/MOD465/exams/deliverable2/simulation/modelsim/" for EDA simulation tool
 Info (204019): Generated file deliverable2_v.sdo in folder "/home/aus892/engr-ece/EE465/MOD465/exams/deliverable2/simulation/modelsim/" for EDA simulation tool
 Info: Quartus II 32-bit EDA Netlist Writer was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 339 megabytes
-    Info: Processing ended: Mon Feb 13 23:38:30 2017
-    Info: Elapsed time: 00:00:01
-    Info: Total CPU time (on all processors): 00:00:01
+    Info: Peak virtual memory: 361 megabytes
+    Info: Processing ended: Wed Feb 15 15:52:07 2017
+    Info: Elapsed time: 00:00:05
+    Info: Total CPU time (on all processors): 00:00:05
 
 

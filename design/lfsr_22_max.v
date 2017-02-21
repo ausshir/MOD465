@@ -10,7 +10,8 @@ module lfsr_22_max(input clk,
                    input clk_en,
                    input reset,
                    output [21:0] seq_out,
-                   output [3:0] sym_out);
+                   output [3:0] sym_out,
+                   output reg cycle_out);
 
     reg [21:0] fb_reg;
 
@@ -34,6 +35,31 @@ module lfsr_22_max(input clk,
 
     assign sym_out = fb_reg[3:0];
     assign seq_out = fb_reg;
+
+
+    // LFSR Cycle Counter
+    //  This is for the accumulator to gather one complete cycle of the LFSR
+    //  Optionally, this could stop the LFSR or trigger a reset on the reference level logic
+    reg [22:0] lfsr_counter;
+    wire count_complete;
+    always @(posedge clk or posedge reset)
+        if(reset)
+            lfsr_counter = 0;
+        else if(clk_en)
+            if(seq_out == `LFSR_SEED)
+                lfsr_counter = 0;
+            else
+                lfsr_counter = lfsr_counter + {{{`LFSR_LEN-1}{1'b0}}, 1'b1};
+        else
+            lfsr_counter = lfsr_counter;
+
+    always @(posedge clk or posedge reset)
+        if(reset)
+            cycle_out = 0;
+        else if(lfsr_counter > 1 && (fb_reg == `LFSR_SEED))
+            cycle_out = 1'b1;
+        else
+            cycle_out = cycle_out;
 
 
 

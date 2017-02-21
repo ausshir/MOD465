@@ -8,8 +8,9 @@
 module err_sq_gen(input clk,
                   input clk_en,
                   input reset, // to clear accumulators
+                  input hold,
                   input signed [17:0] err,
-                  output reg signed [38:0] acc_sq_err_out);
+                  output reg signed [17+`LFSR_LEN:0] acc_sq_err_out);
 
     // Function to truncate numbers cleanly :)
     function [17:0] trunc_36_to_18(input [35:0] val36);
@@ -26,15 +27,17 @@ module err_sq_gen(input clk,
     reg [17+`LFSR_LEN:0] acc_sq_err;
     always @(posedge clk or posedge reset)
         if(reset)
-            acc_sq_err = {{18 + `LFSR_LEN}{1'b0}};
+            acc_sq_err = 0;
+        else if(hold)
+            acc_sq_err = acc_sq_err;
         else if(clk_en)
             acc_sq_err = acc_sq_err + sq_err;
 
     always @(posedge clk or posedge reset)
         if(reset)
-            acc_sq_err_out = 39'd0;
+            acc_sq_err_out = 0;
         else if(clk_en)
-            acc_sq_err_out = acc_sq_err[38:0];
+            acc_sq_err_out = acc_sq_err[17+`LFSR_LEN:0];
 
 endmodule
 `endif

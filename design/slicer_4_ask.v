@@ -10,9 +10,9 @@ module slicer_4_ask(input clk,
     // Inphase mapping/slicing using a reference level to decide on bits
     always @(posedge clk)
         if(in_phs_sig > ref_level)
-            sym_out = 2'b00;
-        else if(in_phs_sig > 0)
             sym_out = 2'b01;
+        else if(in_phs_sig > 0)
+            sym_out = 2'b00;
         else if(in_phs_sig > -ref_level)
             sym_out = 2'b11;
         else

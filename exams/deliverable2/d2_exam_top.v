@@ -72,7 +72,9 @@ module d2_exam_top(input clock_50,
     //     Note1: that there are two devices and they have the same module name
     //        Make sure to remove the unused one from the project when compiling
     //     Note2: Active low reset
+
     (*keep*) wire signed [17:0] inphase_out, quadrature_out;
+    /*
     MER_device bbx_mer15(.clk(sys_clk),
                          .reset(~reset),
                          .sym_en(sym_clk_ena),
@@ -81,6 +83,10 @@ module d2_exam_top(input clock_50,
                          .Q_in(quadrature_in),
                          .I_out(inphase_out),
                          .Q_out(quadrature_out));
+    */
+
+    assign inphase_out = inphase_in;
+    assign quadrature_out = quadrature_in;
 
     // Clock Generator module
     //     Takes in the system clock and generates 1/2, 1/8, 1/32 clock periods
@@ -102,11 +108,19 @@ module d2_exam_top(input clock_50,
     // 22-bit LFSR for generating random data to evaluate performance
     (*keep*) wire [3:0] data_stream_in;
     (*keep*) wire [21:0] lfsr_sequence;
-    lfsr_22_max lfsr_data_mod(.clk(sys_clk),
+    (*keep*) wire lfsr_cycle_out;
+    (*keep*) wire [21:0] lfsr_counter;
+    (*noprune*) reg [21:0] lfsr_counter_out;
+    lfsr_gen_max lfsr_data_mod(.clk(sys_clk),
                               .clk_en(sym_clk_ena),
                               .reset(reset),
                               .seq_out(lfsr_sequence),
-                              .sym_out(data_stream_in));
+                              .sym_out(data_stream_in),
+                              .cycle_out(lfsr_cycle_out),
+                              .lfsr_counter(lfsr_counter));
+
+    always @(posedge sys_clk)
+        lfsr_counter_out = lfsr_counter;
 
     // 16-QAM Mapper using parameters
     (*keep*) wire signed [17:0] inphase_in, quadrature_in;
@@ -123,6 +137,7 @@ module d2_exam_top(input clock_50,
     ref_level_gen ref_level_gen_mod(.clk(sys_clk),
                                     .clk_en(sym_clk_ena),
                                     .reset(reset),
+                                    .hold(lfsr_cycle_out),
                                     .dec_var(inphase_out),
                                     .ref_level(ref_level),
                                     .avg_power(avg_power));
@@ -140,8 +155,6 @@ module d2_exam_top(input clock_50,
                                   .ref_level(ref_level),
                                   .sym_out(data_stream_out));
 
-
-
     // Signal Verification Modules
     // Re-Mapper to 4-ASK on inphase using reference level in order to compare results
     (*keep*) wire signed [17:0] inphase_out_mapped;
@@ -158,18 +171,20 @@ module d2_exam_top(input clock_50,
         diff_err_out = diff_err;
 
     // Squared and DC error calculation for MER
-    (*keep*) wire [38:0] acc_sq_err_out;
-    (*noprune*) reg [38:0] acc_sq_err_out_reg;
+    (*keep*) wire [17+`LFSR_LEN:0] acc_sq_err_out;
+    (*noprune*) reg [17+`LFSR_LEN:0] acc_sq_err_out_reg;
     err_sq_gen err_sq_gen_mod(.clk(sys_clk),
                               .clk_en(sym_clk_ena),
                               .reset(reset),
+                              .hold(lfsr_cycle_out),
                               .err(diff_err),
                               .acc_sq_err_out(acc_sq_err_out));
-    (*keep*) wire [38:0] acc_dc_err_out;
-    (*noprune*) reg [38:0] acc_dc_err_out_reg;
+    (*keep*) wire [17+`LFSR_LEN:0] acc_dc_err_out;
+    (*noprune*) reg [17+`LFSR_LEN:0] acc_dc_err_out_reg;
     err_dc_gen err_dc_gen_mod(.clk(sys_clk),
                               .clk_en(sym_clk_ena),
                               .reset(reset),
+                              .hold(lfsr_cycle_out),
                               .err(diff_err),
                               .acc_dc_err_out(acc_dc_err_out));
     always @(posedge sys_clk) begin
@@ -199,11 +214,5 @@ module d2_exam_top(input clock_50,
         LEDG[7] <= sym_correct;
         LEDG[6] <= sym_error;
     end
-
-
-
-
-
-
 
 endmodule

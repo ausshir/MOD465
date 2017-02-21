@@ -5,11 +5,11 @@ cModel Technology
 Z0 d/home/aus892/engr-ece/EE465/MOD465/verification/clk-functional
 vclk_gen
 !i10b 1
-Z1 !s100 Rc3llHREDSR2?]I0C>ZkG3
-Z2 IP?eM3E3aKea><FXIEdi=80
+Z1 !s100 <EH1DD6ILGGkOK[j:jImG0
+Z2 I_bT6G<Ee]kNJS7mM8F7]l2
 Z3 V=L>c=dMGkhVh]cnH]6I^42
 Z4 d/home/aus892/engr-ece/EE465/MOD465/verification/clk-functional
-Z5 w1486950696
+Z5 w1487629481
 Z6 F../../design/clk_gen.v
 Z7 8clk_tb.v
 Z8 Fclk_tb.v
@@ -18,18 +18,58 @@ Z9 OV;L;10.1d;51
 r1
 !s85 0
 31
-Z10 !s108 1486951059.170835
-Z11 !s107 ../../design/mapper_16_qam.v|../../design/lfsr_22_max.v|../../design/clk_gen.v|clk_tb.v|
+Z10 !s108 1487630665.319157
+Z11 !s107 ../../design/defines.vh|../../design/mapper_16_qam.v|defines.vh|../../design/lfsr_gen_max.v|../../design/clk_gen.v|clk_tb.v|
 Z12 !s90 -reportprogress|300|clk_tb.v|
 !s101 -O0
 o-O0
 vclk_tb
 !i10b 1
-Z13 !s100 gMn?dC=Q[51cCm@]9XT1<2
-Z14 Ib^hCFfHjNdMCYe>oOR<Wk0
+Z13 !s100 ARVd2UcP]=8IZ7S5h_GT^3
+Z14 I9PgIO_6AnKL3_HTK^I3Kc3
 Z15 Vb^H`mTb`JUd]64J>R@7lW2
 R4
-Z16 w1486950217
+R5
+R7
+R8
+L0 11
+R9
+r1
+!s85 0
+31
+R10
+R11
+R12
+!s101 -O0
+o-O0
+vlfsr_22_max
+Z16 IX0JQboaC;lXb7TTIk?Z0Y3
+Z17 V25=f9>6a7zg4WoU0i1cC;3
+R4
+Z18 w1487625049
+Z19 F../../design/lfsr_22_max.v
+R7
+R8
+L0 9
+R9
+r1
+31
+Z20 !s108 1487625053.244844
+Z21 !s107 ../../design/defines.vh|../../design/mapper_16_qam.v|defines.vh|../../design/lfsr_22_max.v|../../design/clk_gen.v|clk_tb.v|
+R12
+o-O0
+Z22 !s100 >KBo;>==RBzcBZaB[jIH;3
+!i10b 1
+!s85 0
+!s101 -O0
+vlfsr_gen_max
+!i10b 1
+!s100 l1GMQ^SZMh6Y8ShQ`=NBI0
+Ig27DM^k;OD[5XXZW:QDEV0
+Z23 VW=W28:gTBnQ2IWlWgfNe41
+R4
+Z24 w1487630608
+Z25 F../../design/lfsr_gen_max.v
 R7
 R8
 L0 10
@@ -42,37 +82,17 @@ R11
 R12
 !s101 -O0
 o-O0
-vlfsr_22_max
-!i10b 1
-!s100 dBnQNlc?QeR9lQzKSf9Eb0
-IAPCjd<RHeLAnl0gh7Q`0d2
-Vz`bjZkPK7@kzjRDz^QDlh1
-R4
-w1486951053
-Z17 F../../design/lfsr_22_max.v
-R7
-R8
-L0 7
-R9
-r1
-!s85 0
-31
-R10
-R11
-R12
-!s101 -O0
-o-O0
 vmapper_16_qam
 !i10b 1
-Z18 !s100 3cA_fnT_>Beo6O>fADAH70
-Z19 ILfbj1^1i:mDi34b1EI0B^3
-Z20 VZdoc3PV>3@JlJK`_NKkkO0
+Z26 !s100 3U>j51M49eWI`I_Kn4HT:1
+Z27 IAnm_6F453R0Z^FAUYG:8d1
+Z28 VJ4B@IoNglU^?8BKDZ`:g^1
 R4
-R16
-Z21 F../../design/mapper_16_qam.v
+R5
+Z29 F../../design/mapper_16_qam.v
 R7
 R8
-L0 4
+L0 6
 R9
 r1
 !s85 0

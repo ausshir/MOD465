@@ -12,6 +12,11 @@ module err_dc_gen(input clk,
                   input signed [17:0] err,
                   output reg signed [17:0] acc_dc_err_out);
 
+    // NOTE: Make sure to check this logic
+    reg hold_del; // Registered hold pulse
+    always @(posedge clk or posedge reset)
+        hold_del = hold;
+  
     //reg signed [17+`LFSR_LEN:0] dc_err;
     //always @*
     //    dc_err = dc_err_del + err;
@@ -20,7 +25,7 @@ module err_dc_gen(input clk,
     always@(posedge clk or posedge reset)
         if(reset)
             dc_err_del = 0;
-        else if(hold)
+        else if(hold_del)
             dc_err_del = 0;
         else if(clk_en)
             dc_err_del = dc_err_del + err;
@@ -28,7 +33,7 @@ module err_dc_gen(input clk,
     always @(posedge clk or posedge reset)
         if(reset)
             acc_dc_err_out = 0;
-        else if(clk_en)
+  else if(hold)
             acc_dc_err_out = dc_err_del[17+`LFSR_LEN:`LFSR_LEN];
 
 endmodule

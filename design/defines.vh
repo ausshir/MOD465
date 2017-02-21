@@ -10,6 +10,6 @@
     `define LFSR_LEN 16'd22
 
     `define REF_POWER 18'sd 81919 //1.25 in 1s17 (0.625 of FS 131071)
-    `define SYM_DELAY 4
+    `define SYM_DELAY 1
 
 `endif

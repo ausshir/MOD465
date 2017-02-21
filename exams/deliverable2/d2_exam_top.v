@@ -108,7 +108,7 @@ module d2_exam_top(input clock_50,
     // 22-bit LFSR for generating random data to evaluate performance
     (*keep*) wire [3:0] data_stream_in;
     (*keep*) wire [21:0] lfsr_sequence;
-    (*keep*) wire lfsr_cycle_out;
+    (*keep*) wire lfsr_cycle_out, lfsr_cycle_out_periodic;
     (*keep*) wire [21:0] lfsr_counter;
     (*noprune*) reg [21:0] lfsr_counter_out;
     lfsr_gen_max lfsr_data_mod(.clk(sys_clk),
@@ -116,7 +116,8 @@ module d2_exam_top(input clock_50,
                               .reset(reset),
                               .seq_out(lfsr_sequence),
                               .sym_out(data_stream_in),
-                              .cycle_out(lfsr_cycle_out),
+                              .cycle_out_once(lfsr_cycle_out),
+                              .cycle_out_periodic(lfsr_cycle_out_periodic),
                               .lfsr_counter(lfsr_counter));
 
     always @(posedge sys_clk)
@@ -158,33 +159,35 @@ module d2_exam_top(input clock_50,
     // Signal Verification Modules
     // Re-Mapper to 4-ASK on inphase using reference level in order to compare results
     (*keep*) wire signed [17:0] inphase_out_mapped;
+    (*noprune*) reg signed [17:0] inphase_out_del;
     (*keep*) wire signed [17:0] diff_err;
-    (*noprune*) reg signed [17:0] diff_err_out;
     mapper_4_ask_ref mapper_4_ask_mod(.clk(sys_clk),
                                     .clk_en(sym_clk_ena),
                                     .data(data_stream_out),
                                     .ref_level(ref_level),
                                     .in_phs_sig(inphase_out_mapped));
 
-    assign diff_err = inphase_out - inphase_out_mapped;
+
+    // Calculation of error (note that the mapper introduces 1 clock of delay)
     always @(posedge sys_clk)
-        diff_err_out = diff_err;
+        inphase_out_del = inphase_out;
+    assign diff_err = inphase_out_del - inphase_out_mapped;
 
     // Squared and DC error calculation for MER
-    (*keep*) wire [17+`LFSR_LEN:0] acc_sq_err_out;
-    (*noprune*) reg [17+`LFSR_LEN:0] acc_sq_err_out_reg;
+    (*keep*) wire [17:0] acc_sq_err_out;
+    (*noprune*) reg [17:0] acc_sq_err_out_reg;
     err_sq_gen err_sq_gen_mod(.clk(sys_clk),
                               .clk_en(sym_clk_ena),
                               .reset(reset),
-                              .hold(lfsr_cycle_out),
+                              .hold(lfsr_cycle_out_periodic),
                               .err(diff_err),
                               .acc_sq_err_out(acc_sq_err_out));
-    (*keep*) wire [17+`LFSR_LEN:0] acc_dc_err_out;
-    (*noprune*) reg [17+`LFSR_LEN:0] acc_dc_err_out_reg;
+    (*keep*) wire [17:0] acc_dc_err_out;
+    (*noprune*) reg [17:0] acc_dc_err_out_reg;
     err_dc_gen err_dc_gen_mod(.clk(sys_clk),
                               .clk_en(sym_clk_ena),
                               .reset(reset),
-                              .hold(lfsr_cycle_out),
+                              .hold(lfsr_cycle_out_periodic),
                               .err(diff_err),
                               .acc_dc_err_out(acc_dc_err_out));
     always @(posedge sys_clk) begin
@@ -193,21 +196,20 @@ module d2_exam_top(input clock_50,
     end
 
     // Symbol error indicator
-    //  Note1: The input symbol must be delayed by N clock cycles to synchronize
-    //      Currently N=4;
-    reg [3:0] sym_in_delay[`SYM_DELAY:0];
+    //  Note1: The input symbol must be delayed by a # clock cycles to synchronize
+    reg [1:0] sym_in_delay[`SYM_DELAY-1:0];
     integer n;
     always @(posedge sys_clk)
         sym_in_delay[0] = data_stream_in[1:0];
 
     always @(posedge sys_clk)
-        for(n = 0; n < (`SYM_DELAY-1); n = n+1)
-            sym_in_delay[n+1] = sym_in_delay[n];
+        for(n=`SYM_DELAY-1; n>0; n=n-1)
+            sym_in_delay[n] = sym_in_delay[n-1];
 
     (*noprune*) reg sym_correct, sym_error;
     always @(posedge sys_clk) begin
-        sym_correct <= data_stream_out == sym_in_delay[3];
-        sym_error   <= data_stream_out != sym_in_delay[3];
+        sym_correct <= data_stream_out == sym_in_delay[`SYM_DELAY-1];
+        sym_error   <= data_stream_out != sym_in_delay[`SYM_DELAY-1];
     end
 
     always @* begin

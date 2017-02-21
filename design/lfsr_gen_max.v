@@ -12,7 +12,8 @@ module lfsr_gen_max(input clk,
                    input reset,
                    output [21:0] seq_out,
                    output [3:0] sym_out,
-                   output reg cycle_out,
+                   output reg cycle_out_once,
+                   output reg cycle_out_periodic,
                    output reg [`LFSR_LEN-1:0] lfsr_counter);
 
     wire [31:0] taps_array [0:32];
@@ -97,20 +98,32 @@ module lfsr_gen_max(input clk,
         else
             lfsr_counter = lfsr_counter;
 
-    reg cycle_out_pre;
+    reg cycle_out_pre, cycle_out_pre2;
     always @(posedge clk or posedge reset)
-        if(reset)
-            cycle_out_pre = 0;
-        else if(lfsr_counter > 1 && (seq_out == `LFSR_SEED))
-            cycle_out_pre = 1'b1;
-        else
-            cycle_out_pre = cycle_out_pre;
+        if(reset) begin
+            cycle_out_pre <= 0;
+            cycle_out_pre2 <= 0;
+        end
+        else if(lfsr_counter > 1 && (seq_out == `LFSR_SEED)) begin
+            cycle_out_pre <= 1'b1;
+            cycle_out_pre2 <= 1'b1;
+        end
+        else begin
+            cycle_out_pre <= cycle_out_pre;
+            cycle_out_pre2 <= 1'b0;
+        end
 
     always @(posedge clk or posedge reset)
         if(reset)
-            cycle_out = 0;
+            cycle_out_once = 0;
         else if(clk_en)
-            cycle_out = cycle_out_pre;
+            cycle_out_once = cycle_out_pre;
+
+    always @(posedge clk or posedge reset)
+        if(reset)
+            cycle_out_periodic = 0;
+        else if(clk_en)
+            cycle_out_periodic = cycle_out_pre2;
 
 
 

@@ -13,9 +13,10 @@
 # *.v
 # *.sdc
 # *.sof
+# *.qxp
 
 
-# ignore Quartus II generated folders
+# Ignore Quartus II generated folders
 *_sim
 db
 greybox_tmp
@@ -24,7 +25,10 @@ simulation
 testbench
 timing
 
-# ignore Quartus II generated files
+# Ignore Modelsim generated folders
+work
+
+# Ignore Quartus II generated files
 *_generation_script*
 *_inst.vhd
 *.bak
@@ -52,6 +56,17 @@ timing
 *example*
 *sopc_*
 
+# Ignore Modelsim generated files
+*.bak
+*.wlf
+
 # Ignore MATLAB temp files
 *.m~
+
+
+## Inverse ignores... aka keeps!
+!.vo
+
+# ...even if they are in subdirectories
+!*/
 

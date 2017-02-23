@@ -18,14 +18,13 @@
 
 
 # Ignore Quartus II generated folders
-**/*_sim
-**/*db
-**/greybox_tmp
-**/incremental_db
-**/simulation
+**/*_sim/
+**/*db/
+**/greybox_tmp/
+**/simulation/
 
 # Ignore Modelsim generated folders
-**/work
+**/work/
 
 # Ignore Quartus II generated files
 *_generation_script*

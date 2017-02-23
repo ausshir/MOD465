@@ -54,6 +54,8 @@ work
 *.txt # Explicitly add any text files used
 *~
 *sopc_*
+*.hdb
+*.cdb
 
 # Ignore Modelsim generated files
 *.bak

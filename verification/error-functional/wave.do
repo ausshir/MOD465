@@ -1,24 +1,31 @@
 onerror {resume}
 quietly WaveActivateNextPane {} 0
-add wave -noupdate -height 35 /clk_tb/reset
-add wave -noupdate -height 35 /clk_tb/clk_tb
-add wave -noupdate -height 35 /clk_tb/clk_25
-add wave -noupdate -height 35 /clk_tb/clk_625
-add wave -noupdate -height 35 /clk_tb/clk_15625
-add wave -noupdate -height 35 /clk_tb/clk_625_en
-add wave -noupdate -height 35 /clk_tb/clk_15625_en
-add wave -noupdate -height 35 -radix unsigned /clk_tb/phase
-add wave -noupdate -height 15 /clk_tb/lfsr/seq_out
-add wave -noupdate -height 15 /clk_tb/sym_out
-add wave -noupdate -height 15 -radix decimal /clk_tb/mapper/in_phs_sig
-add wave -noupdate -height 15 -radix decimal /clk_tb/mapper/quad_sig
-add wave -noupdate -height 15 /clk_tb/lfsr/cycle_out
-add wave -noupdate -height 15 -radix unsigned /clk_tb/lfsr/lfsr_counter
-add wave -noupdate -height 15 -radix decimal /clk_tb/ref_level
-add wave -noupdate -height 15 -radix decimal /clk_tb/avg_power
-add wave -noupdate -height 15 /clk_tb/ref_level_gen_mod/acc_full_reg
+add wave -noupdate -height 15 /error_tb/clk_tb
+add wave -noupdate -height 15 /error_tb/reset
+add wave -noupdate -height 15 /error_tb/clk_25
+add wave -noupdate -height 15 /error_tb/clk_625
+add wave -noupdate -height 15 /error_tb/clk_15625
+add wave -noupdate -height 15 /error_tb/clk_625_en
+add wave -noupdate -height 15 /error_tb/clk_15625_en
+add wave -noupdate -height 15 /error_tb/phase
+add wave -noupdate -height 15 /error_tb/sym_out
+add wave -noupdate -height 15 /error_tb/seq_out
+add wave -noupdate -height 15 /error_tb/quad_sig
+add wave -noupdate -height 15 /error_tb/ref_level
+add wave -noupdate -height 15 /error_tb/avg_power
+add wave -noupdate -height 15 /error_tb/lfsr_counter
+add wave -noupdate -height 15 /error_tb/cycle_out
+add wave -noupdate -height 15 /error_tb/cycle_out_periodic
+add wave -noupdate -divider {Error Outputs}
+add wave -noupdate -height 15 -radix decimal /error_tb/in_phs_sig
+add wave -noupdate -height 15 /error_tb/acc_dc_err_out
+add wave -noupdate -height 15 /error_tb/acc_sq_err_out
+add wave -noupdate -divider {Symbol Synchonizer}
+add wave -noupdate -height 15 /error_tb/sym_in_delay
+add wave -noupdate -height 15 /error_tb/sym_delayed
+add wave -noupdate -height 15 /error_tb/sym_out
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {26380 ns} 0}
+WaveRestoreCursors {{Cursor 1} {19081 ns} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 279
 configure wave -valuecolwidth 100
@@ -34,4 +41,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits us
 update
-WaveRestoreZoom {0 ns} {36750 ns}
+WaveRestoreZoom {13975 ns} {24475 ns}

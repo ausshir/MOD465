@@ -18,8 +18,10 @@ module d2_exam_top(input clock_50,
                    output    DAC_WRT_B,
 
                    // Outputs from internal data for viewing
-                   output wire [17:0] acc_dc_err_out,
-                   output wire [17:0] acc_sq_err_out
+                   output wire signed [17:0] acc_dc_err_out,
+                   output wire signed [17:0] acc_sq_err_out,
+                   output wire signed [17+`LFSR_LEN:0] acc_out_full_dc,
+                   output wire signed [17+`LFSR_LEN:0] acc_out_full_sq
                    );
 
 
@@ -182,7 +184,9 @@ module d2_exam_top(input clock_50,
                               .reset(reset),
                               .hold(lfsr_cycle_out_periodic),
                               .err(diff_err),
-                              .acc_sq_err_out(acc_sq_err_out));
+                              .acc_sq_err_out(acc_sq_err_out),
+                              .acc_out_full(acc_out_full_sq)
+);
     //(*keep*) wire [17:0] acc_dc_err_out;
     //(*noprune*) reg [17:0] acc_dc_err_out_reg;
     err_dc_gen err_dc_gen_mod(.clk(sys_clk),
@@ -190,27 +194,56 @@ module d2_exam_top(input clock_50,
                               .reset(reset),
                               .hold(lfsr_cycle_out_periodic),
                               .err(diff_err),
-                              .acc_dc_err_out(acc_dc_err_out));
+                              .acc_dc_err_out(acc_dc_err_out),
+                              .acc_out_full(acc_out_full_dc)
+);
     //always @(posedge sys_clk) begin
     //    acc_sq_err_out_reg = acc_sq_err_out;
     //    acc_dc_err_out_reg = acc_dc_err_out;
     //end
 
+    // I HAVE ABSOLUTELY NO IDEA WHY THIS DOESN'T WORK DX
     // Symbol error indicator
     //  Note1: The input symbol must be delayed by a # clock cycles to synchronize
-    reg [1:0] sym_in_delay[`SYM_DELAY-1:0];
-    integer n;
+    // Test the symbol synchronization
+    //(*noprune*) reg [`INPHASE] sym_delay_reg[`SYM_DELAY:0];
+    //(*keep*) wire [`INPHASE] sym_delayed;
+    //integer n;
+    //always @(posedge sys_clk)
+    //    if(sym_clk_ena)
+    //        for(n=`SYM_DELAY; n>0; n=n-1) begin
+    //            if(n==0)
+    //                sym_delay_reg[0] <= data_stream_in[`INPHASE];
+    //            else
+    //                sym_delay_reg[n] <= sym_delay_reg[n-1];
+    //        end
+    //assign sym_delayed = sym_delay_reg[`SYM_DELAY];
+
+    reg [`INPHASE] sym_delay_1, sym_delay_2, sym_delay_3, sym_delay_4, sym_delay_5;
     always @(posedge sys_clk)
-        sym_in_delay[0] = data_stream_in[1:0];
+        if(sym_clk_ena)
+            sym_delay_1 = data_stream_in[`INPHASE];
 
     always @(posedge sys_clk)
-        for(n=`SYM_DELAY-1; n>0; n=n-1)
-            sym_in_delay[n] = sym_in_delay[n-1];
+        if(sym_clk_ena)
+            sym_delay_2 = sym_delay_1;
+
+    always @(posedge sys_clk)
+        if(sym_clk_ena)
+            sym_delay_3 = sym_delay_2;
+
+    always @(posedge sys_clk)
+        if(sym_clk_ena)
+            sym_delay_4 = sym_delay_3;
+
+    always @(posedge sys_clk)
+        if(sym_clk_ena)
+            sym_delay_5 = sym_delay_4;
 
     (*noprune*) reg sym_correct, sym_error;
-    blalways @(posedge sys_clk) begin
-        sym_correct <= data_stream_out == sym_in_delay[`SYM_DELAY-1];
-        sym_error   <= data_stream_out != sym_in_delay[`SYM_DELAY-1];
+    always @(posedge sys_clk) begin
+        sym_correct <= data_stream_out == sym_delay_4;
+        sym_error   <= data_stream_out != sym_delay_4;
     end
 
     always @* begin

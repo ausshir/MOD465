@@ -15,10 +15,11 @@ module d2_exam_top(input clock_50,
                    output    DAC_CLK_B,
                    output    DAC_MODE,
                    output    DAC_WRT_A,
-                   output    DAC_WRT_B
+                   output    DAC_WRT_B,
 
                    // Outputs from internal data for viewing
-
+                   output wire [17:0] acc_dc_err_out,
+                   output wire [17:0] acc_sq_err_out
                    );
 
 
@@ -74,7 +75,6 @@ module d2_exam_top(input clock_50,
     //     Note2: Active low reset
 
     (*keep*) wire signed [17:0] inphase_out, quadrature_out;
-    /*
     MER_device bbx_mer15(.clk(sys_clk),
                          .reset(~reset),
                          .sym_en(sym_clk_ena),
@@ -83,10 +83,10 @@ module d2_exam_top(input clock_50,
                          .Q_in(quadrature_in),
                          .I_out(inphase_out),
                          .Q_out(quadrature_out));
-    */
 
-    assign inphase_out = inphase_in;
-    assign quadrature_out = quadrature_in;
+
+    //assign inphase_out = inphase_in;
+    //assign quadrature_out = quadrature_in;
 
     // Clock Generator module
     //     Takes in the system clock and generates 1/2, 1/8, 1/32 clock periods
@@ -174,26 +174,27 @@ module d2_exam_top(input clock_50,
     assign diff_err = inphase_out_del - inphase_out_mapped;
 
     // Squared and DC error calculation for MER
-    (*keep*) wire [17:0] acc_sq_err_out;
-    (*noprune*) reg [17:0] acc_sq_err_out_reg;
+    // Currently defined as outputs...
+    //(*keep*) wire [17:0] acc_sq_err_out;
+    //(*noprune*) reg [17:0] acc_sq_err_out_reg;
     err_sq_gen err_sq_gen_mod(.clk(sys_clk),
                               .clk_en(sym_clk_ena),
                               .reset(reset),
                               .hold(lfsr_cycle_out_periodic),
                               .err(diff_err),
                               .acc_sq_err_out(acc_sq_err_out));
-    (*keep*) wire [17:0] acc_dc_err_out;
-    (*noprune*) reg [17:0] acc_dc_err_out_reg;
+    //(*keep*) wire [17:0] acc_dc_err_out;
+    //(*noprune*) reg [17:0] acc_dc_err_out_reg;
     err_dc_gen err_dc_gen_mod(.clk(sys_clk),
                               .clk_en(sym_clk_ena),
                               .reset(reset),
                               .hold(lfsr_cycle_out_periodic),
                               .err(diff_err),
                               .acc_dc_err_out(acc_dc_err_out));
-    always @(posedge sys_clk) begin
-        acc_sq_err_out_reg = acc_sq_err_out;
-        acc_dc_err_out_reg = acc_dc_err_out;
-    end
+    //always @(posedge sys_clk) begin
+    //    acc_sq_err_out_reg = acc_sq_err_out;
+    //    acc_dc_err_out_reg = acc_dc_err_out;
+    //end
 
     // Symbol error indicator
     //  Note1: The input symbol must be delayed by a # clock cycles to synchronize
@@ -207,7 +208,7 @@ module d2_exam_top(input clock_50,
             sym_in_delay[n] = sym_in_delay[n-1];
 
     (*noprune*) reg sym_correct, sym_error;
-    always @(posedge sys_clk) begin
+    blalways @(posedge sys_clk) begin
         sym_correct <= data_stream_out == sym_in_delay[`SYM_DELAY-1];
         sym_error   <= data_stream_out != sym_in_delay[`SYM_DELAY-1];
     end

@@ -24,7 +24,7 @@
 **/simulation/**
 
 # Ignore Modelsim generated folders
-**/work/
+**/work/**
 
 # Ignore Quartus II generated files
 *_generation_script*

@@ -27,7 +27,8 @@ testbench
 timing
 
 # Ignore Modelsim generated folders
-work
+work/*
+*_temp
 
 # Ignore Quartus II generated files
 *_generation_script*

@@ -84,13 +84,13 @@ module d2_exam_top(input clock_50,
     //     Note2: Active low reset
 
     (*keep*) wire signed [17:0] inphase_out, quadrature_out;
-    MER_device bbx_mer15(.clk(sys_clk),
-                         .reset(~reset),
+    MER_device bbx_mer28(.clk(sys_clk),
+                         .reset(~aux_reset),
                          .sym_en(sym_clk_ena),
                          .sam_en(sam_clk_ena),
                          .I_in(inphase_in),
                          .Q_in(quadrature_in),
-                        .I_out(inphase_out),
+                         .I_out(inphase_out),
                          .Q_out(quadrature_out));
 
     //wire signed [17:0] mer_device_error, mer_device_clean;
@@ -154,7 +154,7 @@ module d2_exam_top(input clock_50,
     (*noprune*) reg [17:0] avg_power_out;
     ref_level_gen ref_level_gen_mod(.clk(sys_clk),
                                     .clk_en(sym_clk_ena),
-                                    .reset(aux_reset),
+                                    .reset(reset),
                                     .hold(lfsr_cycle_out_periodic),
                                     .clear(lfsr_cycle_out_periodic_behind),
                                     .dec_var(inphase_out),

@@ -1,7 +1,7 @@
 `default_nettype none
 module DUT_for_MER_measurement #(
   parameter                           DATA_WIDTH = 18, //data width
-  parameter                           ISI_POWER = 18'sd9268, // set to 28 -> round(sqrt(0.5/(10^(MER/10))))*2^(DATA_WIDTH-1)
+  parameter                           ISI_POWER = 18'sd16481, //  round(sqrt(0.5/(10^(MER/10))))*2^(DATA_WIDTH-1)
                                                              // if MER = 20 dB then ISI_POWER = 18'sd9268
   parameter                           CHANNEL_GAIN = 1 // the actual channel gain is 2^(-CHANNEL_GAIN). E.g. the
                                                        // actual channel gain is 1/8 if CHANNEL_GAIN=3.

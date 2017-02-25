@@ -41,12 +41,12 @@ module error_tb();
     wire [17:0] avg_power;
     wire [`LFSR_LEN-1:0] lfsr_counter;
     wire cycle_out;
-    wire cycle_out_periodic;
+    wire cycle_out_periodic, cycle_out_periodic_ahead, cycle_out_periodic_behind;
     wire signed [17:0] acc_dc_err_out, acc_sq_err_out;
 
     // Instantiate SUT
     clk_gen sut(clk_tb, reset, clk_25, clk_625, clk_15625, clk_625_en, clk_15625_en, phase);
-    lfsr_gen_max lfsr(clk_25, clk_15625_en, reset, seq_out, sym_out, cycle_out, cycle_out_periodic, lfsr_counter);
+    lfsr_gen_max lfsr(clk_25, clk_15625_en, reset, seq_out, sym_out, cycle_out, cycle_out_periodic, cycle_out_periodic_ahead, cycle_out_periodic_behind, lfsr_counter);
     mapper_16_qam mapper(clk_25, clk_15625_en, sym_out, in_phs_sig, quad_sig);
 
     wire signed [17:0] mer_device_out, mer_device_error, mer_device_clean;
@@ -78,7 +78,8 @@ module error_tb();
     ref_level_gen ref_level_gen_mod(.clk(clk_25),
                                   .clk_en(clk_15625_en),
                                   .reset(reset),
-                                  .hold(cycle_out),
+                                  .hold(cycle_out_periodic),
+                                  .clear(cycle_out_periodic_behind),
                                   .dec_var(mer_device_clean),
                                   .ref_level(ref_level),
                                   .avg_power(avg_power));

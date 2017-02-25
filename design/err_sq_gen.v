@@ -43,7 +43,7 @@ module err_sq_gen(input clk,
         if(reset)
             acc_sq_err_out = 0;
         else if(hold)
-            acc_sq_err_out = sum_sq_err[17+`LFSR_LEN:`LFSR_LEN];
+            acc_sq_err_out = sum_sq_err[17+`LFSR_LEN:`LFSR_LEN]; //grab top 17 bits
 
     assign acc_out_full = sum_sq_err;
 

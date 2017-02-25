@@ -42,8 +42,9 @@ module d2_exam_top(input clock_50,
         LEDG[5:4] = 2'b0;
 
     // Reset Switch on KEY0
-    wire reset;
+    wire reset, aux_reset;
     assign reset = ~KEY[0];
+    assign aux_reset = ~KEY[1];
 
     // ADC and DAC Setup
     (* noprune *) reg [13:0] registered_ADC_A;
@@ -83,23 +84,23 @@ module d2_exam_top(input clock_50,
     //     Note2: Active low reset
 
     (*keep*) wire signed [17:0] inphase_out, quadrature_out;
-    //MER_device bbx_mer15(.clk(sys_clk),
-    //                     .reset(~reset),
-    //                     .sym_en(sym_clk_ena),
-    //                     .sam_en(sam_clk_ena),
-    //                     .I_in(inphase_in),
-    //                     .Q_in(quadrature_in),
-    //                     .I_out(inphase_out),
-    //                     .Q_out(quadrature_out));
+    MER_device bbx_mer15(.clk(sys_clk),
+                         .reset(~reset),
+                         .sym_en(sym_clk_ena),
+                         .sam_en(sam_clk_ena),
+                         .I_in(inphase_in),
+                         .Q_in(quadrature_in),
+                        .I_out(inphase_out),
+                         .Q_out(quadrature_out));
 
-    wire signed [17:0] mer_device_error, mer_device_clean;
-    DUT_for_MER_measurement mer_device(.clk(sys_clk),
-                                       .clk_en(sym_clk_ena),
-                                       .reset(~reset),
-                                       .in_data(inphase_in),
-                                       .decision_variable(inphase_out),
-                                       .errorless_decision_variable(mer_device_clean),
-                                       .error(mer_device_error));
+    //wire signed [17:0] mer_device_error, mer_device_clean;
+    //DUT_for_MER_measurement mer_device(.clk(sys_clk),
+    //                                   .clk_en(sym_clk_ena),
+    //                                   .reset(~reset),
+    //                                   .in_data(inphase_in),
+    //                                   .decision_variable(inphase_out),
+    //                                   .errorless_decision_variable(mer_device_clean),
+    //                                   .error(mer_device_error));
 
     //assign inphase_out = inphase_in;
     //assign quadrature_out = quadrature_in;
@@ -122,7 +123,7 @@ module d2_exam_top(input clock_50,
     // 22-bit LFSR for generating random data to evaluate performance
     (*keep*) wire [3:0] data_stream_in;
     (*keep*) wire [21:0] lfsr_sequence;
-    (*keep*) wire lfsr_cycle_out, lfsr_cycle_out_periodic;
+    (*keep*) wire lfsr_cycle_out, lfsr_cycle_out_periodic, lfsr_cycle_out_periodic_ahead, lfsr_cycle_out_periodic_behind;
     (*keep*) wire [21:0] lfsr_counter;
     (*noprune*) reg [21:0] lfsr_counter_out;
     lfsr_gen_max lfsr_data_mod(.clk(sys_clk),
@@ -132,6 +133,8 @@ module d2_exam_top(input clock_50,
                               .sym_out(data_stream_in),
                               .cycle_out_once(lfsr_cycle_out),
                               .cycle_out_periodic(lfsr_cycle_out_periodic),
+                              .cycle_out_periodic_ahead(lfsr_cycle_out_periodic_ahead),
+                              .cycle_out_periodic_behind(lfsr_cycle_out_periodic_behind),
                               .lfsr_counter(lfsr_counter));
 
     always @(posedge sys_clk)
@@ -151,8 +154,9 @@ module d2_exam_top(input clock_50,
     (*noprune*) reg [17:0] avg_power_out;
     ref_level_gen ref_level_gen_mod(.clk(sys_clk),
                                     .clk_en(sym_clk_ena),
-                                    .reset(reset),
-                                    .hold(lfsr_cycle_out),
+                                    .reset(aux_reset),
+                                    .hold(lfsr_cycle_out_periodic),
+                                    .clear(lfsr_cycle_out_periodic_behind),
                                     .dec_var(inphase_out),
                                     .ref_level(ref_level),
                                     .avg_power(avg_power));

@@ -10,6 +10,7 @@ module ref_level_gen(input clk,
                     input clk_en,
                     input reset, // clear accumulators
                     input hold, // stop accumulating
+                    input clear,
                     input signed [17:0] dec_var,
                     output reg signed [17:0] ref_level,
                     output reg signed [17:0] avg_power);
@@ -31,8 +32,8 @@ module ref_level_gen(input clk,
     always @(posedge clk or posedge reset)
         if(reset)
             acc_full_reg = 0;
-        else if(hold)
-            acc_full_reg = acc_full_reg;
+        else if(clear)
+            acc_full_reg = 0;
         else if(clk_en)
             acc_full_reg = acc_full;
 

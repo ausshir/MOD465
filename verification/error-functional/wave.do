@@ -16,6 +16,8 @@ add wave -noupdate -height 15 -radix decimal /error_tb/avg_power
 add wave -noupdate -height 15 /error_tb/lfsr_counter
 add wave -noupdate -height 15 /error_tb/cycle_out
 add wave -noupdate -height 15 /error_tb/cycle_out_periodic
+add wave -noupdate -height 15 /error_tb/cycle_out_periodic_ahead
+add wave -noupdate -height 15 /error_tb/cycle_out_periodic_behind
 add wave -noupdate -divider {Error Outputs}
 add wave -noupdate -height 15 -radix decimal /error_tb/in_phs_sig
 add wave -noupdate -height 15 /error_tb/acc_dc_err_out
@@ -39,7 +41,7 @@ add wave -noupdate -height 15 /error_tb/ref_level_gen_mod/sq_ref_level
 add wave -noupdate -height 15 /error_tb/ref_level_gen_mod/trim_sq_ref_level
 add wave -noupdate -height 15 /error_tb/ref_level_gen_mod/mult_out
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {20889 ns} 0}
+WaveRestoreCursors {{Cursor 1} {13346 ns} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 355
 configure wave -valuecolwidth 100

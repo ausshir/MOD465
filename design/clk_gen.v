@@ -39,5 +39,22 @@ module clk_gen( input clk_in,
                           clk_phase == 4'd11||
                           clk_phase == 4'd15);
 
+/*
+    reg [4:0] clk_acc;
+    always @ (posedge clk_in or posedge reset)
+        if(reset)
+            clk_acc = 5'd0;
+        else
+            clk_acc = clk_acc - 5'd1;
+
+    assign sys_clk = clk_acc[0];
+    assign sam_clk = clk_acc[2];
+    assign sym_clk = clk_acc[4];
+    assign clk_phase = ~clk_acc[4:1];
+    assign sam_clk_ena = &clk_phase[1:0];
+    assign sym_clk_ena = &clk_phase;
+
+*/
+
 endmodule
 `endif

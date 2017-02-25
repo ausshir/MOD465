@@ -3,12 +3,13 @@
 
 `timescale 1ns/1ns
 
-
 `include "../../design/clk_gen.v"
 `include "../../design/lfsr_gen_max.v"
 `include "../../design/mapper_16_qam.v"
 `include "../../design/err_dc_gen.v"
 `include "../../design/err_sq_gen.v"
+`include "../../design/ref_level_gen.v"
+`include "../../reference-design/DUT_for_MER_measurement.v"
 `include "defines.vh"
 
 module error_tb();
@@ -43,44 +44,45 @@ module error_tb();
     wire cycle_out_periodic;
     wire signed [17:0] acc_dc_err_out, acc_sq_err_out;
 
-    // Test the symbol synchronization
-    reg [`INPHASE] sym_in_delay[`SYM_DELAY:0];
-    wire [`INPHASE] sym_delayed;
-    integer n;
-    always @(posedge clk_25)
-        if(clk_15625_en)
-            sym_in_delay[0] = sym_out[1:0];
-
-    always @(posedge clk_25)
-        if(clk_15625_en) begin
-            for(n=`SYM_DELAY; n>0; n=n-1) begin
-                if(n==0)
-                    sym_in_delay[0] <= sym_out[1:0];
-                else
-                    sym_in_delay[n] <= sym_in_delay[n-1];
-            end
-        end
-
-    assign sym_delayed = sym_in_delay[`SYM_DELAY];
-
     // Instantiate SUT
     clk_gen sut(clk_tb, reset, clk_25, clk_625, clk_15625, clk_625_en, clk_15625_en, phase);
     lfsr_gen_max lfsr(clk_25, clk_15625_en, reset, seq_out, sym_out, cycle_out, cycle_out_periodic, lfsr_counter);
     mapper_16_qam mapper(clk_25, clk_15625_en, sym_out, in_phs_sig, quad_sig);
 
+    wire signed [17:0] mer_device_out, mer_device_error, mer_device_clean;
+    wire signed [17+`LFSR_LEN:0] acc_out_full_dc, acc_out_full_sq;
+    DUT_for_MER_measurement mer_device(.clk(clk_25),
+                                       .clk_en(clk_15625_en),
+                                       .reset(~reset),
+                                       .in_data(in_phs_sig),
+                                       .decision_variable(mer_device_out),
+                                       .errorless_decision_variable(mer_device_clean),
+                                       .error(mer_device_error));
+
     err_dc_gen err_dc(clk_25,
                       clk_15625_en,
                       reset,
                       cycle_out_periodic,
-                      in_phs_sig,
-                      acc_dc_err_out);
+                      mer_device_error,
+                      acc_dc_err_out,
+                      acc_out_full_dc);
 
     err_sq_gen err_sq(clk_25,
                       clk_15625_en,
                       reset,
                       cycle_out_periodic,
-                      in_phs_sig,
-                      acc_sq_err_out);
+                      mer_device_error,
+                      acc_sq_err_out,
+                      acc_out_full_sq);
+
+    ref_level_gen ref_level_gen_mod(.clk(clk_25),
+                                  .clk_en(clk_15625_en),
+                                  .reset(reset),
+                                  .hold(cycle_out),
+                                  .dec_var(mer_device_clean),
+                                  .ref_level(ref_level),
+                                  .avg_power(avg_power));
+
 
 
 

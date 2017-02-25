@@ -42,7 +42,7 @@ module ref_level_gen(input clk,
             ref_level = 18'd0;
         else if(clk_en)
             if(hold)
-                ref_level = acc_full_reg >>> `LFSR_LEN;
+                    ref_level = acc_full_reg >>> `LFSR_LEN;
             else
                 ref_level = ref_level;
 

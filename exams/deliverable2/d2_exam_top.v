@@ -18,6 +18,12 @@ module d2_exam_top(input clock_50,
                    output    DAC_WRT_B,
 
                    // Outputs from internal data for viewing
+
+                    output sys_clk,
+                    output sam_clk,
+                    output sym_clk,
+                    output sam_clk_ena,
+                    output sym_clk_ena,
                    output wire signed [17:0] acc_dc_err_out,
                    output wire signed [17:0] acc_sq_err_out,
                    output wire signed [17+`LFSR_LEN:0] acc_out_full_dc,
@@ -77,15 +83,23 @@ module d2_exam_top(input clock_50,
     //     Note2: Active low reset
 
     (*keep*) wire signed [17:0] inphase_out, quadrature_out;
-    MER_device bbx_mer15(.clk(sys_clk),
-                         .reset(~reset),
-                         .sym_en(sym_clk_ena),
-                         .sam_en(sam_clk_ena),
-                         .I_in(inphase_in),
-                         .Q_in(quadrature_in),
-                         .I_out(inphase_out),
-                         .Q_out(quadrature_out));
+    //MER_device bbx_mer15(.clk(sys_clk),
+    //                     .reset(~reset),
+    //                     .sym_en(sym_clk_ena),
+    //                     .sam_en(sam_clk_ena),
+    //                     .I_in(inphase_in),
+    //                     .Q_in(quadrature_in),
+    //                     .I_out(inphase_out),
+    //                     .Q_out(quadrature_out));
 
+    wire signed [17:0] mer_device_error, mer_device_clean;
+    DUT_for_MER_measurement mer_device(.clk(sys_clk),
+                                       .clk_en(sym_clk_ena),
+                                       .reset(~reset),
+                                       .in_data(inphase_in),
+                                       .decision_variable(inphase_out),
+                                       .errorless_decision_variable(mer_device_clean),
+                                       .error(mer_device_error));
 
     //assign inphase_out = inphase_in;
     //assign quadrature_out = quadrature_in;
@@ -95,8 +109,6 @@ module d2_exam_top(input clock_50,
     //     Note1: the enables occur just before the clock edges to be clocked on sys_clk to help keep
     //          clock domains synchronized
 
-    (*keep*) wire sys_clk, sam_clk, sym_clk;
-    (*keep*) wire sam_clk_ena, sym_clk_ena;
     (*keep*) wire [3:0] clk_phase;
     clk_gen clk_gen_mod(.clk_in(clock_50),
                         .reset(reset),
@@ -240,11 +252,14 @@ module d2_exam_top(input clock_50,
         if(sym_clk_ena)
             sym_delay_5 = sym_delay_4;
 
-    (*noprune*) reg sym_correct, sym_error;
+    (*noprune*) reg sym_correct;
+    (*keep*) wire sym_error;
     always @(posedge sys_clk) begin
-        sym_correct <= data_stream_out == sym_delay_4;
-        sym_error   <= data_stream_out != sym_delay_4;
+        if(sym_clk_ena)
+            sym_correct <= data_stream_out == sym_delay_3;
     end
+
+    assign sym_error = ~sym_correct;
 
     always @* begin
         LEDG[7] <= sym_correct;

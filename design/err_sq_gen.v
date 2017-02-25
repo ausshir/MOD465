@@ -42,7 +42,7 @@ module err_sq_gen(input clk,
     always @(posedge clk or posedge reset)
         if(reset)
             acc_sq_err_out = 0;
-        else if(clk_en)
+        else if(hold)
             acc_sq_err_out = sum_sq_err[17+`LFSR_LEN:`LFSR_LEN];
 
     assign acc_out_full = sum_sq_err;

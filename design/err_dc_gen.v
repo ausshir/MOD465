@@ -35,7 +35,7 @@ module err_dc_gen(input clk,
     always @(posedge clk or posedge reset)
         if(reset)
             acc_dc_err_out = 0;
-        else if(clk_en)
+        else if(hold)
             acc_dc_err_out = dc_err[17+`LFSR_LEN:`LFSR_LEN];
 
     assign acc_out_full = dc_err;

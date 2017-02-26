@@ -27,7 +27,8 @@ module d2_exam_top(input clock_50,
                    output wire signed [17:0] acc_dc_err_out,
                    output wire signed [17:0] acc_sq_err_out,
                    output wire signed [17+`LFSR_LEN:0] acc_out_full_dc,
-                   output wire signed [17+`LFSR_LEN:0] acc_out_full_sq
+                   output wire signed [17+`LFSR_LEN:0] acc_out_full_sq,
+                   output wire signed [6:0] approx_mer
                    );
 
 
@@ -269,5 +270,12 @@ module d2_exam_top(input clock_50,
         LEDG[7] <= sym_correct;
         LEDG[6] <= sym_error;
     end
+
+    mer_calc_lut mer_calc(.clk(sys_clk),
+                          .clk_en(sym_clk_ena),
+                          .reset(reset), // clear accumulators
+                          .mapper_power(avg_power_out),
+                          .error_power(acc_sq_err_out),
+                          .approx_mer(approx_mer));
 
 endmodule

@@ -9,13 +9,13 @@ fileID = fopen('mer_lut.txt','w');
 
 counter = 0;
 
-for mapper_power = 1000:2:3046
+for mapper_power = 1000:4:5090
     for error_power = 1:1:254
         
         counter = counter + 1
         
-        lut_index1 = dec2base(mapper_power-1000, 2, 11);
-        lut_index1 = lut_index1(1:end-1);
+        lut_index1 = dec2base(mapper_power-1000, 2, 12);
+        lut_index1 = lut_index1(1:end-2);
         lut_index2 = dec2base(error_power, 2, 8);
         lut_str = strcat(lut_index1, lut_index2);
         

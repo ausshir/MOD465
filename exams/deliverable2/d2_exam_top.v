@@ -23,15 +23,11 @@ module d2_exam_top(input clock_50,
                    output    DAC_WRT_B,
 
                    // Outputs from internal data for viewing
-
                    output sys_clk,
                    output sam_clk,
                    output sym_clk,
                    output sam_clk_ena,
-                   output sym_clk_ena
-                   );
-
-
+                   output sym_clk_ena);
 
     // LED Sanity Check
     always @*

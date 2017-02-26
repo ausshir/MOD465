@@ -2,8 +2,8 @@
 `define _MER_CALC_LUT_V_
 
 // Uses a LUT to calculate log10( mapper_power / error_power )
-//  Can take in a range 1000-3048 (even only) (10-bits) for mapper_power
-//  And a range of 0-256 (8-bits) for error_power
+//  Can take in a range 1000-5090 (in increments of 4) (10-bits) for mapper_power
+//  And a range of 1-254 (8-bits) for error_power
 //  Giving a total LUT size of 18-bits
 //  NOTE: All 1's (-1 signed) is an error output
 
@@ -26,7 +26,7 @@ module mer_calc_lut(input clk,
     end
 
     always @(posedge clk) begin
-        mapper_power_10 <= mapper_power_10_baseline[10:1];
+        mapper_power_10 <= mapper_power_10_baseline[11:2];
         error_power_8 <= error_power[7:0];
     end
 
@@ -38,7 +38,7 @@ module mer_calc_lut(input clk,
         if(reset)
             approx_mer = 0;
         else if(clk_en)
-            if((mapper_power > 18'sd3046) ||
+            if((mapper_power > 18'sd5090) ||
                (mapper_power < 18'sd1000) ||
                (error_power > 18'sd254) ||
                (error_power < 18'sd1)) begin

@@ -426,26 +426,6 @@ set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[114] -
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[115] -to acc_sq_err_out[9] -section_id auto_signaltap_0
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SEGMENT_SIZE=2048" -section_id auto_signaltap_0
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SAMPLE_DEPTH=2048" -section_id auto_signaltap_0
-set_global_assignment -name TEXT_FILE ../../design/mer_lut.txt
-set_global_assignment -name VERILOG_FILE ../../design/mer_calc_lut.v
-set_global_assignment -name TEXT_FILE ../../model/mer_lut.txt
-set_global_assignment -name QXP_FILE MER_device_28_5.qxp
-set_global_assignment -name VERILOG_FILE "../../reference-design/DUT_for_MER_measurement.v"
-set_global_assignment -name VERILOG_FILE ../../design/ref_level_test.v
-set_global_assignment -name VERILOG_FILE ../../design/lfsr_gen_max.v
-set_global_assignment -name VERILOG_FILE ../../design/srrc_tx_lut_flt.v
-set_global_assignment -name VERILOG_FILE ../../design/srrc_tx_flt.v
-set_global_assignment -name VERILOG_FILE ../../design/srrc_rx_flt.v
-set_global_assignment -name VERILOG_FILE ../../design/slicer_4_ask.v
-set_global_assignment -name VERILOG_FILE ../../design/ref_level_gen.v
-set_global_assignment -name VERILOG_FILE ../../design/mapper_16_qam.v
-set_global_assignment -name VERILOG_FILE ../../design/mapper_4_ask_ref.v
-set_global_assignment -name VERILOG_FILE ../../design/err_sq_gen.v
-set_global_assignment -name VERILOG_FILE ../../design/err_dc_gen.v
-set_global_assignment -name VERILOG_FILE ../../design/clk_gen.v
-set_global_assignment -name VERILOG_FILE d2_exam_top.v
-set_global_assignment -name SIGNALTAP_FILE output_files/deliverable_2_basic.stp
-set_global_assignment -name SOURCE_FILE db/deliverable2.cmp.rdb
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[116] -to approx_mer[0] -section_id auto_signaltap_0
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[117] -to approx_mer[1] -section_id auto_signaltap_0
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[118] -to approx_mer[2] -section_id auto_signaltap_0
@@ -840,5 +820,24 @@ set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK=00
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK_LENGTH=955" -section_id auto_signaltap_0
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_LOWORD=63124" -section_id auto_signaltap_0
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_HIWORD=14778" -section_id auto_signaltap_0
+set_global_assignment -name VERILOG_FILE ../../design/mer_calc_lut.v
+set_global_assignment -name TEXT_FILE ../../model/mer_lut.txt
+set_global_assignment -name QXP_FILE MER_device_28_5.qxp
+set_global_assignment -name VERILOG_FILE "../../reference-design/DUT_for_MER_measurement.v"
+set_global_assignment -name VERILOG_FILE ../../design/ref_level_test.v
+set_global_assignment -name VERILOG_FILE ../../design/lfsr_gen_max.v
+set_global_assignment -name VERILOG_FILE ../../design/srrc_tx_lut_flt.v
+set_global_assignment -name VERILOG_FILE ../../design/srrc_tx_flt.v
+set_global_assignment -name VERILOG_FILE ../../design/srrc_rx_flt.v
+set_global_assignment -name VERILOG_FILE ../../design/slicer_4_ask.v
+set_global_assignment -name VERILOG_FILE ../../design/ref_level_gen.v
+set_global_assignment -name VERILOG_FILE ../../design/mapper_16_qam.v
+set_global_assignment -name VERILOG_FILE ../../design/mapper_4_ask_ref.v
+set_global_assignment -name VERILOG_FILE ../../design/err_sq_gen.v
+set_global_assignment -name VERILOG_FILE ../../design/err_dc_gen.v
+set_global_assignment -name VERILOG_FILE ../../design/clk_gen.v
+set_global_assignment -name VERILOG_FILE d2_exam_top.v
+set_global_assignment -name SIGNALTAP_FILE output_files/deliverable_2_basic.stp
+set_global_assignment -name SOURCE_FILE db/deliverable2.cmp.rdb
 set_global_assignment -name SLD_FILE "/home/aus892/engr-ece/EE465/MOD465/exams/deliverable2/output_files/deliverable_2_basic_auto_stripped.stp"
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

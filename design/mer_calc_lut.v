@@ -46,7 +46,7 @@ module mer_calc_lut(input clk,
             end
             else begin
                 case(lut_index)
-                    `include "mer_lut.txt"
+                    `include "../../model/mer_lut.txt"
                     default: approx_mer = -7'sd1;
 					 endcase
             end

@@ -2,7 +2,7 @@ close all;
 
 F_s = 1;
 N_sps = 4;
-shared_span = 289;
+shared_span = 305;
 
 %% TX Filter
 % SRRC, n Points, 0.12 rolloff, 0.875MHz BW
@@ -66,9 +66,9 @@ rcv_h_srrc = firrcos(rcv_span-1,rcv_fd,rcv_rolloff,1,'rolloff','sqrt');
 %% ISI Modeling
 % Convolve the frequency responses
 
-h_sys = conv(tx_h_srrc, rcv_h_srrc)
-h_isi_norm = (h_sys)/max(h_sys)
-isi = sum(downsample(h_isi_norm,4).^2) - 1
+h_sys = conv(tx_h_srrc, rcv_h_srrc);
+h_isi_norm = (h_sys)/max(h_sys);
+isi = sum(downsample(h_isi_norm,4).^2) - 1;
 
 MER = 10*log10(1/isi)
 
@@ -78,3 +78,43 @@ str = strcat('MER (req:50)=', num2str(MER));
 annotation('textbox',dim,'String',str,'FitBoxToText','on');
 
 hold off
+
+%% Output files
+fprintf('\nRX Filter Decimal Coefficients\n');
+for i = 1:length(rcv_h_srrc)
+    fprintf('b[%d] = %2.12f \n', i-1, rcv_h_srrc(i))
+end
+
+rcv_h_srrc_18sd = round(rcv_h_srrc * 2^17);
+
+fprintf('\nRX Filter 18''sd Coefficients\n');
+for i = 1:length(rcv_h_srrc)
+    if(rcv_h_srrc_18sd(i) < 0)
+        fprintf('b[%2.0f] = -18''sd %6d;\n', i-1, -rcv_h_srrc_18sd(i))
+    else
+        fprintf('b[%2.0f] =  18''sd %6d;\n', i-1, rcv_h_srrc_18sd(i))
+    end
+end
+
+
+fprintf('\nTX Filter 18''sd Positive LUT Coefficients (headroom)\n');
+tx_h_srrc_18sd = round(remove_headroom(tx_h_srrc, 0.999) * 2^17);
+for i = 1:(length(rcv_h_srrc))
+    if(tx_h_srrc_18sd(i) < 0)
+        fprintf('PRECOMP_P[%2.0f] = -18''sd %6d;\n', i-1, -tx_h_srrc_18sd(i))
+    else
+
+        fprintf('PRECOMP_P[%2.0f] =  18''sd %6d;\n', i-1, tx_h_srrc_18sd(i))
+    end
+end
+
+fprintf('\nTX Filter 18''sd Negative LUT Coefficients (headroom)\n');
+tx_h_srrc_18sd = -round(remove_headroom(tx_h_srrc, 0.999) * 2^17);
+for i = 1:(length(rcv_h_srrc))
+    if(tx_h_srrc_18sd(i) < 0)
+        fprintf('PRECOMP_N[%2.0f] = -18''sd %6d;\n', i-1, -tx_h_srrc_18sd(i))
+    else
+
+        fprintf('PRECOMP_N[%2.0f] =  18''sd %6d;\n', i-1, tx_h_srrc_18sd(i))
+    end
+end

@@ -22,7 +22,7 @@ module mer_calc_lut(input clk,
     reg [7:0] error_power_8;
     reg [17:0] lut_index;
     always @(posedge clk) begin
-        mapper_power_10_baseline = mapper_power - 1000;
+        mapper_power_10_baseline = mapper_power - 18'sd1000;
     end
 
     always @(posedge clk) begin
@@ -46,9 +46,11 @@ module mer_calc_lut(input clk,
             end
             else begin
                 case(lut_index)
-                    `include "../../model/mer_lut.txt"
+                    `ifndef QUICK_COMPILE
+                        `include "../../model/mer_lut.txt"
+                    `endif
                     default: approx_mer = -7'sd1;
-					 endcase
+                endcase
             end
 
 endmodule

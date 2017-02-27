@@ -79,6 +79,50 @@ annotation('textbox',dim,'String',str,'FitBoxToText','on');
 
 hold off
 
+%% Output the design file
+fileID = fopen('srrc_tx_gold_coefs.vh','w');
+
+fprintf(fileID,'//P2 Coefficients\n');
+for i = i = 1:length(rcv_h_srrc)
+    fprintf(fileID,'assign PRECOMP_P2[%3d] = 18''sd%6d;\n', i,5);
+end
+
+fprintf('\n//TX Filter 18''sd Positive LUT Coefficients (headroom)\n');
+tx_h_srrc_18sd = round(remove_headroom(tx_h_srrc, 0.999) * 2^17);
+for i = 1:(length(rcv_h_srrc))
+    if(tx_h_srrc_18sd(i) < 0)
+        fprintf('PRECOMP_P[%2.0f] = -18''sd %6d;\n', i-1, -tx_h_srrc_18sd(i))
+    else
+
+        fprintf('PRECOMP_P[%2.0f] =  18''sd %6d;\n', i-1, tx_h_srrc_18sd(i))
+    end
+end
+
+fprintf(fileID,'\n\n');
+
+fprintf(fileID,'//P1 Coefficients\n');
+for i = 0:304
+    fprintf(fileID,'assign PRECOMP_P1[%3d] = 18''sd%6d;\n', i,5);
+end
+
+fprintf(fileID,'\n\n');
+
+fprintf(fileID,'//N1 Coefficients\n');
+for i = 0:304
+    fprintf(fileID,'assign PRECOMP_N1[%3d] = 18''sd%6d;\n', i,5);
+end
+
+fprintf(fileID,'\n\n');
+
+fprintf(fileID,'//N2 Coefficients\n');
+for i = 0:304
+    fprintf(fileID,'assign PRECOMP_N2[%3d] = 18''sd%6d;\n', i,5);
+end
+
+fprintf(fileID,'\n\n');
+
+fclose(fileID);
+
 %% Output files
 fprintf('\nRX Filter Decimal Coefficients\n');
 for i = 1:length(rcv_h_srrc)

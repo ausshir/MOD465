@@ -42,7 +42,7 @@ module impulse_gold_tb();
     // Impulse Generation
     reg [8:0] imp_count;
     reg signed [17:0] stimulus;
-    wire signed [17:0] response;
+    wire signed [76+17:0] response;
 
     always @(posedge sys_clk or posedge reset) begin
         if(reset)

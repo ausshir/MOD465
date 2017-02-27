@@ -8,17 +8,16 @@ module srrc_gold_tx_flt(input clk,
                         input sym_clk_en,
                         input reset,
                         input signed [17:0] in,
-                        output reg signed [17:0] out);
+                        output reg signed [76+17:0] out);
 
     integer i;
     // Precomputed filter outputs from LUT
-    // Note that the last 305:307 are zeros to stuff the bin
-    wire [17:0] PRECOMP_P2[307:0];
-	wire [17:0] PRECOMP_P1[307:0];
-    wire [17:0] PRECOMP_N1[307:0];
-    wire [17:0] PRECOMP_N2[307:0];
+    wire signed [17:0] PRECOMP_P2[304:0];
+	wire signed [17:0] PRECOMP_P1[304:0];
+    wire signed [17:0] PRECOMP_N1[304:0];
+    wire signed [17:0] PRECOMP_N2[304:0];
 
-    `include "../../model/dummy_coefs.txt"
+    `include "../../model/srrc_tx_gold_coefs.vh"
 
     // Instead of a full shift register, use a counter to keep track and only shift every 4th sample.
     // The counter is at zero when a new symbol moves into the filter
@@ -140,7 +139,7 @@ module srrc_gold_tx_flt(input clk,
     // OMG is this even possible???
     always @(posedge clk or posedge reset)
         if(reset)
-            out = 18'd0;
+            out = 0;
         else if(sam_clk_en)
             out = bin_out[76] + bin_out[75] + bin_out[74] + bin_out[73] + bin_out[72] + bin_out[71] + bin_out[70]
                 + bin_out[69] + bin_out[68] + bin_out[67] + bin_out[66] + bin_out[65] + bin_out[64] + bin_out[63]

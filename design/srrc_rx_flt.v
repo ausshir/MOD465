@@ -8,8 +8,8 @@ module srrc_rx_flt (input clk,
 	                 output reg signed [17:0] out);
 
     integer i;
-    reg signed [17:0]	b[8:0];
-    reg signed [17:0]	x[16:0];
+    reg signed [17:0] b[8:0];
+    reg signed [17:0] x[16:0];
     reg signed [35:0] mult_out[8:0];
     reg signed [17:0] sum_level_1[8:0];
     reg signed [17:0] sum_level_2[4:0];

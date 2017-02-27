@@ -79,12 +79,12 @@ annotation('textbox',dim,'String',str,'FitBoxToText','on');
 
 hold off
 
-%% Output the design file
+%% Output TX Filter Coefficients
 fileID = fopen('srrc_tx_gold_coefs.vh','w');
 
 fprintf(fileID, '\n//TX Filter 18''sd P2 LUT Coefficients (headroom)\n');
 tx_h_srrc_18sd = round(remove_headroom(tx_h_srrc, 0.999) * (2^17) * 0.5);
-for i = 1:(length(rcv_h_srrc))
+for i = 1:(length(tx_h_srrc))
     if(tx_h_srrc_18sd(i) < 0)
         fprintf(fileID, 'assign PRECOMP_P2[%3d] = -18''sd %6d;\n', i-1, -tx_h_srrc_18sd(i));
     else
@@ -97,7 +97,7 @@ fprintf(fileID,'\n\n');
 
 fprintf(fileID, '\n//TX Filter 18''sd P1 LUT Coefficients (headroom)\n');
 tx_h_srrc_18sd = round(remove_headroom(tx_h_srrc, 0.999) * (2^17) * 0.167);
-for i = 1:(length(rcv_h_srrc))
+for i = 1:(length(tx_h_srrc))
     if(tx_h_srrc_18sd(i) < 0)
         fprintf(fileID, 'assign PRECOMP_P1[%3d] = -18''sd %6d;\n', i-1, -tx_h_srrc_18sd(i));
     else
@@ -110,7 +110,7 @@ fprintf(fileID,'\n\n');
 
 fprintf(fileID, '\n//TX Filter 18''sd N1 LUT Coefficients (headroom)\n');
 tx_h_srrc_18sd = round(remove_headroom(tx_h_srrc, 0.999) * (2^17) * -0.167);
-for i = 1:(length(rcv_h_srrc))
+for i = 1:(length(tx_h_srrc))
     if(tx_h_srrc_18sd(i) < 0)
         fprintf(fileID, 'assign PRECOMP_N1[%3d] = -18''sd %6d;\n', i-1, -tx_h_srrc_18sd(i));
     else
@@ -123,7 +123,7 @@ fprintf(fileID,'\n\n');
 
 fprintf(fileID, '\n//TX Filter 18''sd N2 LUT Coefficients (headroom)\n');
 tx_h_srrc_18sd = round(remove_headroom(tx_h_srrc, 0.999) * (2^17) * -0.5);
-for i = 1:(length(rcv_h_srrc))
+for i = 1:(length(tx_h_srrc))
     if(tx_h_srrc_18sd(i) < 0)
         fprintf(fileID, 'assign PRECOMP_N2[%3d] = -18''sd %6d;\n', i-1, -tx_h_srrc_18sd(i));
     else
@@ -132,46 +132,22 @@ for i = 1:(length(rcv_h_srrc))
     end
 end
 
-fprintf(fileID,'\n\n');
-
+fprintf(fileID,'\n');
 fclose(fileID);
 
-%% Print stuff.. :)
-% fprintf('\nRX Filter Decimal Coefficients\n');
-% for i = 1:length(rcv_h_srrc)
-%     fprintf('b[%d] = %2.12f \n', i-1, rcv_h_srrc(i))
-% end
-% 
-% rcv_h_srrc_18sd = round(rcv_h_srrc * 2^17);
-% 
-% fprintf('\nRX Filter 18''sd Coefficients\n');
-% for i = 1:length(rcv_h_srrc)
-%     if(rcv_h_srrc_18sd(i) < 0)
-%         fprintf('b[%2.0f] = -18''sd %6d;\n', i-1, -rcv_h_srrc_18sd(i))
-%     else
-%         fprintf('b[%2.0f] =  18''sd %6d;\n', i-1, rcv_h_srrc_18sd(i))
-%     end
-% end
-% 
-% 
-% fprintf('\nTX Filter 18''sd Positive LUT Coefficients (headroom)\n');
-% tx_h_srrc_18sd = round(remove_headroom(tx_h_srrc, 0.999) * 2^17);
-% for i = 1:(length(rcv_h_srrc))
-%     if(tx_h_srrc_18sd(i) < 0)
-%         fprintf('PRECOMP_P[%2.0f] = -18''sd %6d;\n', i-1, -tx_h_srrc_18sd(i))
-%     else
-% 
-%         fprintf('PRECOMP_P[%2.0f] =  18''sd %6d;\n', i-1, tx_h_srrc_18sd(i))
-%     end
-% end
-% 
-% fprintf('\nTX Filter 18''sd Negative LUT Coefficients (headroom)\n');
-% tx_h_srrc_18sd = -round(remove_headroom(tx_h_srrc, 0.999) * 2^17);
-% for i = 1:(length(rcv_h_srrc))
-%     if(tx_h_srrc_18sd(i) < 0)
-%         fprintf('PRECOMP_N[%2.0f] = -18''sd %6d;\n', i-1, -tx_h_srrc_18sd(i))
-%     else
-% 
-%         fprintf('PRECOMP_N[%2.0f] =  18''sd %6d;\n', i-1, tx_h_srrc_18sd(i))
-%     end
-% end
+%% Output the RX Filter Coefficients
+
+fileID = fopen('srrc_rx_gold_coefs.vh','w');
+
+fprintf(fileID, '\n//RX Filter 18''sd Multiplier Coefficients (headroom)\n');
+rcv_h_srrc_18sd = round(remove_headroom(rcv_h_srrc, 0.999) * (2^17));
+for i = 1:(round(length(rcv_h_srrc))/2) + 1
+    if(rcv_h_srrc_18sd(i) < 0)
+        fprintf(fileID, 'assign coef[%3d] = -18''sd %6d;\n', i-1, -rcv_h_srrc_18sd(i));
+    else
+
+        fprintf(fileID, 'assign coef[%3d] =  18''sd %6d;\n', i-1, rcv_h_srrc_18sd(i));
+    end
+end
+
+fclose(fileID);

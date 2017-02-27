@@ -5,11 +5,12 @@
 
 `include "../../design/clk_gen.v"
 `include "../../design/srrc_gold_tx_flt.v"
+`include "../../design/srrc_gold_rx_flt.v"
 `include "defines.vh"
 
 module impulse_gold_tb();
 
-    // Clock Generation @ 20ns/50MHz
+    // Clock Generation @ 40ns/25MHz
     //                  @ 160ns/6.25MHz
     //                  @ 640ns/1.5625
     reg clk_tb;
@@ -42,7 +43,7 @@ module impulse_gold_tb();
     // Impulse Generation
     reg [8:0] imp_count;
     reg signed [17:0] stimulus;
-    wire signed [76+17:0] response;
+    wire signed [17:0] response;
 
     always @(posedge sys_clk or posedge reset) begin
         if(reset)
@@ -72,7 +73,7 @@ module impulse_gold_tb();
     end
 
     // Instantiate SUT
-    srrc_gold_tx_flt sut(sys_clk, sam_clk_en, sym_clk_en, reset, stimulus, response);
+    srrc_gold_rx_flt sut(sys_clk, sam_clk_en, sym_clk_en, reset, stimulus, response);
 
     // end the simulation
     //initial begin

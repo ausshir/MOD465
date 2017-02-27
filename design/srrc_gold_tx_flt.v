@@ -8,7 +8,7 @@ module srrc_gold_tx_flt(input clk,
                         input sym_clk_en,
                         input reset,
                         input signed [17:0] in,
-                        output reg signed [76+17:0] out);
+                        output reg signed [17:0] out);
 
     integer i;
     // Precomputed filter outputs from LUT
@@ -18,6 +18,7 @@ module srrc_gold_tx_flt(input clk,
     wire signed [17:0] PRECOMP_N2[304:0];
 
     `include "../../model/srrc_tx_gold_coefs.vh"
+    //`include "../../model/dummy_coefs.txt"
 
     // Instead of a full shift register, use a counter to keep track and only shift every 4th sample.
     // The counter is at zero when a new symbol moves into the filter
@@ -136,22 +137,37 @@ module srrc_gold_tx_flt(input clk,
         else
             bin_out[76] = 18'd0;
 
-    // OMG is this even possible???
-    always @(posedge clk or posedge reset)
+    // Adder Tree
+    // We need to go from 76 bins to 1 output.
+    // On the first clock, we add together in goups of 4's
+    reg signed [17:0] sum_level_1[18:0];
+    always @(posedge clk)
+        for(i=0; i<=18; i=i+1) begin
+            sum_level_1[i] <= bin_out[(4*i)+0] + bin_out[(4*i)+1] + bin_out[(4*i)+2] + bin_out[(4*i)+3];
+        end
+
+    // Again on the second clock
+    reg signed [17:0] sum_level_2[4:0];
+    always @(posedge clk) begin
+        for(i=0; i<=3; i=i+1) begin
+            sum_level_2[i] <= sum_level_1[(4*i)+0] + sum_level_1[(4*i)+1] + sum_level_1[(4*i)+2] + sum_level_1[(4*i)+3];
+        end
+        sum_level_2[4] <= sum_level_1[16] + sum_level_1[17] + sum_level_1[18];
+    end
+
+    // On the last, we add in 5 inputs.
+    reg signed [17:0] sum_level_3;
+    always @(posedge clk) begin
+        sum_level_3 = sum_level_2[0] + sum_level_2[1] + sum_level_2[2] + sum_level_2[3] + sum_level_2[4];
+    end
+
+    // Finally we register the output
+    always @(posedge clk or posedge reset) begin
         if(reset)
             out = 0;
         else if(sam_clk_en)
-            out = bin_out[76] + bin_out[75] + bin_out[74] + bin_out[73] + bin_out[72] + bin_out[71] + bin_out[70]
-                + bin_out[69] + bin_out[68] + bin_out[67] + bin_out[66] + bin_out[65] + bin_out[64] + bin_out[63]
-                + bin_out[62] + bin_out[61] + bin_out[60] + bin_out[59] + bin_out[58] + bin_out[57] + bin_out[56]
-                + bin_out[55] + bin_out[54] + bin_out[53] + bin_out[52] + bin_out[51] + bin_out[50] + bin_out[49]
-                + bin_out[48] + bin_out[47] + bin_out[46] + bin_out[45] + bin_out[44] + bin_out[43] + bin_out[42]
-                + bin_out[41] + bin_out[40] + bin_out[39] + bin_out[38] + bin_out[37] + bin_out[36] + bin_out[35]
-                + bin_out[34] + bin_out[33] + bin_out[32] + bin_out[31] + bin_out[30] + bin_out[29] + bin_out[28]
-                + bin_out[27] + bin_out[26] + bin_out[25] + bin_out[24] + bin_out[23] + bin_out[22] + bin_out[21]
-                + bin_out[20] + bin_out[19] + bin_out[18] + bin_out[17] + bin_out[16] + bin_out[15] + bin_out[14]
-                + bin_out[13] + bin_out[12] + bin_out[11] + bin_out[10] + bin_out[ 9] + bin_out[ 8] + bin_out[ 7]
-                + bin_out[ 6] + bin_out[ 5] + bin_out[ 4] + bin_out[ 3] + bin_out[ 2] + bin_out[ 1] + bin_out[ 0];
+            out = sum_level_3;
+    end
 
 endmodule
 `endif

@@ -140,11 +140,13 @@ module srrc_gold_tx_flt(input clk,
     // Adder Tree
     // We need to go from 76 bins to 1 output.
     // On the first clock, we add together in goups of 4's
-    reg signed [17:0] sum_level_1[18:0];
-    always @(posedge clk)
+    reg signed [17:0] sum_level_1[19:0];
+    always @(posedge clk) begin
         for(i=0; i<=18; i=i+1) begin
             sum_level_1[i] <= bin_out[(4*i)+0] + bin_out[(4*i)+1] + bin_out[(4*i)+2] + bin_out[(4*i)+3];
         end
+        sum_level_1[19] <= bin_out[76];
+    end
 
     // Again on the second clock
     reg signed [17:0] sum_level_2[4:0];
@@ -152,7 +154,7 @@ module srrc_gold_tx_flt(input clk,
         for(i=0; i<=3; i=i+1) begin
             sum_level_2[i] <= sum_level_1[(4*i)+0] + sum_level_1[(4*i)+1] + sum_level_1[(4*i)+2] + sum_level_1[(4*i)+3];
         end
-        sum_level_2[4] <= sum_level_1[16] + sum_level_1[17] + sum_level_1[18];
+        sum_level_2[4] <= sum_level_1[16] + sum_level_1[17] + sum_level_1[18] + sum_level_1[19];
     end
 
     // On the last, we add in 5 inputs.

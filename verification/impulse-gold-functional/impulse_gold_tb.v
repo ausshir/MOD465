@@ -63,17 +63,17 @@ module impulse_gold_tb();
     always @(posedge sys_clk or posedge reset) begin
         if(reset)
             filewrite = 0;
-        else if(imp_count == 5'h1D)
-            filewrite = 1;
-        else if(imp_count == 5'h1D && filewrite == 1) begin
-            filewrite = 0;
-        end
-        else if(filewrite)
-            $fwrite(file,"%d,%d\n", $time, response);
+        else if(sam_clk_en)
+            if(imp_count == 5'h1D)
+                filewrite = 1;
+            else if(imp_count == 5'h1D && filewrite == 1)
+                filewrite = 0;
+            else if(filewrite)
+                $fwrite(file,"%d,%d\n", $time, response);
     end
 
     // Instantiate SUT
-    srrc_gold_rx_flt sut(sys_clk, sam_clk_en, sym_clk_en, reset, stimulus, response);
+    srrc_gold_tx_flt sut(sys_clk, sam_clk_en, sym_clk_en, reset, stimulus, response);
 
     // end the simulation
     //initial begin

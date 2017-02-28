@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(EP4CE115F29) Path("/home/aus892/engr-ece/EE465/MOD465/exams/deliverable2/output_files/") File("deliverable2.sof") MfrSpec(OpMask(1));
+		Device PartName(EP4CE115F29) Path("/home/aus892/engr-ece/EE465/MOD465/exams/deliverable2/OOB_project/") File("EE465_out_of_band.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 

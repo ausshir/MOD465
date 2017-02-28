@@ -1,5 +1,5 @@
 function [ h_hd_rm_removed ] = remove_headroom(h, safety_factor, w)
-% Usage set impulse respinse to be reduced so peak gain is less than 2      
+% Usage set impulse response to be reduced so peak gain is less than 2      
 %       default safety factor is 0.999
 
     if nargin < 3 || isempty(w)

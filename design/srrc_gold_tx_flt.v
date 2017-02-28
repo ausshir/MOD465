@@ -12,10 +12,10 @@ module srrc_gold_tx_flt(input clk,
 
     integer i;
     // Precomputed filter outputs from LUT
-    wire signed [17:0] PRECOMP_P2[304:0];
-	wire signed [17:0] PRECOMP_P1[304:0];
-    wire signed [17:0] PRECOMP_N1[304:0];
-    wire signed [17:0] PRECOMP_N2[304:0];
+    wire signed [17:0] PRECOMP_P2[188:0];
+	wire signed [17:0] PRECOMP_P1[188:0];
+    wire signed [17:0] PRECOMP_N1[188:0];
+    wire signed [17:0] PRECOMP_N2[188:0];
 
     `include "../../model/srrc_tx_gold_coefs.vh"
     //`include "../../model/dummy_coefs.txt"
@@ -43,41 +43,23 @@ module srrc_gold_tx_flt(input clk,
     // Shift register
     // Note, this may need to be a latch for timing requirements
     // Also, previously used negedge
-    reg signed [17:0] bin[76:0];
-    //always @(posedge clk or posedge reset)
-    //    if(reset)
-    //        bin[0] = 18'd0;
-    //    else if(count4 == 2'd0) // A new symbol is available
-    //        bin[0] = {in_reg[17:0]};
-
+    reg signed [17:0] bin[47:0];
     always @(posedge clk or posedge reset)
             if(reset)
-                for(i = 0; i <= 76; i = i+1) begin
+                for(i=0; i<=47; i=i+1) begin
                     bin[i] <= 18'd0;
                 end
             else if(sym_clk_en)
-                for(i = 0; i <= 76; i = i+1) begin
+                for(i=0; i<=47; i=i+1) begin
                     if(i == 0)
                         bin[0] <= {in_reg[17:0]};
                     else
                         bin[i] <= bin[i-1];
                 end
 
-    // The last bin holds only a single sample, so it needs to be updated every sam_clk
-    /*
-    always @(posedge clk or posedge reset)
-        if(reset)
-            bin[76] = 18'd0;
-        else if(sam_clk_en)
-            if(count4 == 2'd0)
-                bin[76] = bin[75];
-            else
-                bin[76] = 18'd0;
-    */
-
-    reg [17:0] bin_out[76:0];
+    reg [17:0] bin_out[47:0];
     always @*
-        for(i = 0; i <= 75; i = i+1)
+        for(i = 0; i <= 46; i = i+1)
             if(reset)
                 bin_out[i] <= 18'd0;
             else if(sam_clk_en)
@@ -122,45 +104,44 @@ module srrc_gold_tx_flt(input clk,
     // Last Bin (single item) :)
     always @*
         if(reset)
-            bin_out[76] = 18'd0;
+            bin_out[47] = 18'd0;
         else if(sam_clk_en && count4 == 2'd0)
-            if(bin[76] == `SYMBOL_P1)
-                bin_out[76] = PRECOMP_P1[16];
-            else if(bin[76] == `SYMBOL_P2)
-                bin_out[76] = PRECOMP_P2[16];
-            else if(bin[76] == `SYMBOL_N1)
-                bin_out[76] = PRECOMP_N1[16];
-            else if(bin[76] == `SYMBOL_N2)
-                bin_out[76] = PRECOMP_N2[16];
+            if(bin[47] == `SYMBOL_P1)
+                bin_out[47] = PRECOMP_P1[16];
+            else if(bin[47] == `SYMBOL_P2)
+                bin_out[47] = PRECOMP_P2[16];
+            else if(bin[47] == `SYMBOL_N1)
+                bin_out[47] = PRECOMP_N1[16];
+            else if(bin[47] == `SYMBOL_N2)
+                bin_out[47] = PRECOMP_N2[16];
             else
-                bin_out[76] = 18'd0;
+                bin_out[47] = 18'd0;
         else
-            bin_out[76] = 18'd0;
+            bin_out[47] = 18'd0;
 
     // Adder Tree
-    // We need to go from 76 bins to 1 output.
+    // We need to go from 48 bins to 1 output.
     // On the first clock, we add together in goups of 4's
-    reg signed [17:0] sum_level_1[19:0];
+    reg signed [17:0] sum_level_1[11:0];
     always @(posedge clk) begin
-        for(i=0; i<=18; i=i+1) begin
+        for(i=0; i<=10; i=i+1) begin
             sum_level_1[i] <= bin_out[(4*i)+0] + bin_out[(4*i)+1] + bin_out[(4*i)+2] + bin_out[(4*i)+3];
         end
-        sum_level_1[19] <= bin_out[76];
+        sum_level_1[11] <= bin_out[47] + bin_out[46] + bin_out[45];
     end
 
     // Again on the second clock
-    reg signed [17:0] sum_level_2[4:0];
+    reg signed [17:0] sum_level_2[2:0];
     always @(posedge clk) begin
-        for(i=0; i<=3; i=i+1) begin
+        for(i=0; i<=2; i=i+1) begin
             sum_level_2[i] <= sum_level_1[(4*i)+0] + sum_level_1[(4*i)+1] + sum_level_1[(4*i)+2] + sum_level_1[(4*i)+3];
         end
-        sum_level_2[4] <= sum_level_1[16] + sum_level_1[17] + sum_level_1[18] + sum_level_1[19];
     end
 
-    // On the last, we add in 5 inputs.
+    // On the last, we add in 3 inputs.
     reg signed [17:0] sum_level_3;
     always @(posedge clk) begin
-        sum_level_3 = sum_level_2[0] + sum_level_2[1] + sum_level_2[2] + sum_level_2[3] + sum_level_2[4];
+        sum_level_3 = sum_level_2[0] + sum_level_2[1] + sum_level_2[2];
     end
 
     // Finally we register the output

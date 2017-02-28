@@ -2,7 +2,7 @@ close all;
 
 F_s = 1;
 N_sps = 4;
-shared_span = 305;
+shared_span = 189;
 
 %% TX Filter
 % SRRC, n Points, 0.12 rolloff, 0.875MHz BW
@@ -12,12 +12,14 @@ tx_rate = 6.25; %Msps
 tx_OB1 = 0.22;
 tx_OB2 = 1.53;
 
-tx_rolloff = 0.12;
+tx_rolloff = 0.1;
 tx_span = shared_span;
 tx_fd = 0.125;
-tx_shape =1;
+tx_shape = 1.5;
+tx_beta = 0.1;
 
-tx_h_srrc = firrcos(tx_span-1,tx_fd,tx_rolloff,1,'rolloff','sqrt');
+%tx_h_srrc = firrcos(tx_span-1,tx_fd,tx_rolloff,1,'rolloff','sqrt');
+tx_h_srrc = rcosdesign(tx_beta, (tx_span-1)/N_sps, N_sps, 'sqrt');
 tx_w = kaiser(tx_span, tx_shape).';
 tx_h_srrc = (tx_h_srrc .* tx_w);
 
@@ -59,22 +61,25 @@ title({strcat('TX Filter Amplitude, Stopband Gain OB1 (req:-58)=', num2str(OB1_p
 rcv_rolloff = 0.12;
 rcv_span = shared_span;
 rcv_fd = .125;
+rcv_beta = 0.12;
 
-%rcv_h_srrc = rcosdesign(rcv_beta, (rcv_span-1)/N_sps, N_sps, 'sqrt');
-rcv_h_srrc = firrcos(rcv_span-1,rcv_fd,rcv_rolloff,1,'rolloff','sqrt');
+rcv_h_srrc = rcosdesign(rcv_beta, (rcv_span-1)/N_sps, N_sps, 'sqrt');
+%rcv_h_srrc = firrcos(rcv_span-1,rcv_fd,rcv_rolloff,1,'rolloff','sqrt');
 
 %% ISI Modeling
 % Convolve the frequency responses
 
 h_sys = conv(tx_h_srrc, rcv_h_srrc);
 h_isi_norm = (h_sys)/max(h_sys);
-isi = sum(downsample(h_isi_norm,4).^2) - 1;
+isi = vpa(sum(vpa(downsample(h_isi_norm,4).^2))) - vpa(1);
+
+%fvtool(h_isi_norm)
 
 MER = 10*log10(1/isi)
 
 figure(1)
 dim = [.4 .5 .3 .3];
-str = strcat('MER (req:50)=', num2str(MER));
+str = strcat('MER (req:50)=', num2str(double(MER)));
 annotation('textbox',dim,'String',str,'FitBoxToText','on');
 
 hold off

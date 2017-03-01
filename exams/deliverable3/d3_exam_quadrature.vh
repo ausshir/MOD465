@@ -8,7 +8,8 @@
 // Reference level generation for calibrating slicing
 //      Needed due to unknown channel attenuation
 (*keep*) wire signed [17:0] ref_level_quadrature, avg_power_quadrature;
-(*noprune*) reg [17:0] avg_power_out_quadrature;
+(*noprune*) reg signed [17:0] ref_level_reg_quadrature;
+(*noprune*) reg signed [17:0] avg_power_out_quadrature;
 ref_level_gen ref_level_gen_mod_quadrature(.clk(sys_clk),
                                 .clk_en(sym_clk_ena),
                                 .reset(reset),
@@ -20,6 +21,9 @@ ref_level_gen ref_level_gen_mod_quadrature(.clk(sys_clk),
 
 always @(posedge sys_clk)
     avg_power_out_quadrature = avg_power_quadrature;
+
+always @(posedge sys_clk)
+    ref_level_reg_quadrature = ref_level_quadrature;
 
 
 // 4-ASK Slicer to collect only the quadrature stream
@@ -93,7 +97,7 @@ always @(posedge sys_clk) begin
     acc_out_reg_full_dc_quadrature <= acc_out_full_dc_quadrature;
 end
 
-reg [`QUADRATURE] sym_delay_1_quadrature, sym_delay_2_quadrature, sym_delay_3_quadrature, sym_delay_4_quadrature, sym_delay_5_quadrature, sym_delay_6_quadrature, sym_delay_7_quadrature;
+reg [`QUADRATURE] sym_delay_1_quadrature, sym_delay_2_quadrature, sym_delay_3_quadrature;
 always @(posedge sys_clk)
     if(sym_clk_ena)
         sym_delay_1_quadrature = data_stream_in[`QUADRATURE];
@@ -106,26 +110,10 @@ always @(posedge sys_clk)
     if(sym_clk_ena)
         sym_delay_3_quadrature = sym_delay_2_quadrature;
 
-always @(posedge sys_clk)
-    if(sym_clk_ena)
-        sym_delay_4_quadrature = sym_delay_3_quadrature;
-
-always @(posedge sys_clk)
-    if(sym_clk_ena)
-        sym_delay_5_quadrature = sym_delay_4_quadrature;
-
-always @(posedge sys_clk)
-    if(sym_clk_ena)
-        sym_delay_6_quadrature = sym_delay_5_quadrature;
-
-always @(posedge sys_clk)
-    if(sym_clk_ena)
-        sym_delay_7_quadrature = sym_delay_6_quadrature;
-
 (*noprune*) reg sym_correct_quadrature;
 always @(posedge sys_clk) begin
     if(sym_clk_ena)
-        sym_correct_quadrature <= data_stream_out_quadrature == sym_delay_7_quadrature;
+        sym_correct_quadrature <= data_stream_out_quadrature == sym_delay_3_quadrature;
 end
 
 always @* begin

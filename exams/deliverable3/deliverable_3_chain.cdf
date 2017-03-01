@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(EP4CE115F29) Path("/home/aus892/engr-ece/EE465/MOD465/exams/deliverable2/saved_sof/") File("MER_lab_exam_A.sof") MfrSpec(OpMask(1));
+		Device PartName(EP4CE115F29) Path("/home/aus892/engr-ece/EE465/MOD465/exams/deliverable3/output_files/") File("d3_exam_top.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 

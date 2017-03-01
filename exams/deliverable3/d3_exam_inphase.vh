@@ -7,7 +7,8 @@
 // Reference level generation for calibrating slicing
 //      Needed due to unknown channel attenuation
 (*keep*) wire signed [17:0] ref_level_inphase, avg_power_inphase;
-(*noprune*) reg [17:0] avg_power_out_inphase;
+(*noprune*) reg signed [17:0] ref_level_reg_inphase;
+(*noprune*) reg signed [17:0] avg_power_out_inphase;
 ref_level_gen ref_level_gen_mod_inphase(.clk(sys_clk),
                                 .clk_en(sym_clk_ena),
                                 .reset(reset),
@@ -19,6 +20,9 @@ ref_level_gen ref_level_gen_mod_inphase(.clk(sys_clk),
 
 always @(posedge sys_clk)
     avg_power_out_inphase = avg_power_inphase;
+
+always @(posedge sys_clk)
+    ref_level_reg_inphase = ref_level_inphase;
 
 
 // 4-ASK Slicer to collect only the inphase stream
@@ -92,7 +96,7 @@ always @(posedge sys_clk) begin
     acc_out_reg_full_dc_inphase <= acc_out_full_dc_inphase;
 end
 
-reg [`INPHASE] sym_delay_1_inphase, sym_delay_2_inphase, sym_delay_3_inphase, sym_delay_4_inphase, sym_delay_5_inphase, sym_delay_6_inphase, sym_delay_7_inphase;
+reg [`INPHASE] sym_delay_1_inphase, sym_delay_2_inphase, sym_delay_3_inphase;
 always @(posedge sys_clk)
     if(sym_clk_ena)
         sym_delay_1_inphase = data_stream_in[`INPHASE];
@@ -105,26 +109,10 @@ always @(posedge sys_clk)
     if(sym_clk_ena)
         sym_delay_3_inphase = sym_delay_2_inphase;
 
-always @(posedge sys_clk)
-    if(sym_clk_ena)
-        sym_delay_4_inphase = sym_delay_3_inphase;
-
-always @(posedge sys_clk)
-    if(sym_clk_ena)
-        sym_delay_5_inphase = sym_delay_4_inphase;
-
-always @(posedge sys_clk)
-    if(sym_clk_ena)
-        sym_delay_6_inphase = sym_delay_5_inphase;
-
-always @(posedge sys_clk)
-    if(sym_clk_ena)
-        sym_delay_7_inphase = sym_delay_6_inphase;
-
 (*noprune*) reg sym_correct_inphase;
 always @(posedge sys_clk) begin
     if(sym_clk_ena)
-        sym_correct_inphase <= data_stream_out_inphase == sym_delay_7_inphase;
+        sym_correct_inphase <= data_stream_out_inphase == sym_delay_3_inphase;
 end
 
 always @* begin

@@ -21,6 +21,13 @@
     `define REF_POWER 18'sd 81919 //1.25 in 1s17 (0.625 of FS 131071)
     `define SYM_DELAY 5
 
+    // Enable QUICK_COMPILE in order to diable compiling giant LUTs
     //`define QUICK_COMPILE
+
+    // Enable one of these to model the channel as desired
+    //`define CHANNEL_BLACKBOX
+    //`define CHANNEL_MODEL
+    //`define CHANNEL_NONE
+    //`define CHANNEL_GOLD
 
 `endif

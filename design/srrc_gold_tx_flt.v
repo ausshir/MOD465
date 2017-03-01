@@ -58,7 +58,7 @@ module srrc_gold_tx_flt(input clk,
                 end
 
     reg [17:0] bin_out[47:0];
-    always @*
+    always @(posedge clk or posedge reset)
         for(i = 0; i <= 46; i = i+1)
             if(reset)
                 bin_out[i] <= 18'd0;

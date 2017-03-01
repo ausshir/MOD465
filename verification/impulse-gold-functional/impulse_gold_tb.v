@@ -73,7 +73,7 @@ module impulse_gold_tb();
     end
 
     // Instantiate SUT
-    srrc_gold_rx_flt sut(sys_clk, sam_clk_en, sym_clk_en, reset, stimulus, response);
+    srrc_gold_tx_flt sut(sys_clk, sam_clk_en, sym_clk_en, reset, stimulus, response);
 
     // end the simulation
     //initial begin

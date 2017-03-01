@@ -51,7 +51,7 @@ module srrc_gold_rx_flt (input clk,
 
     reg signed [17:0] sum_level_2[47:0];
     always @(posedge clk or posedge reset)
-        for(i=0;i<=47;i=i+1)
+        for(i=0;i<=46;i=i+1)
             if(reset) begin
                 sum_level_2[i] <= 0;
                 sum_level_2[47] <= 0;

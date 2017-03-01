@@ -1,9 +1,4 @@
-// Enable one of these to model the channel
-`define CHANNEL_BLACKBOX
-//`define CHANNEL_MODEL
-//`define CHANNEL_NONE
-
-module d2_exam_top(input clock_50,
+module d3_exam_top(input clock_50,
                    input [17:0] SW,
                    input [3:0] KEY,
                    input [13:0]ADC_DA,
@@ -46,9 +41,8 @@ module d2_exam_top(input clock_50,
     // ADC and DAC Setup
     (* noprune *) reg [13:0] registered_ADC_A;
     (* noprune *) reg [13:0] registered_ADC_B;
-    (* noprune *) reg signed [17:0] PRE_DAC;
     (* keep *) wire [13:0] DAC_OUT;
-
+    (* noprune *) reg signed [17:0] DAC_A_in, DAC_B_in;
 
     assign DAC_CLK_A = sys_clk;
     assign DAC_CLK_B = sys_clk;
@@ -56,11 +50,19 @@ module d2_exam_top(input clock_50,
     assign DAC_WRT_A = ~sys_clk;
     assign DAC_WRT_B = ~sys_clk;
 
-    always@ (posedge sys_clk)// make DAC A echo ADC A
-        DAC_DA = registered_ADC_A[13:0];
+    always @(posedge sys_clk)// convert 1s13 format to 0u14 format and send it to DAC A/B
+        DAC_DA = {~DAC_A_in[17], DAC_A_in[16:4]};
 
     always@ (posedge sys_clk)
-        DAC_DB = DAC_OUT;
+        DAC_DB = {~DAC_B_in[17], DAC_B_in[16:4]} ;
+
+    always @*
+        if(SW[0])
+            DAC_A_in = channel_inphase;
+        else if(SW[1])
+            DAC_A_in = inphase_out;
+        else
+            DAC_A_in = 0;
 
     assign ADC_CLK_A = sys_clk;
     assign ADC_CLK_B = sys_clk;
@@ -120,54 +122,12 @@ module d2_exam_top(input clock_50,
                                     .in_phs_sig(inphase_in),
                                     .quad_sig(quadrature_in));
 
-
     /**************************************************************************/
     //
     // CHANNEL MODELS
     //
     /**************************************************************************/
-    (*keep*) wire signed [17:0] inphase_out, quadrature_out;
-
-    `ifdef CHANNEL_BLACKBOX
-    // MER Device from Lab Preamble
-    //     Note1: that there are two devices and they have the same module name
-    //        Make sure to remove the unused one from the project when compiling
-    //     Note2: Active low reset
-    MER_device bbx_mer_D(.clk(sys_clk),
-                         .reset(~aux_reset),
-                         .sym_en(sym_clk_ena),
-                         .sam_en(sam_clk_ena),
-                         .I_in(inphase_in),
-                         .Q_in(quadrature_in),
-                         .I_out(inphase_out),
-                         .Q_out(quadrature_out));
-    `endif
-
-    `ifdef CHANNEL_MODEL
-    wire signed [17:0] mer_device_error_inphase, mer_device_clean_inphase;
-    wire signed [17:0] mer_device_error_quadrature, mer_device_clean_quadrature;
-    DUT_for_MER_measurement mer_device(.clk(sys_clk),
-                                       .clk_en(sym_clk_ena),
-                                       .reset(~aux_reset),
-                                       .in_data(inphase_in),
-                                       .decision_variable(inphase_out),
-                                       .errorless_decision_variable(mer_device_clean_inphase),
-                                       .error(mer_device_error_inphase));
-
-   wire signed [17:0] mer_device_error, mer_device_clean;
-   DUT_for_MER_measurement mer_device(.clk(sys_clk),
-                                      .clk_en(sym_clk_ena),
-                                      .reset(~aux_reset),
-                                      .in_data(quadrature_in),
-                                      .decision_variable(quadrature_out),
-                                      .errorless_decision_variable(mer_device_clean_quadrature),
-                                      .error(mer_device_error_quadrature));
-    `endif
-
-    `ifdef CHANNEL_NONE
-    assign inphase_out = inphase_in;
-    assign quadrature_out = quadrature_in;
-    `endif
+    `include "d3_exam_filters.vh"
 
     /**************************************************************************/
     //
@@ -175,7 +135,7 @@ module d2_exam_top(input clock_50,
     //
     /**************************************************************************/
 
-    `include "d2_exam_inphase.vh"
+    `include "d3_exam_inphase.vh"
 
     /**************************************************************************/
     //
@@ -183,6 +143,6 @@ module d2_exam_top(input clock_50,
     //
     /**************************************************************************/
 
-    `include "d2_exam_quadrature.vh"
+    `include "d3_exam_quadrature.vh"
 
 endmodule

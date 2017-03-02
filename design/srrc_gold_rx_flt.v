@@ -2,6 +2,7 @@
 `define _SRRC_GOLD_RX_FLT_V_
 
 module srrc_gold_rx_flt (input clk,
+                         input fastclk,
                          input sam_clk_en,
                          input sym_clk_en,
                          input reset,
@@ -9,81 +10,88 @@ module srrc_gold_rx_flt (input clk,
                          output reg signed [17:0] out);
 
     integer i;
-    wire signed [17:0] coef[94:0];
-    reg signed [17:0] x[188:0];
+    wire signed [17:0] coef[99:0];
+    reg signed [17:0] x[198:0];
 
-    `include "../../model/srrc_rx_gold_coefs.vh"
+    `include "../../model/LUT/srrc_rx_gold_coefs.vh"
 
     // Shift Register
     always @(posedge clk or posedge reset)
         if(reset)
-            for(i=0; i<=188; i=i+1) begin
+            for(i=0; i<=198; i=i+1) begin
                 x[i] <= 0;
             end
         else if(sam_clk_en)
-            for(i=0; i<=188; i=i+1) begin
+            for(i=0; i<=198; i=i+1) begin
                 if(i == 0)
                     x[0] <= { in[17:0] };
                 else
                     x[i] <= x[i-1];
             end
 
-    reg signed [17:0] sum_level_1[94:0];
+    reg signed [17:0] sum_level_1[99:0];
     always @(posedge clk or posedge reset)
-        for(i=0; i<=93; i=i+1)
             if(reset) begin
-                sum_level_1[i] <= 0;
-                sum_level_1[94] <= 0;
+                for(i=0; i<=98; i=i+1) begin
+                    sum_level_1[i] <= 0;
+                end
+                sum_level_1[99] <= 0;
             end
             else begin
-                sum_level_1[i] <= x[i]+x[188-i];
-                sum_level_1[94] <= x[94];
+                for(i=0; i<=98; i=i+1) begin
+                    sum_level_1[i] <= x[i]+x[198-i];
+                end
+                sum_level_1[99] <= x[99];
             end
 
     // always @ (posedge clk) For pipelining?
-    reg signed [35:0] mult_out[94:0];
+    reg signed [35:0] mult_out[99:0];
     always @(posedge clk or posedge reset)
-        for(i=0; i<=94; i=i+1)
+        for(i=0; i<=99; i=i+1)
             if(reset)
                 mult_out[i] = 0;
             else
                 mult_out[i] = sum_level_1[i] * coef[i];
 
-    reg signed [17:0] sum_level_2[47:0];
+    reg signed [17:0] sum_level_2[49:0];
     always @(posedge clk or posedge reset)
-        for(i=0;i<=46;i=i+1)
             if(reset) begin
-                sum_level_2[i] <= 0;
-                sum_level_2[47] <= 0;
+                for(i=0;i<=48;i=i+1) begin
+                    sum_level_2[i] <= 0;
+                end
+                sum_level_2[49] <= 0;
             end
             else begin
-                sum_level_2[i] <= mult_out[2*i][34:17] + mult_out[2*i+1][34:17];
-                sum_level_2[47] <= mult_out[94][34:17];
+                for(i=0;i<=48;i=i+1) begin
+                    sum_level_2[i] <= mult_out[2*i][34:17] + mult_out[2*i+1][34:17];
+                end
+                sum_level_2[49] <= mult_out[99][34:17];
             end
 
-    // Larger Adder Tree
+    // Adder Tree
     // We need to go from 48 bins to 1 output.
     // On the first clock, we add together in goups of 4's
-    reg signed [17:0] sum_level_3[11:0];
+    reg signed [17:0] sum_level_3[12:0];
     always @(posedge clk) begin
-        for(i=0; i<=10; i=i+1) begin
+        for(i=0; i<=11; i=i+1) begin
             sum_level_3[i] <= sum_level_2[(4*i)+0] + sum_level_2[(4*i)+1] + sum_level_2[(4*i)+2] + sum_level_2[(4*i)+3];
         end
-        sum_level_3[11] <= sum_level_2[47] + sum_level_2[46] + sum_level_2[45];
+        sum_level_3[12] <= sum_level_2[48] + sum_level_2[49];
     end
 
     // Again on the second clock
-    reg signed [17:0] sum_level_4[2:0];
+    reg signed [17:0] sum_level_4[3:0];
     always @(posedge clk) begin
         for(i=0; i<=2; i=i+1) begin
             sum_level_4[i] <= sum_level_3[(4*i)+0] + sum_level_3[(4*i)+1] + sum_level_3[(4*i)+2] + sum_level_3[(4*i)+3];
         end
+        sum_level_4[3] = sum_level_3[12];
     end
 
     // On the last, we add in 3 inputs.
     reg signed [17:0] sum_level_5;
     always @(posedge clk) begin
-        sum_level_5 = sum_level_4[0] + sum_level_4[1] + sum_level_4[2];
+        sum_level_5 = sum_level_4[0] + sum_level_4[1] + sum_level_4[2] + sum_level_4[3];
     end
 
     // Finally we register the output

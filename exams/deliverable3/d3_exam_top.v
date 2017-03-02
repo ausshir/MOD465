@@ -123,17 +123,19 @@ module d3_exam_top(input clock_50,
                                     .quad_sig(quadrature_in));
 
     (*keep*) wire signed [17:0] signal_inphase;
-    (*keep*) wire signed [17:9] signal_quadrature;
+    (*keep*) wire signed [17:0] signal_quadrature;
     upsampler_4 upsampler_4_inphase(.clk(sys_clk),
                                     .sam_clk_en(sam_clk_ena),
                                     .sym_clk_en(sym_clk_ena),
+                                    .reset(reset),
                                     .data_in(inphase_in),
                                     .data_out(signal_inphase));
 
     upsampler_4 upsampler_4_quadrature(.clk(sys_clk),
                                        .sam_clk_en(sam_clk_ena),
                                        .sym_clk_en(sym_clk_ena),
-                                       .data_in(inphase_in),
+                                       .reset(reset),
+                                       .data_in(quadrature_in),
                                        .data_out(signal_quadrature));
 
 

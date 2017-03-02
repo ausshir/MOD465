@@ -129,7 +129,7 @@ WinOnTop(h1, true);
 hold off
 
 %% Output TX Filter Coefficients
-fileID = fopen('srrc_tx_practical_coefs.vh','w');
+fileID = fopen('LUT/srrc_tx_practical_coefs.vh','w');
 
 fprintf(fileID, '\n//TX Filter 18''sd P2 LUT Coefficients (headroom)\n');
 tx_h_srrc_18sd = round(remove_headroom(tx_h_srrc, 0.999) * (2^17) * 0.5);

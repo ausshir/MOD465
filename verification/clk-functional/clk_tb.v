@@ -6,6 +6,7 @@
 `include "../../design/clk_gen.v"
 `include "../../design/lfsr_gen_max.v"
 `include "../../design/mapper_16_qam.v"
+`include "../../design/upsampler_4.v"
 `include "../../design/defines.vh"
 
 module clk_tb();
@@ -34,12 +35,14 @@ module clk_tb();
     wire [21:0] seq_out;
     wire [17:0] in_phs_sig;
     wire [17:0] quad_sig;
+    wire [17:0] upsampled_sig;
     wire cycle_out;
 
     // Instantiate SUT
     clk_gen sut(clk_tb, reset, clk_25, clk_625, clk_15625, clk_625_en, clk_15625_en, phase);
     lfsr_gen_max lfsr(clk_25, clk_15625_en, reset, seq_out, sym_out, cycle_out);
     mapper_16_qam mapper(clk_25, clk_15625_en, sym_out, in_phs_sig, quad_sig);
+    upsampler_4 upsampler(clk_25, clk_625_en, clk_15625_en, reset, in_phs_sig, upsampled_sig);
 
 endmodule
 `endif

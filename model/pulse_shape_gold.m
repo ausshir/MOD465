@@ -132,7 +132,7 @@ WinOnTop(h1, true);
 hold off
 
 %% Output TX Filter Coefficients
-fileID = fopen('srrc_tx_gold_coefs.vh','w');
+fileID = fopen('LUT/srrc_tx_gold_coefs.vh','w');
 
 fprintf(fileID, '\n//TX Filter 18''sd P2 LUT Coefficients (headroom)\n');
 tx_h_srrc_18sd = round(remove_headroom(tx_h_srrc, 0.999) * (2^17) * 0.5);
@@ -189,7 +189,7 @@ fclose(fileID);
 
 %% Output the RX Filter Coefficients
 
-fileID = fopen('srrc_rx_gold_coefs.vh','w');
+fileID = fopen('LUT/srrc_rx_gold_coefs.vh','w');
 
 fprintf(fileID, '\n//RX Filter 18''sd Multiplier Coefficients (headroom)\n');
 rcv_h_srrc_18sd = round(remove_headroom(rcv_h_srrc, 0.999) * (2^17));

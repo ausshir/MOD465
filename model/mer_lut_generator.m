@@ -5,7 +5,7 @@ lut_size = error_power_size + mapper_power_size;
 
 mer_lut = zeros(1,2^(lut_size));
 
-fileID = fopen('mer_lut.txt','w');
+fileID = fopen('LUT/mer_lut.vh','w');
 
 counter = 0;
 

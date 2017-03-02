@@ -22,12 +22,12 @@
     `define SYM_DELAY 5
 
     // Enable QUICK_COMPILE in order to diable compiling giant LUTs
-    //`define QUICK_COMPILE
+    `define QUICK_COMPILE
 
     // Enable one of these to model the channel as desired
     //`define CHANNEL_BLACKBOX
     //`define CHANNEL_MODEL
     //`define CHANNEL_NONE
-    //`define CHANNEL_GOLD
+    `define CHANNEL_GOLD
 
 `endif

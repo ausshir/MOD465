@@ -19,7 +19,7 @@
 ## PROGRAM "Quartus II"
 ## VERSION "Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Full Version"
 
-## DATE    "Tue Feb 28 16:26:48 2017"
+## DATE    "Fri Mar  3 13:26:29 2017"
 
 ##
 ## DEVICE  "EP4CE115F29C7"
@@ -38,6 +38,7 @@ set_time_format -unit ns -decimal_places 3
 # Create Clock
 #**************************************************************
 
+create_clock -name {altera_reserved_tck} -period 100.000 -waveform { 0.000 50.000 } [get_ports {altera_reserved_tck}]
 create_clock -name {clock_50} -period 20.000 -waveform { 0.000 10.000 } [get_ports {clock_50}]
 
 
@@ -45,7 +46,7 @@ create_clock -name {clock_50} -period 20.000 -waveform { 0.000 10.000 } [get_por
 # Create Generated Clock
 #**************************************************************
 
-create_generated_clock -name {sys_clk} -source [get_ports {clock_50}] -divide_by 2 -master_clock {clock_50} [get_ports {sys_clk}] 
+create_generated_clock -name {sys_clk} -source [get_ports {clock_50}] -divide_by 2 -master_clock {clock_50} [get_registers {clk_gen:clk_gen_mod|sys_clk}] 
 
 
 #**************************************************************
@@ -80,6 +81,7 @@ set_clock_uncertainty -fall_from [get_clocks {clock_50}] -fall_to [get_clocks {c
 # Set Clock Groups
 #**************************************************************
 
+set_clock_groups -asynchronous -group [get_clocks {altera_reserved_tck}] 
 
 
 #**************************************************************

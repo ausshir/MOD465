@@ -60,7 +60,7 @@ module d3_exam_top(input clock_50,
         if(SW[0])
             DAC_A_in = channel_inphase;
         else if(SW[1])
-            DAC_A_in = inphase_out;
+            DAC_A_in = signal_inphase;
         else
             DAC_A_in = 0;
 

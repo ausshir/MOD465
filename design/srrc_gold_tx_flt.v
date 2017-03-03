@@ -33,12 +33,11 @@ module srrc_gold_tx_flt(input clk,
         else if(sam_clk_en)
             count4 = count4 + 2'd1;
 
-
     reg signed [17:0] in_reg;
     always @(posedge clk or posedge reset)
         if(reset)
             in_reg = 0;
-        else if(sym_clk_en)
+        else if(sam_clk_en)
             in_reg = in;
 
     // Shift register
@@ -48,14 +47,19 @@ module srrc_gold_tx_flt(input clk,
     always @(posedge clk or posedge reset)
             if(reset)
                 for(i=0; i<=49; i=i+1) begin
-                    bin[i] <= 18'd0;
+                    bin[i] <= 0;
                 end
-            else if(sym_clk_en)
+            else if(sam_clk_en)
+                if(count4 == 2'd1)
+                    for(i=0; i<=49; i=i+1) begin
+                        if(i == 0)
+                            bin[0] <= {in_reg[17:0]};
+                        else
+                            bin[i] <= bin[i-1];
+                    end
+            else
                 for(i=0; i<=49; i=i+1) begin
-                    if(i == 0)
-                        bin[0] <= {in_reg[17:0]};
-                    else
-                        bin[i] <= bin[i-1];
+                    bin[i] = bin[i];
                 end
 
     reg [17:0] bin_out[49:0];
@@ -66,37 +70,37 @@ module srrc_gold_tx_flt(input clk,
             else if(sam_clk_en)
                 if(bin[i] == `SYMBOL_P1)
                     case (count4)
-                        2'd0: bin_out[i] <= PRECOMP_P1[4*i];
-                        2'd1: bin_out[i] <= PRECOMP_P1[4*i+1];
-                        2'd2: bin_out[i] <= PRECOMP_P1[4*i+2];
-                        2'd3: bin_out[i] <= PRECOMP_P1[4*i+3];
+                        2'd1: bin_out[i] <= PRECOMP_P1[4*i];
+                        2'd2: bin_out[i] <= PRECOMP_P1[4*i+1];
+                        2'd3: bin_out[i] <= PRECOMP_P1[4*i+2];
+                        2'd0: bin_out[i] <= PRECOMP_P1[4*i+3];
                         default: bin_out[i] <= 17'd0;
                     endcase
 
                 else if(bin[i] == `SYMBOL_P2)
                     case (count4)
-                        2'd0: bin_out[i] <= PRECOMP_P2[4*i];
-                        2'd1: bin_out[i] <= PRECOMP_P2[4*i+1];
-                        2'd2: bin_out[i] <= PRECOMP_P2[4*i+2];
-                        2'd3: bin_out[i] <= PRECOMP_P2[4*i+3];
+                        2'd1: bin_out[i] <= PRECOMP_P2[4*i];
+                        2'd2: bin_out[i] <= PRECOMP_P2[4*i+1];
+                        2'd3: bin_out[i] <= PRECOMP_P2[4*i+2];
+                        2'd0: bin_out[i] <= PRECOMP_P2[4*i+3];
                         default: bin_out[i] <= 17'd0;
                     endcase
 
                 else if(bin[i] == `SYMBOL_N1)
                     case (count4)
-                        2'd0: bin_out[i] <= PRECOMP_N1[4*i];
-                        2'd1: bin_out[i] <= PRECOMP_N1[4*i+1];
-                        2'd2: bin_out[i] <= PRECOMP_N1[4*i+2];
-                        2'd3: bin_out[i] <= PRECOMP_N1[4*i+3];
+                        2'd1: bin_out[i] <= PRECOMP_N1[4*i];
+                        2'd2: bin_out[i] <= PRECOMP_N1[4*i+1];
+                        2'd3: bin_out[i] <= PRECOMP_N1[4*i+2];
+                        2'd0: bin_out[i] <= PRECOMP_N1[4*i+3];
                         default: bin_out[i] <= 17'd0;
                     endcase
 
                 else if(bin[i] == `SYMBOL_N2)
                     case (count4)
-                        2'd0: bin_out[i] <= PRECOMP_N2[4*i];
-                        2'd1: bin_out[i] <= PRECOMP_N2[4*i+1];
-                        2'd2: bin_out[i] <= PRECOMP_N2[4*i+2];
-                        2'd3: bin_out[i] <= PRECOMP_N2[4*i+3];
+                        2'd1: bin_out[i] <= PRECOMP_N2[4*i];
+                        2'd2: bin_out[i] <= PRECOMP_N2[4*i+1];
+                        2'd3: bin_out[i] <= PRECOMP_N2[4*i+2];
+                        2'd0: bin_out[i] <= PRECOMP_N2[4*i+3];
                         default: bin_out[i] <= 17'd0;
                     endcase
                 else // Invalid data or zeroes (not connected/impulse response)

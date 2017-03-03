@@ -47,13 +47,13 @@ module impulse_gold_tb();
 
     always @(posedge sys_clk or posedge reset) begin
         if(reset)
-            imp_count = 5'b0;
+            imp_count = 6'b0;
         else if(sam_clk_en)
-            imp_count = imp_count + 5'b1;
+            imp_count = imp_count + 6'b1;
     end
 
     always @* begin
-        if(imp_count == 5'h1D)
+        if(imp_count == 6'h1E)
             stimulus = `SYMBOL_P2;
         else
             stimulus = 18'h0;
@@ -73,7 +73,7 @@ module impulse_gold_tb();
     end
 
     // Instantiate SUT
-    srrc_gold_rx_flt sut(sys_clk, clk_tb, sam_clk_en, sym_clk_en, reset, stimulus, response);
+    srrc_gold_tx_flt sut(sys_clk, clk_tb, sam_clk_en, sym_clk_en, reset, stimulus, response);
 
     // end the simulation
     //initial begin

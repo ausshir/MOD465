@@ -33,6 +33,9 @@ module srrc_gold_tx_flt(input clk,
         else if(sam_clk_en)
             count4 = count4 + 2'd1;
 
+
+    // Register inputs to improve timing characteristics (?)
+    //  Note this delays our bins by count4 = 1, so the case statement is offset
     reg signed [17:0] in_reg;
     always @(posedge clk or posedge reset)
         if(reset)
@@ -45,22 +48,22 @@ module srrc_gold_tx_flt(input clk,
     // Also, previously used negedge
     reg signed [17:0] bin[49:0];
     always @(posedge clk or posedge reset)
-            if(reset)
+        if(reset)
+            for(i=0; i<=49; i=i+1) begin
+                bin[i] <= 0;
+            end
+        else if(sam_clk_en)
+            if(count4 == 2'd1)
                 for(i=0; i<=49; i=i+1) begin
-                    bin[i] <= 0;
+                    if(i == 0)
+                        bin[0] <= {in_reg[17:0]};
+                    else
+                        bin[i] <= bin[i-1];
                 end
-            else if(sam_clk_en)
-                if(count4 == 2'd1)
-                    for(i=0; i<=49; i=i+1) begin
-                        if(i == 0)
-                            bin[0] <= {in_reg[17:0]};
-                        else
-                            bin[i] <= bin[i-1];
-                    end
-            else
-                for(i=0; i<=49; i=i+1) begin
-                    bin[i] = bin[i];
-                end
+        else
+            for(i=0; i<=49; i=i+1) begin
+                bin[i] = bin[i];
+            end
 
     reg [17:0] bin_out[49:0];
     always @(posedge fastclk or posedge reset)
@@ -103,12 +106,12 @@ module srrc_gold_tx_flt(input clk,
                         2'd0: bin_out[i] <= PRECOMP_N2[4*i+3];
                         default: bin_out[i] <= 17'd0;
                     endcase
-                else // Invalid data or zeroes (not connected/impulse response)
+                else // Invalid data OR zeroes (not connected/impulse response)
                     bin_out[i] <= 18'd0;
             //else
             //    bin_out[i] <= 0;
 
-    // Last Bin (single item) :)
+    // Last Bin (single item, we should just make sure filters are a multiple of 4...) :)
     always @(posedge fastclk or posedge reset)
         if(reset)
             bin_out[49] = 18'd0;
@@ -128,7 +131,7 @@ module srrc_gold_tx_flt(input clk,
 
     // Adder Tree
     // We need to go from 48 bins to 1 output.
-    // On the first clock, we add together in goups of 4's
+    // On the first clock, we add together in goups of 4's for prototyping
     reg signed [17:0] sum_level_1[12:0];
     always @(posedge clk) begin
         for(i=0; i<=11; i=i+1) begin

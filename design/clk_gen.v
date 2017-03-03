@@ -23,15 +23,15 @@ module clk_gen( input clk_in,
         else
             sys_clk = ~sys_clk;
 
-    always @(posedge clk_in or posedge reset)
+    always @(negedge sys_clk or posedge reset)
         if(reset)
-            down_count = 4'b1111;
+            down_count = 3'b111;
         else
-            down_count = down_count - 4'b1;
+            down_count = down_count - 3'b1;
 
-    assign sam_clk = down_count[2];
-    assign sym_clk = down_count[4];
-    assign clk_phase = ~(down_count[4:1]);
+    assign sam_clk = down_count[1];
+    assign sym_clk = down_count[3];
+    assign clk_phase = ~(down_count[3:0]);
 
     assign sym_clk_ena = (clk_phase == 4'd15);
     assign sam_clk_ena = (clk_phase == 4'd3 ||

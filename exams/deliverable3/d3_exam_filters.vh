@@ -44,10 +44,13 @@ DUT_for_MER_measurement mer_device(.clk(sys_clk),
 
 (*keep*) wire signed [17:0] channel_inphase, channel_quadrature;
 srrc_gold_tx_flt tx_flt_inphase(.clk(sys_clk), .fastclk(clock_50), .sam_clk_en(sam_clk_ena), .sym_clk_en(sym_clk_ena), .reset(reset), .in(signal_inphase), .out(channel_inphase));
-srrc_gold_rx_flt rx_flt_inphase(.clk(sys_clk), .fastclk(clock_50), .sam_clk_en(sam_clk_ena), .sym_clk_en(sym_clk_ena), .reset(reset), .in(channel_inphase), .out(inphase_out));
+//srrc_gold_rx_flt rx_flt_inphase(.clk(sys_clk), .fastclk(clock_50), .sam_clk_en(sam_clk_ena), .sym_clk_en(sym_clk_ena), .reset(reset), .in(channel_inphase), .out(inphase_out));
+assign inphase_out = channel_inphase;
 
-srrc_gold_tx_flt tx_flt_quadrature(.clk(sys_clk), .fastclk(clock_50), .sam_clk_en(sam_clk_ena), .sym_clk_en(sym_clk_ena), .reset(reset), .in(signal_quadrature), .out(channel_quadrature));
-srrc_gold_rx_flt rx_flt_quadrature(.clk(sys_clk), .fastclk(clock_50), .sam_clk_en(sam_clk_ena), .sym_clk_en(sym_clk_ena), .reset(reset), .in(channel_quadrature), .out(quadrature_out));
+//srrc_gold_tx_flt tx_flt_quadrature(.clk(sys_clk), .fastclk(clock_50), .sam_clk_en(sam_clk_ena), .sym_clk_en(sym_clk_ena), .reset(reset), .in(signal_quadrature), .out(channel_quadrature));
+//srrc_gold_rx_flt rx_flt_quadrature(.clk(sys_clk), .fastclk(clock_50), .sam_clk_en(sam_clk_ena), .sym_clk_en(sym_clk_ena), .reset(reset), .in(channel_quadrature), .out(quadrature_out));
+assign channel_quadrature = signal_quadrature;
+assign quadrature_out = channel_quadrature;
 
 `endif
 

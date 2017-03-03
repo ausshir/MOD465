@@ -19,7 +19,7 @@
 ## PROGRAM "Quartus II"
 ## VERSION "Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Full Version"
 
-## DATE    "Fri Mar  3 13:26:29 2017"
+## DATE    "Fri Mar  3 14:49:41 2017"
 
 ##
 ## DEVICE  "EP4CE115F29C7"
@@ -63,6 +63,22 @@ set_clock_uncertainty -rise_from [get_clocks {clock_50}] -rise_to [get_clocks {c
 set_clock_uncertainty -rise_from [get_clocks {clock_50}] -fall_to [get_clocks {clock_50}]  0.020  
 set_clock_uncertainty -fall_from [get_clocks {clock_50}] -rise_to [get_clocks {clock_50}]  0.020  
 set_clock_uncertainty -fall_from [get_clocks {clock_50}] -fall_to [get_clocks {clock_50}]  0.020  
+set_clock_uncertainty -rise_from [get_clocks {clock_50}] -rise_to [get_clocks {sys_clk}]  0.020  
+set_clock_uncertainty -rise_from [get_clocks {clock_50}] -fall_to [get_clocks {sys_clk}]  0.020  
+set_clock_uncertainty -fall_from [get_clocks {clock_50}] -rise_to [get_clocks {sys_clk}]  0.020  
+set_clock_uncertainty -fall_from [get_clocks {clock_50}] -fall_to [get_clocks {sys_clk}]  0.020  
+set_clock_uncertainty -rise_from [get_clocks {sys_clk}] -rise_to [get_clocks {clock_50}]  0.020  
+set_clock_uncertainty -rise_from [get_clocks {sys_clk}] -fall_to [get_clocks {clock_50}]  0.020  
+set_clock_uncertainty -rise_from [get_clocks {sys_clk}] -rise_to [get_clocks {sys_clk}]  0.030  
+set_clock_uncertainty -rise_from [get_clocks {sys_clk}] -fall_to [get_clocks {sys_clk}]  0.030  
+set_clock_uncertainty -fall_from [get_clocks {sys_clk}] -rise_to [get_clocks {clock_50}]  0.020  
+set_clock_uncertainty -fall_from [get_clocks {sys_clk}] -fall_to [get_clocks {clock_50}]  0.020  
+set_clock_uncertainty -fall_from [get_clocks {sys_clk}] -rise_to [get_clocks {sys_clk}]  0.030  
+set_clock_uncertainty -fall_from [get_clocks {sys_clk}] -fall_to [get_clocks {sys_clk}]  0.030  
+set_clock_uncertainty -rise_from [get_clocks {altera_reserved_tck}] -rise_to [get_clocks {altera_reserved_tck}]  0.020  
+set_clock_uncertainty -rise_from [get_clocks {altera_reserved_tck}] -fall_to [get_clocks {altera_reserved_tck}]  0.020  
+set_clock_uncertainty -fall_from [get_clocks {altera_reserved_tck}] -rise_to [get_clocks {altera_reserved_tck}]  0.020  
+set_clock_uncertainty -fall_from [get_clocks {altera_reserved_tck}] -fall_to [get_clocks {altera_reserved_tck}]  0.020  
 
 
 #**************************************************************
@@ -81,6 +97,7 @@ set_clock_uncertainty -fall_from [get_clocks {clock_50}] -fall_to [get_clocks {c
 # Set Clock Groups
 #**************************************************************
 
+set_clock_groups -asynchronous -group [get_clocks {altera_reserved_tck}] 
 set_clock_groups -asynchronous -group [get_clocks {altera_reserved_tck}] 
 
 

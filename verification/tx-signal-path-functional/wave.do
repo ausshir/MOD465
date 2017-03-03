@@ -7,6 +7,7 @@ add wave -noupdate -height 15 /tx_signal_path_tb/clk_625
 add wave -noupdate -height 15 /tx_signal_path_tb/clk_15625
 add wave -noupdate -height 15 /tx_signal_path_tb/clk_625_en
 add wave -noupdate -height 15 /tx_signal_path_tb/clk_15625_en
+add wave -noupdate -height 15 /tx_signal_path_tb/clocks/down_count
 add wave -noupdate -height 15 /tx_signal_path_tb/phase
 add wave -noupdate -height 15 -radix decimal /tx_signal_path_tb/sym_out
 add wave -noupdate -height 15 -radix decimal /tx_signal_path_tb/seq_out
@@ -19,14 +20,20 @@ add wave -noupdate -divider {Filter Signals}
 add wave -noupdate -format Analog-Step -height 84 -max 49151.0 -min -49151.0 /tx_signal_path_tb/filter/in
 add wave -noupdate -height 15 /tx_signal_path_tb/filter/in_reg
 add wave -noupdate -format Analog-Step -height 84 -max 38791.000000000007 -min -36474.0 /tx_signal_path_tb/filter/out
-add wave -noupdate -height 15 -subitemconfig {{/tx_signal_path_tb/filter/count4[1]} {-height 15} {/tx_signal_path_tb/filter/count4[0]} {-height 15}} /tx_signal_path_tb/filter/count4
+add wave -noupdate -max 49151.0 -min -49151.0 -radix decimal {/tx_signal_path_tb/filter/bin[5]}
+add wave -noupdate -max 49151.0 -min -49151.0 -radix decimal {/tx_signal_path_tb/filter/bin[4]}
+add wave -noupdate -max 49151.0 -min -49151.0 -radix decimal {/tx_signal_path_tb/filter/bin[3]}
+add wave -noupdate -max 49151.0 -min -49151.0 -radix decimal {/tx_signal_path_tb/filter/bin[2]}
+add wave -noupdate -max 49151.0 -min -49151.0 -radix decimal {/tx_signal_path_tb/filter/bin[1]}
+add wave -noupdate -height 15 {/tx_signal_path_tb/filter/bin[0]}
+add wave -noupdate -height 15 /tx_signal_path_tb/filter/count4
 add wave -noupdate -height 15 -subitemconfig {{/tx_signal_path_tb/filter/bin[49]} {-height 15} {/tx_signal_path_tb/filter/bin[48]} {-height 15} {/tx_signal_path_tb/filter/bin[47]} {-height 15} {/tx_signal_path_tb/filter/bin[46]} {-height 15} {/tx_signal_path_tb/filter/bin[45]} {-height 15} {/tx_signal_path_tb/filter/bin[44]} {-height 15} {/tx_signal_path_tb/filter/bin[43]} {-height 15} {/tx_signal_path_tb/filter/bin[42]} {-height 15} {/tx_signal_path_tb/filter/bin[41]} {-height 15} {/tx_signal_path_tb/filter/bin[40]} {-height 15} {/tx_signal_path_tb/filter/bin[39]} {-height 15} {/tx_signal_path_tb/filter/bin[38]} {-height 15} {/tx_signal_path_tb/filter/bin[37]} {-height 15} {/tx_signal_path_tb/filter/bin[36]} {-height 15} {/tx_signal_path_tb/filter/bin[35]} {-height 15} {/tx_signal_path_tb/filter/bin[34]} {-height 15} {/tx_signal_path_tb/filter/bin[33]} {-height 15} {/tx_signal_path_tb/filter/bin[32]} {-height 15} {/tx_signal_path_tb/filter/bin[31]} {-height 15} {/tx_signal_path_tb/filter/bin[30]} {-height 15} {/tx_signal_path_tb/filter/bin[29]} {-height 15} {/tx_signal_path_tb/filter/bin[28]} {-height 15} {/tx_signal_path_tb/filter/bin[27]} {-height 15} {/tx_signal_path_tb/filter/bin[26]} {-height 15} {/tx_signal_path_tb/filter/bin[25]} {-height 15} {/tx_signal_path_tb/filter/bin[24]} {-height 15} {/tx_signal_path_tb/filter/bin[23]} {-height 15} {/tx_signal_path_tb/filter/bin[22]} {-height 15} {/tx_signal_path_tb/filter/bin[21]} {-height 15} {/tx_signal_path_tb/filter/bin[20]} {-height 15} {/tx_signal_path_tb/filter/bin[19]} {-height 15} {/tx_signal_path_tb/filter/bin[18]} {-height 15} {/tx_signal_path_tb/filter/bin[17]} {-height 15} {/tx_signal_path_tb/filter/bin[16]} {-height 15} {/tx_signal_path_tb/filter/bin[15]} {-height 15} {/tx_signal_path_tb/filter/bin[14]} {-height 15} {/tx_signal_path_tb/filter/bin[13]} {-height 15} {/tx_signal_path_tb/filter/bin[12]} {-height 15} {/tx_signal_path_tb/filter/bin[11]} {-height 15} {/tx_signal_path_tb/filter/bin[10]} {-height 15} {/tx_signal_path_tb/filter/bin[9]} {-height 15} {/tx_signal_path_tb/filter/bin[8]} {-height 15} {/tx_signal_path_tb/filter/bin[7]} {-height 15} {/tx_signal_path_tb/filter/bin[6]} {-height 15} {/tx_signal_path_tb/filter/bin[5]} {-height 15} {/tx_signal_path_tb/filter/bin[4]} {-height 15} {/tx_signal_path_tb/filter/bin[3]} {-height 15} {/tx_signal_path_tb/filter/bin[2]} {-height 15} {/tx_signal_path_tb/filter/bin[1]} {-height 15} {/tx_signal_path_tb/filter/bin[0]} {-height 15}} /tx_signal_path_tb/filter/bin
 add wave -noupdate -height 15 /tx_signal_path_tb/filter/bin_out
 add wave -noupdate -height 15 /tx_signal_path_tb/filter/sum_level_1
 add wave -noupdate -height 15 /tx_signal_path_tb/filter/sum_level_2
 add wave -noupdate -height 15 /tx_signal_path_tb/filter/sum_level_3
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {119734 ns} 0}
+WaveRestoreCursors {{Cursor 1} {500 ns} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 280
 configure wave -valuecolwidth 40
@@ -42,4 +49,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits us
 update
-WaveRestoreZoom {119734 ns} {168886 ns}
+WaveRestoreZoom {0 ns} {65664 ns}

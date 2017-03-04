@@ -14,8 +14,8 @@ tx_OB2 = 1.53;
 
 tx_span = tx_span;
 tx_fd = 0.125;
-tx_shape = 2.3;
-tx_beta = 0.085;
+tx_shape = 3.5;
+tx_beta = 0.06;
 
 %tx_h_srrc = firrcos(tx_span-1,tx_fd,tx_rolloff,1,'rolloff','sqrt');
 tx_h_srrc = rcosdesign(tx_beta, (tx_span-1)/N_sps, N_sps, 'sqrt');

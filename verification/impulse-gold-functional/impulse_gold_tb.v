@@ -53,7 +53,7 @@ module impulse_gold_tb();
     end
 
     always @* begin
-        if(imp_count == 6'h1E)
+        if(imp_count == 6'd33)
             stimulus = `SYMBOL_P2;
         else
             stimulus = 18'h0;

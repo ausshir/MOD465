@@ -39,17 +39,18 @@ module tx_signal_path_tb();
     wire [17:0] in_phs_sig;
     wire [17:0] quad_sig;
     wire [17:0] upsampled_sig;
-    wire cycle_out;
+    wire cycle_out, cycle_out_periodic, cycle_out_periodic_ahead, cycle_out_periodic_behind;
+    wire [`LFSR_LEN-1:0] lfsr_counter;
 
     wire signed [17:0] channel;
 
     // Instantiate SUT
     clk_gen clocks(clk_tb, reset, clk_25, clk_625, clk_15625, clk_625_en, clk_15625_en, phase);
-    lfsr_gen_max lfsr(clk_25, clk_15625_en, reset, seq_out, sym_out, cycle_out);
+    lfsr_gen_max lfsr(clk_25, clk_15625_en, reset, seq_out, sym_out, cycle_out, cycle_out_periodic, cycle_out_periodic_ahead, cycle_out_periodic_behind, lfsr_counter);
     mapper_16_qam mapper(clk_25, clk_15625_en, sym_out, in_phs_sig, quad_sig);
     upsampler_4 upsampler(clk_25, clk_625_en, clk_15625_en, reset, in_phs_sig, upsampled_sig);
 
-    srrc_gold_tx_flt filter(clk_25, clk_tb, clk_625_en, clk_15625_en, reset, upsampled_sig, channel);
+    srrc_gold_tx_flt filter(clk_25, clk_tb, clk_625_en, clk_15625_en, reset, phase[3:2], upsampled_sig, channel);
 
 endmodule
 `endif

@@ -24,7 +24,7 @@ module srrc_gold_rx_flt (input clk,
         else if(sam_clk_en)
             for(i=0; i<=198; i=i+1) begin
                 if(i == 0)
-                    x[0] <= { in[17:0] };
+                    x[0] <= { in[17], in[17:1] };
                 else
                     x[i] <= x[i-1];
             end
@@ -55,43 +55,52 @@ module srrc_gold_rx_flt (input clk,
 
     reg signed [17:0] sum_level_2[49:0];
     always @(posedge clk or posedge reset)
-            if(reset) begin
-                for(i=0;i<=48;i=i+1) begin
-                    sum_level_2[i] <= 0;
-                end
-                sum_level_2[49] <= 0;
+        if(reset) begin
+            for(i=0;i<=49;i=i+1) begin
+                sum_level_2[i] <= 0;
             end
-            else begin
-                for(i=0;i<=48;i=i+1) begin
-                    sum_level_2[i] <= mult_out[2*i][34:17] + mult_out[2*i+1][34:17];
-                end
-                sum_level_2[49] <= mult_out[99][34:17];
-            end
-
-    // Adder Tree
-    // We need to go from 48 bins to 1 output.
-    // On the first clock, we add together in goups of 4's
-    reg signed [17:0] sum_level_3[12:0];
-    always @(posedge clk) begin
-        for(i=0; i<=11; i=i+1) begin
-            sum_level_3[i] <= sum_level_2[(4*i)+0] + sum_level_2[(4*i)+1] + sum_level_2[(4*i)+2] + sum_level_2[(4*i)+3];
         end
-        sum_level_3[12] <= sum_level_2[48] + sum_level_2[49];
+        else begin
+            for(i=0;i<=49;i=i+1) begin
+                sum_level_2[i] <= mult_out[(2*i)][34:17] + mult_out[(2*i)+1][34:17];
+            end
+        end
+
+    reg signed [17:0] sum_level_3[24:0];
+    always @(posedge clk)
+        for(i=0; i<=24; i=i+1)
+            sum_level_3[i] <= sum_level_2[(2*i)] + sum_level_2[(2*i)+1];
+
+    reg signed [17:0] sum_level_4[12:0];
+    always @(posedge clk) begin
+        for(i=0; i<=11; i=i+1)
+            sum_level_4[i] <= sum_level_3[(2*i)] + sum_level_3[(2*i)+1];
+        sum_level_4[12] <= sum_level_3[24];
     end
 
-    // Again on the second clock
-    reg signed [17:0] sum_level_4[3:0];
+    reg signed [17:0] sum_level_5[6:0];
     always @(posedge clk) begin
-        for(i=0; i<=2; i=i+1) begin
-            sum_level_4[i] <= sum_level_3[(4*i)+0] + sum_level_3[(4*i)+1] + sum_level_3[(4*i)+2] + sum_level_3[(4*i)+3];
-        end
-        sum_level_4[3] = sum_level_3[12];
+        for(i=0; i<=5; i=i+1)
+            sum_level_5[i] <= sum_level_4[(2*i)] + sum_level_4[(2*i)+1];
+        sum_level_5[6] <= sum_level_4[12];
     end
 
-    // On the last, we add in 3 inputs.
-    reg signed [17:0] sum_level_5;
+    reg signed [17:0] sum_level_6[3:0];
     always @(posedge clk) begin
-        sum_level_5 = sum_level_4[0] + sum_level_4[1] + sum_level_4[2] + sum_level_4[3];
+        for(i=0; i<=2; i=i+1)
+            sum_level_6[i] <= sum_level_5[(2*i)] + sum_level_5[(2*i)+1];
+        sum_level_6[3] <= sum_level_5[6];
+    end
+
+    reg signed [17:0] sum_level_7[1:0];
+    always @(posedge clk) begin
+        sum_level_7[0] <= sum_level_6[0] + sum_level_6[1];
+        sum_level_7[1] <= sum_level_6[2] + sum_level_6[3];
+    end
+
+    reg signed [17:0] sum_level_8;
+    always @(posedge clk) begin
+        sum_level_8 <= sum_level_7[0] + sum_level_7[1];
     end
 
     // Finally we register the output
@@ -99,7 +108,7 @@ module srrc_gold_rx_flt (input clk,
         if(reset)
             out = 0;
         else if(sam_clk_en)
-            out = sum_level_5;
+            out = sum_level_8;
     end
 
 endmodule

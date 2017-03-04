@@ -23,21 +23,28 @@ module clk_gen( input clk_in,
         else
             sys_clk = ~sys_clk;
 
-    always @(negedge sys_clk or posedge reset)
+    always @(posedge sys_clk or posedge reset)
         if(reset)
-            down_count = 3'b111;
+            down_count = 4'b1111;
         else
-            down_count = down_count - 3'b1;
+            down_count = down_count - 4'b1;
 
     assign sam_clk = down_count[1];
     assign sym_clk = down_count[3];
     assign clk_phase = ~(down_count[3:0]);
 
+    /* Old design
     assign sym_clk_ena = (clk_phase == 4'd15);
     assign sam_clk_ena = (clk_phase == 4'd3 ||
                           clk_phase == 4'd7 ||
                           clk_phase == 4'd11||
                           clk_phase == 4'd15);
+    */
+    assign sym_clk_ena = (clk_phase == 4'd0);
+    assign sam_clk_ena = (clk_phase == 4'd0 ||
+                          clk_phase == 4'd4 ||
+                          clk_phase == 4'd8 ||
+                          clk_phase == 4'd12);
 
 /*
     reg [4:0] clk_acc;

@@ -8,6 +8,7 @@ module srrc_gold_tx_flt(input clk,
                         input sam_clk_en,
                         input sym_clk_en,
                         input reset,
+                        input [1:0] phase4,
                         input signed [17:0] in,
                         output reg signed [17:0] out);
 
@@ -25,6 +26,9 @@ module srrc_gold_tx_flt(input clk,
     // The counter is at zero when a new symbol moves into the filter
     // The last bin contains the ouput data that is shifted to the end (representing the 17th tap)
     reg [1:0] count4;
+    always @(posedge clk)
+        count4 = phase4;
+    /*
     always @(posedge clk or posedge reset)
         if(reset)
             count4 = 2'd0;
@@ -32,6 +36,7 @@ module srrc_gold_tx_flt(input clk,
             count4 = 2'd0;
         else if(sam_clk_en)
             count4 = count4 + 2'd1;
+    */
 
 
     // Register inputs to improve timing characteristics (?)
@@ -66,56 +71,57 @@ module srrc_gold_tx_flt(input clk,
             end
 
     reg [17:0] bin_out[49:0];
-    always @(posedge fastclk or posedge reset)
+    always @*//(posedge clk or posedge reset)
         for(i = 0; i <= 48; i = i+1)
             if(reset)
                 bin_out[i] <= 18'd0;
-            else if(sam_clk_en)
-                if(bin[i] == `SYMBOL_P1)
-                    case (count4)
-                        2'd1: bin_out[i] <= PRECOMP_P1[4*i];
-                        2'd2: bin_out[i] <= PRECOMP_P1[4*i+1];
-                        2'd3: bin_out[i] <= PRECOMP_P1[4*i+2];
-                        2'd0: bin_out[i] <= PRECOMP_P1[4*i+3];
-                        default: bin_out[i] <= 17'd0;
-                    endcase
+            //else if(sam_clk_en)
+            else if(bin[i] == `SYMBOL_P1)
+                case (count4)
+                    2'd1: bin_out[i] <= PRECOMP_P1[4*i];
+                    2'd2: bin_out[i] <= PRECOMP_P1[4*i+1];
+                    2'd3: bin_out[i] <= PRECOMP_P1[4*i+2];
+                    2'd0: bin_out[i] <= PRECOMP_P1[4*i+3];
+                    default: bin_out[i] <= 17'd0;
+                endcase
 
-                else if(bin[i] == `SYMBOL_P2)
-                    case (count4)
-                        2'd1: bin_out[i] <= PRECOMP_P2[4*i];
-                        2'd2: bin_out[i] <= PRECOMP_P2[4*i+1];
-                        2'd3: bin_out[i] <= PRECOMP_P2[4*i+2];
-                        2'd0: bin_out[i] <= PRECOMP_P2[4*i+3];
-                        default: bin_out[i] <= 17'd0;
-                    endcase
+            else if(bin[i] == `SYMBOL_P2)
+                case (count4)
+                    2'd1: bin_out[i] <= PRECOMP_P2[4*i];
+                    2'd2: bin_out[i] <= PRECOMP_P2[4*i+1];
+                    2'd3: bin_out[i] <= PRECOMP_P2[4*i+2];
+                    2'd0: bin_out[i] <= PRECOMP_P2[4*i+3];
+                    default: bin_out[i] <= 17'd0;
+                endcase
 
-                else if(bin[i] == `SYMBOL_N1)
-                    case (count4)
-                        2'd1: bin_out[i] <= PRECOMP_N1[4*i];
-                        2'd2: bin_out[i] <= PRECOMP_N1[4*i+1];
-                        2'd3: bin_out[i] <= PRECOMP_N1[4*i+2];
-                        2'd0: bin_out[i] <= PRECOMP_N1[4*i+3];
-                        default: bin_out[i] <= 17'd0;
-                    endcase
+            else if(bin[i] == `SYMBOL_N1)
+                case (count4)
+                    2'd1: bin_out[i] <= PRECOMP_N1[4*i];
+                    2'd2: bin_out[i] <= PRECOMP_N1[4*i+1];
+                    2'd3: bin_out[i] <= PRECOMP_N1[4*i+2];
+                    2'd0: bin_out[i] <= PRECOMP_N1[4*i+3];
+                    default: bin_out[i] <= 17'd0;
+                endcase
 
-                else if(bin[i] == `SYMBOL_N2)
-                    case (count4)
-                        2'd1: bin_out[i] <= PRECOMP_N2[4*i];
-                        2'd2: bin_out[i] <= PRECOMP_N2[4*i+1];
-                        2'd3: bin_out[i] <= PRECOMP_N2[4*i+2];
-                        2'd0: bin_out[i] <= PRECOMP_N2[4*i+3];
-                        default: bin_out[i] <= 17'd0;
-                    endcase
-                else // Invalid data OR zeroes (not connected/impulse response)
-                    bin_out[i] <= 18'd0;
+            else if(bin[i] == `SYMBOL_N2)
+                case (count4)
+                    2'd1: bin_out[i] <= PRECOMP_N2[4*i];
+                    2'd2: bin_out[i] <= PRECOMP_N2[4*i+1];
+                    2'd3: bin_out[i] <= PRECOMP_N2[4*i+2];
+                    2'd0: bin_out[i] <= PRECOMP_N2[4*i+3];
+                    default: bin_out[i] <= 17'd0;
+                endcase
+            else // Invalid data OR zeroes (not connected/impulse response/zero stuffed)
+                bin_out[i] <= 18'd0;
             //else
             //    bin_out[i] <= 0;
 
     // Last Bin (single item, we should just make sure filters are a multiple of 4...) :)
-    always @(posedge fastclk or posedge reset)
+    always @*//(posedge clk or posedge reset)
         if(reset)
             bin_out[49] = 18'd0;
-        else if(sam_clk_en && count4 == 2'd0)
+        //else if(sam_clk_en && count4 == 2'd0)
+        else if(count4 == 2'd0)
             if(bin[49] == `SYMBOL_P1)
                 bin_out[49] = PRECOMP_P1[16];
             else if(bin[49] == `SYMBOL_P2)

@@ -25,9 +25,12 @@ module srrc_gold_tx_flt(input clk,
     // Instead of a full shift register, use a counter to keep track and only shift every 4th sample.
     // The counter is at zero when a new symbol moves into the filter
     // The last bin contains the ouput data that is shifted to the end (representing the 17th tap)
-    reg [1:0] count4;
+    (*noprune*) reg [1:0] count4, count4_delay;
     always @(posedge clk)
         count4 = phase4;
+
+    always @(posedge clk)
+        count4_delay = count4;
     /*
     always @(posedge clk or posedge reset)
         if(reset)
@@ -51,24 +54,22 @@ module srrc_gold_tx_flt(input clk,
     // Shift register
     // Note, this may need to be a latch for timing requirements
     // Also, previously used negedge
-    reg signed [17:0] bin[49:0];
+    (*noprune*) reg signed [17:0] bin[49:0];
     always @(posedge clk or posedge reset)
-        if(reset)
-            for(i=0; i<=49; i=i+1) begin
+        for(i=0; i<=49; i=i+1) begin
+            if(reset)
                 bin[i] <= 0;
-            end
-        else if(sam_clk_en)
-            if(count4 == 2'd1)
-                for(i=0; i<=49; i=i+1) begin
+            else if(sam_clk_en)
+                if(count4 == 2'd2)
                     if(i == 0)
                         bin[0] <= {in_reg[17:0]};
                     else
                         bin[i] <= bin[i-1];
-                end
-        else
-            for(i=0; i<=49; i=i+1) begin
-                bin[i] = bin[i];
-            end
+                else
+                    bin[i] <= bin[i];
+            else
+                bin[i] <= bin[i];
+        end
 
     reg [17:0] bin_out[49:0];
     always @*//(posedge clk or posedge reset)
@@ -78,37 +79,37 @@ module srrc_gold_tx_flt(input clk,
             //else if(sam_clk_en)
             else if(bin[i] == `SYMBOL_P1)
                 case (count4)
-                    2'd1: bin_out[i] <= PRECOMP_P1[4*i];
-                    2'd2: bin_out[i] <= PRECOMP_P1[4*i+1];
-                    2'd3: bin_out[i] <= PRECOMP_P1[4*i+2];
-                    2'd0: bin_out[i] <= PRECOMP_P1[4*i+3];
+                    2'd2: bin_out[i] <= PRECOMP_P1[4*i];
+                    2'd3: bin_out[i] <= PRECOMP_P1[4*i+1];
+                    2'd0: bin_out[i] <= PRECOMP_P1[4*i+2];
+                    2'd1: bin_out[i] <= PRECOMP_P1[4*i+3];
                     default: bin_out[i] <= 17'd0;
                 endcase
 
             else if(bin[i] == `SYMBOL_P2)
                 case (count4)
-                    2'd1: bin_out[i] <= PRECOMP_P2[4*i];
-                    2'd2: bin_out[i] <= PRECOMP_P2[4*i+1];
-                    2'd3: bin_out[i] <= PRECOMP_P2[4*i+2];
-                    2'd0: bin_out[i] <= PRECOMP_P2[4*i+3];
+                    2'd2: bin_out[i] <= PRECOMP_P2[4*i];
+                    2'd3: bin_out[i] <= PRECOMP_P2[4*i+1];
+                    2'd0: bin_out[i] <= PRECOMP_P2[4*i+2];
+                    2'd1: bin_out[i] <= PRECOMP_P2[4*i+3];
                     default: bin_out[i] <= 17'd0;
                 endcase
 
             else if(bin[i] == `SYMBOL_N1)
                 case (count4)
-                    2'd1: bin_out[i] <= PRECOMP_N1[4*i];
-                    2'd2: bin_out[i] <= PRECOMP_N1[4*i+1];
-                    2'd3: bin_out[i] <= PRECOMP_N1[4*i+2];
-                    2'd0: bin_out[i] <= PRECOMP_N1[4*i+3];
+                    2'd2: bin_out[i] <= PRECOMP_N1[4*i];
+                    2'd3: bin_out[i] <= PRECOMP_N1[4*i+1];
+                    2'd0: bin_out[i] <= PRECOMP_N1[4*i+2];
+                    2'd1: bin_out[i] <= PRECOMP_N1[4*i+3];
                     default: bin_out[i] <= 17'd0;
                 endcase
 
             else if(bin[i] == `SYMBOL_N2)
                 case (count4)
-                    2'd1: bin_out[i] <= PRECOMP_N2[4*i];
-                    2'd2: bin_out[i] <= PRECOMP_N2[4*i+1];
-                    2'd3: bin_out[i] <= PRECOMP_N2[4*i+2];
-                    2'd0: bin_out[i] <= PRECOMP_N2[4*i+3];
+                    2'd2: bin_out[i] <= PRECOMP_N2[4*i];
+                    2'd3: bin_out[i] <= PRECOMP_N2[4*i+1];
+                    2'd0: bin_out[i] <= PRECOMP_N2[4*i+2];
+                    2'd1: bin_out[i] <= PRECOMP_N2[4*i+3];
                     default: bin_out[i] <= 17'd0;
                 endcase
             else // Invalid data OR zeroes (not connected/impulse response/zero stuffed)
@@ -120,8 +121,7 @@ module srrc_gold_tx_flt(input clk,
     always @*//(posedge clk or posedge reset)
         if(reset)
             bin_out[49] = 18'd0;
-        //else if(sam_clk_en && count4 == 2'd0)
-        else if(count4 == 2'd0)
+        else if(count4 == 2'd2)
             if(bin[49] == `SYMBOL_P1)
                 bin_out[49] = PRECOMP_P1[16];
             else if(bin[49] == `SYMBOL_P2)
@@ -136,29 +136,41 @@ module srrc_gold_tx_flt(input clk,
             bin_out[49] = 18'd0;
 
     // Adder Tree
-    // We need to go from 48 bins to 1 output.
-    // On the first clock, we add together in goups of 4's for prototyping
-    reg signed [17:0] sum_level_1[12:0];
+    reg signed [17:0] sum_level_3[24:0];
+    always @(posedge clk)
+        for(i=0; i<=24; i=i+1)
+            sum_level_3[i] <= bin_out[(2*i)] + bin_out[(2*i)+1];
+
+    reg signed [17:0] sum_level_4[12:0];
     always @(posedge clk) begin
-        for(i=0; i<=11; i=i+1) begin
-            sum_level_1[i] <= bin_out[(4*i)+0] + bin_out[(4*i)+1] + bin_out[(4*i)+2] + bin_out[(4*i)+3];
-        end
-        sum_level_1[12] <= bin_out[48] + bin_out[49];
+        for(i=0; i<=11; i=i+1)
+            sum_level_4[i] <= sum_level_3[(2*i)] + sum_level_3[(2*i)+1];
+        sum_level_4[12] <= sum_level_3[24];
     end
 
-    // Again on the second clock
-    reg signed [17:0] sum_level_2[3:0];
+    reg signed [17:0] sum_level_5[6:0];
     always @(posedge clk) begin
-        for(i=0; i<=2; i=i+1) begin
-            sum_level_2[i] <= sum_level_1[(4*i)+0] + sum_level_1[(4*i)+1] + sum_level_1[(4*i)+2] + sum_level_1[(4*i)+3];
-        end
-        sum_level_2[3] = sum_level_1[12];
+        for(i=0; i<=5; i=i+1)
+            sum_level_5[i] <= sum_level_4[(2*i)] + sum_level_4[(2*i)+1];
+        sum_level_5[6] <= sum_level_4[12];
     end
 
-    // On the last, we add in 3 inputs.
-    reg signed [17:0] sum_level_3;
+    reg signed [17:0] sum_level_6[3:0];
     always @(posedge clk) begin
-        sum_level_3 = sum_level_2[0] + sum_level_2[1] + sum_level_2[2] + sum_level_2[3];
+        for(i=0; i<=2; i=i+1)
+            sum_level_6[i] <= sum_level_5[(2*i)] + sum_level_5[(2*i)+1];
+        sum_level_6[3] <= sum_level_5[6];
+    end
+
+    reg signed [17:0] sum_level_7[1:0];
+    always @(posedge clk) begin
+        sum_level_7[0] <= sum_level_6[0] + sum_level_6[1];
+        sum_level_7[1] <= sum_level_6[2] + sum_level_6[3];
+    end
+
+    reg signed [17:0] sum_level_8;
+    always @(posedge clk) begin
+        sum_level_8 <= sum_level_7[0] + sum_level_7[1];
     end
 
     // Finally we register the output
@@ -166,7 +178,7 @@ module srrc_gold_tx_flt(input clk,
         if(reset)
             out = 0;
         else if(sam_clk_en)
-            out = sum_level_3;
+            out = sum_level_8;
     end
 
 endmodule

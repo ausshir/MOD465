@@ -1,0 +1,105 @@
+{ "" "" "" "Verilog HDL or VHDL warning at d3_exam_top.v(38): object \"aux_reset\" assigned a value but never read" {  } {  } 0 10036 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Verilog HDL or VHDL warning at d3_exam_top.v(43): object \"registered_ADC_A\" assigned a value but never read" {  } {  } 0 10036 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Verilog HDL or VHDL warning at d3_exam_top.v(44): object \"registered_ADC_B\" assigned a value but never read" {  } {  } 0 10036 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Verilog HDL or VHDL warning at d3_exam_top.v(103): object \"lfsr_counter_out\" assigned a value but never read" {  } {  } 0 10036 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Verilog HDL or VHDL warning at d3_exam_top.v(104): object \"lfsr_cycle_out_periodic_ahead_reg\" assigned a value but never read" {  } {  } 0 10036 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Verilog HDL or VHDL warning at d3_exam_inphase.vh(10): object \"ref_level_reg_inphase\" assigned a value but never read" {  } {  } 0 10036 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Verilog HDL or VHDL warning at d3_exam_inphase.vh(42): object \"SYMBOL_P2_reg_inphase\" assigned a value but never read" {  } {  } 0 10036 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Verilog HDL or VHDL warning at d3_exam_inphase.vh(42): object \"SYMBOL_P1_reg_inphase\" assigned a value but never read" {  } {  } 0 10036 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Verilog HDL or VHDL warning at d3_exam_inphase.vh(42): object \"SYMBOL_N1_reg_inphase\" assigned a value but never read" {  } {  } 0 10036 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Verilog HDL or VHDL warning at d3_exam_inphase.vh(42): object \"SYMBOL_N2_reg_inphase\" assigned a value but never read" {  } {  } 0 10036 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Verilog HDL or VHDL warning at d3_exam_inphase.vh(69): object \"acc_sq_err_out_reg_inphase\" assigned a value but never read" {  } {  } 0 10036 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Verilog HDL or VHDL warning at d3_exam_inphase.vh(70): object \"acc_out_reg_full_sq_inphase\" assigned a value but never read" {  } {  } 0 10036 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Verilog HDL or VHDL warning at d3_exam_inphase.vh(81): object \"acc_dc_err_out_reg_inphase\" assigned a value but never read" {  } {  } 0 10036 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Verilog HDL or VHDL warning at d3_exam_inphase.vh(82): object \"acc_out_reg_full_dc_inphase\" assigned a value but never read" {  } {  } 0 10036 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Verilog HDL or VHDL warning at d3_exam_inphase.vh(123): object \"approx_mer_reg_inphase\" assigned a value but never read" {  } {  } 0 10036 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Verilog HDL or VHDL warning at d3_exam_quadrature.vh(11): object \"ref_level_reg_quadrature\" assigned a value but never read" {  } {  } 0 10036 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Verilog HDL or VHDL warning at d3_exam_quadrature.vh(43): object \"SYMBOL_P2_reg_quadrature\" assigned a value but never read" {  } {  } 0 10036 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Verilog HDL or VHDL warning at d3_exam_quadrature.vh(43): object \"SYMBOL_P1_reg_quadrature\" assigned a value but never read" {  } {  } 0 10036 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Verilog HDL or VHDL warning at d3_exam_quadrature.vh(43): object \"SYMBOL_N1_reg_quadrature\" assigned a value but never read" {  } {  } 0 10036 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Verilog HDL or VHDL warning at d3_exam_quadrature.vh(43): object \"SYMBOL_N2_reg_quadrature\" assigned a value but never read" {  } {  } 0 10036 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Verilog HDL or VHDL warning at d3_exam_quadrature.vh(70): object \"acc_sq_err_out_reg_quadrature\" assigned a value but never read" {  } {  } 0 10036 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Verilog HDL or VHDL warning at d3_exam_quadrature.vh(71): object \"acc_out_reg_full_sq_quadrature\" assigned a value but never read" {  } {  } 0 10036 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Verilog HDL or VHDL warning at d3_exam_quadrature.vh(82): object \"acc_dc_err_out_reg_quadrature\" assigned a value but never read" {  } {  } 0 10036 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Verilog HDL or VHDL warning at d3_exam_quadrature.vh(83): object \"acc_out_reg_full_dc_quadrature\" assigned a value but never read" {  } {  } 0 10036 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Verilog HDL or VHDL warning at d3_exam_quadrature.vh(124): object \"approx_mer_reg_quadrature\" assigned a value but never read" {  } {  } 0 10036 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Verilog HDL assignment warning at lfsr_gen_max.v(99): truncated value with size 32 to match size of target (22)" {  } {  } 0 10230 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Verilog HDL or VHDL warning at srrc_gold_tx_flt.v(28): object \"count4_delay\" assigned a value but never read" {  } {  } 0 10036 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Verilog HDL assignment warning at ref_level_gen.v(46): truncated value with size 40 to match size of target (18)" {  } {  } 0 10230 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"ADC_OTR_A\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"ADC_OTR_B\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX0\[0\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX0\[1\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX0\[2\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX0\[3\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX0\[4\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX0\[5\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX0\[6\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX1\[0\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX1\[1\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX1\[2\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX1\[3\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX1\[4\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX1\[5\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX1\[6\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX2\[0\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX2\[1\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX2\[2\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX2\[3\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX2\[4\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX2\[5\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX2\[6\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX3\[0\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX3\[1\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX3\[2\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX3\[3\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX3\[4\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX3\[5\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX3\[6\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX4\[0\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX4\[1\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX4\[2\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX4\[3\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX4\[4\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX4\[5\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX4\[6\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX5\[0\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX5\[1\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX5\[2\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX5\[3\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX5\[4\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX5\[5\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX5\[6\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX6\[0\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX6\[1\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX6\[2\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX6\[3\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX6\[4\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX6\[5\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX6\[6\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX7\[0\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX7\[1\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX7\[2\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX7\[3\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX7\[4\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX7\[5\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"HEX7\[6\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"I2C_SCLK\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"I2C_SDAT\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"LCD_BLON\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"LCD_DATA\[0\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"LCD_DATA\[1\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"LCD_DATA\[2\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"LCD_DATA\[3\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"LCD_DATA\[4\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"LCD_DATA\[5\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"LCD_DATA\[6\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"LCD_DATA\[7\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"LCD_EN\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"LCD_ON\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"LCD_RS\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"LCD_RW\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"LEDG\[8\]\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"OSC_SMA_ADC4\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"SMA_DAC4\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}
+{ "" "" "" "Node \"clock_27\" is assigned to location or region, but does not exist in design" {  } {  } 0 15706 "" 0 0 "Quartus II" 0 -1 0 ""}

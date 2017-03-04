@@ -15,13 +15,15 @@ add wave -noupdate -height 15 -radix unsigned /tx_signal_path_tb/phase32
 add wave -noupdate -height 15 -radix decimal /tx_signal_path_tb/sym_out
 add wave -noupdate -height 15 -radix decimal /tx_signal_path_tb/seq_out
 add wave -noupdate -height 15 -radix decimal /tx_signal_path_tb/in_phs_sig
-add wave -noupdate -height 15 -radix unsigned /tx_signal_path_tb/filter/count4
 add wave -noupdate -format Analog-Step -height 84 -max 49151.0 -min -49151.0 -radix decimal /tx_signal_path_tb/upsampled_sig
+add wave -noupdate -format Analog-Step -height 84 -max 49151.0 -min -49151.0 -radix decimal /tx_signal_path_tb/filter/in_reg
+add wave -noupdate -height 15 -radix unsigned /tx_signal_path_tb/filter/count4
 add wave -noupdate -format Analog-Step -height 84 -max 50256.0 -min -40025.0 -radix decimal /tx_signal_path_tb/channel
+add wave -noupdate -height 15 -radix decimal /tx_signal_path_tb/filter/bin
 add wave -noupdate -height 15 -radix decimal /tx_signal_path_tb/cycle_out
 add wave -noupdate -height 15 -radix decimal /tx_signal_path_tb/quad_sig
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {12770 ns} 0}
+WaveRestoreCursors {{Cursor 1} {10210 ns} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 357
 configure wave -valuecolwidth 100
@@ -37,4 +39,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits us
 update
-WaveRestoreZoom {11993 ns} {14045 ns}
+WaveRestoreZoom {0 ns} {65626 ns}

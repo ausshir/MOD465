@@ -22,7 +22,8 @@ module d3_exam_top(input clock_50,
                    output sam_clk,
                    output sym_clk,
                    output sam_clk_ena,
-                   output sym_clk_ena);
+                   output sym_clk_ena,
+                   output [3:0] clk_phase);
 
     // LED Sanity Check
     always @*
@@ -54,7 +55,7 @@ module d3_exam_top(input clock_50,
         DAC_DA = {~DAC_A_in[17], DAC_A_in[16:4]};
 
     always@ (posedge sys_clk)
-        DAC_DB = {~DAC_B_in[17], DAC_B_in[16:4]} ;
+        DAC_DB = {~DAC_B_in[17], DAC_B_in[16:4]};
 
     always @*
         if(SW[0])
@@ -63,6 +64,9 @@ module d3_exam_top(input clock_50,
             DAC_A_in = signal_inphase;
         else
             DAC_A_in = 0;
+				
+	 always @*
+		DAC_B_in = DAC_A_in;
 
     assign ADC_CLK_A = sys_clk;
     assign ADC_CLK_B = sys_clk;
@@ -81,7 +85,7 @@ module d3_exam_top(input clock_50,
     //     Note1: the enables occur just before the clock edges to be clocked on sys_clk to help keep
     //          clock domains synchronized
 
-    (*keep*) wire [3:0] clk_phase;
+    // Sent to output (*keep*) wire [3:0] clk_phase;
     clk_gen clk_gen_mod(.clk_in(clock_50),
                         .reset(reset),
                         .sys_clk(sys_clk),

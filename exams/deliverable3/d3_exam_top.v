@@ -42,7 +42,6 @@ module d3_exam_top(input clock_50,
     // ADC and DAC Setup
     (* noprune *) reg [13:0] registered_ADC_A;
     (* noprune *) reg [13:0] registered_ADC_B;
-    (* keep *) wire [13:0] DAC_OUT;
     (* noprune *) reg signed [17:0] DAC_A_in, DAC_B_in;
 
     assign DAC_CLK_A = sys_clk;
@@ -58,13 +57,13 @@ module d3_exam_top(input clock_50,
         DAC_DB = {~DAC_B_in[17], DAC_B_in[16:4]};
 
     always @*
-        if(SW[0])
-            DAC_A_in = channel_inphase;
-        else if(SW[1])
-            DAC_A_in = signal_inphase;
-        else
-            DAC_A_in = 0;
-				
+        case(SW[4:0])
+            5'b00001 : DAC_A_in = channel_inphase;
+            5'b00010 : DAC_A_in = signal_inphase;
+            5'b00100 : DAC_A_in = inphase_in;
+            default  : DAC_A_in = 0;
+        endcase
+
 	 always @*
 		DAC_B_in = DAC_A_in;
 
@@ -131,16 +130,10 @@ module d3_exam_top(input clock_50,
     upsampler_4 upsampler_4_inphase(.clk(sys_clk),
                                     .sam_clk_en(sam_clk_ena),
                                     .sym_clk_en(sym_clk_ena),
+                                    .phase4(clk_phase[3:2]),
                                     .reset(reset),
                                     .data_in(inphase_in),
                                     .data_out(signal_inphase));
-
-    upsampler_4 upsampler_4_quadrature(.clk(sys_clk),
-                                       .sam_clk_en(sam_clk_ena),
-                                       .sym_clk_en(sym_clk_ena),
-                                       .reset(reset),
-                                       .data_in(quadrature_in),
-                                       .data_out(signal_quadrature));
 
 
     /**************************************************************************/

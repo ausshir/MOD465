@@ -24,7 +24,7 @@ module srrc_gold_rx_flt (input clk,
         else if(sam_clk_en)
             for(i=0; i<=198; i=i+1) begin
                 if(i == 0)
-                    x[0] <= { in[17], in[17:1] };
+                    x[0] <= { in[17:0] };
                 else
                     x[i] <= x[i-1];
             end

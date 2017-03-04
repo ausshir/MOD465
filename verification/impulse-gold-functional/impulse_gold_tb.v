@@ -53,7 +53,7 @@ module impulse_gold_tb();
     end
 
     always @* begin
-        if(imp_count == 6'd33)
+        if(imp_count == 6'd34)
             stimulus = `SYMBOL_P2;
         else
             stimulus = 18'h0;
@@ -64,9 +64,9 @@ module impulse_gold_tb();
         if(reset)
             filewrite = 0;
         else if(sam_clk_en)
-            if(imp_count == 6'd33)
+            if(imp_count == 6'd34)
                 filewrite = 1;
-            else if(imp_count == 6'd33 && filewrite == 1)
+            else if(imp_count == 6'd34 && filewrite == 1)
                 filewrite = 0;
             else if(filewrite)
                 $fwrite(file,"%d,%d\n", $time, response);

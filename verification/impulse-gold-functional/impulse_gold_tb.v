@@ -6,6 +6,7 @@
 `include "../../design/clk_gen.v"
 `include "../../design/srrc_gold_tx_flt.v"
 `include "../../design/srrc_gold_rx_flt.v"
+`include "../../design/srrc_prac_mult_tx_flt.v"
 `include "defines.vh"
 
 module impulse_gold_tb();
@@ -54,7 +55,7 @@ module impulse_gold_tb();
 
     always @* begin
         if(imp_count == 6'd34)
-            stimulus = `SYMBOL_P2;
+            stimulus = 18'sd131071;
         else
             stimulus = 18'h0;
     end
@@ -72,8 +73,8 @@ module impulse_gold_tb();
                 $fwrite(file,"%d,%d\n", $time, response);
     end
 
-    // Instantiate SUT
-    srrc_gold_tx_flt sut(sys_clk, clk_tb, sam_clk_en, sym_clk_en, reset, phase[3:2], stimulus, response);
+    // Instantiate SUT.. may need phase[3:2]
+    srrc_prac_mult_tx_flt sut(sys_clk, clk_tb, sam_clk_en, sym_clk_en, reset, stimulus, response);
 
     // end the simulation
     //initial begin

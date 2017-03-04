@@ -243,6 +243,7 @@ set_location_assignment PIN_J28 -to SMA_DAC4
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name VERILOG_FILE ../../design/mapper_16_qam_ref.v
 set_global_assignment -name VERILOG_FILE ../../design/mapper_4_ask_ref.v
 set_global_assignment -name VERILOG_FILE louis_design/louis_clock.v
 set_global_assignment -name VERILOG_FILE louis_design/louis_mapper.v
@@ -250,7 +251,6 @@ set_global_assignment -name VERILOG_FILE louis_design/louis_lfsr.v
 set_global_assignment -name VERILOG_FILE ../../design/lfsr_gen_max.v
 set_global_assignment -name VERILOG_INCLUDE_FILE ../../design/defines.vh
 set_global_assignment -name VERILOG_FILE ../../design/upsampler_4.v
-set_global_assignment -name VERILOG_FILE ../../design/mapper_16_qam.v
 set_global_assignment -name VERILOG_FILE ../../design/clk_gen.v
 set_global_assignment -name VERILOG_INCLUDE_FILE dac_adc_setup.vh
 set_global_assignment -name VERILOG_FILE dac_sanity_top.v

@@ -128,7 +128,7 @@ WinOnTop(h1, true);
 
 hold off
 
-%% Output TX Filter Coefficients
+%% Output TX Filter LUT Coefficients
 fileID = fopen('LUT/srrc_tx_practical_coefs.vh','w');
 
 fprintf(fileID, '\n//TX Filter 18''sd P2 LUT Coefficients (headroom)\n');
@@ -184,19 +184,19 @@ end
 fprintf(fileID,'\n');
 fclose(fileID);
 
-% %% Output the RX Filter Coefficients
-% 
-% fileID = fopen('srrc_rx_gold_coefs.vh','w');
-% 
-% fprintf(fileID, '\n//RX Filter 18''sd Multiplier Coefficients (headroom)\n');
-% rcv_h_srrc_18sd = round(remove_headroom(rcv_h_srrc, 0.999) * (2^17));
-% for i = 1:(round(length(rcv_h_srrc))/2) + 1
-%     if(rcv_h_srrc_18sd(i) < 0)
-%         fprintf(fileID, 'assign coef[%3d] = -18''sd %6d;\n', i-1, -rcv_h_srrc_18sd(i));
-%     else
-% 
-%         fprintf(fileID, 'assign coef[%3d] =  18''sd %6d;\n', i-1, rcv_h_srrc_18sd(i));
-%     end
-% end
-% 
-% fclose(fileID);
+%% Output the TX Filter Multiplier Coefficients
+
+fileID = fopen('LUT/srrc_tx_practical_mult_coefs.vh','w');
+
+fprintf(fileID, '\n//TX Filter 18''sd Multiplier Coefficients (headroom)\n');
+tx_h_srrc_18sd = round(remove_headroom(tx_h_srrc, 0.999) * (2^17));
+for i = 1:(round(length(tx_h_srrc))/2) + 1
+    if(tx_h_srrc_18sd(i) < 0)
+        fprintf(fileID, 'assign coef[%3d] = -18''sd %6d;\n', i-1, -tx_h_srrc_18sd(i));
+    else
+
+        fprintf(fileID, 'assign coef[%3d] =  18''sd %6d;\n', i-1, tx_h_srrc_18sd(i));
+    end
+end
+
+fclose(fileID);

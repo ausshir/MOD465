@@ -20,6 +20,7 @@
     `define SYMBOL_P2  18'sd 43690 //0.33333
     `define SYMBOL_N1 -18'sd 43690 //-0.33333
     `define SYMBOL_N2 -18'sd 131071 //-1 with -131072 max -FS
+    `define SYMBOL_REF 18'd87381
 
     `define LFSR_SEED 1
     `define LFSR_LEN 16'd22

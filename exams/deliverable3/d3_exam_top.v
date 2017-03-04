@@ -60,7 +60,7 @@ module d3_exam_top(input clock_50,
         case(SW[4:0])
             5'b00001 : DAC_A_in = channel_inphase;
             5'b00010 : DAC_A_in = signal_inphase;
-            5'b00100 : DAC_A_in = inphase_in;
+            5'b00100 : DAC_A_in = in_inphase;
             default  : DAC_A_in = 0;
         endcase
 
@@ -117,13 +117,14 @@ module d3_exam_top(input clock_50,
         lfsr_cycle_out_periodic_ahead_reg <= lfsr_cycle_out_periodic_ahead;
     end
 
-    // 16-QAM Mapper using parameters
-    (*keep*) wire signed [17:0] inphase_in, quadrature_in;
-    mapper_16_qam mapper_16_qam_mod(.clk(sys_clk),
+    // 16-QAM Mapper using parameters to manually map to a power level
+    (*keep*) wire signed [17:0] in_inphase, in_quadrature;
+    mapper_16_qam_ref mapper_16_qam(.clk(sys_clk),
                                     .clk_en(sym_clk_ena),
                                     .data(data_stream_in),
-                                    .in_phs_sig(inphase_in),
-                                    .quad_sig(quadrature_in));
+                                    .ref_level(`SYMBOL_REF),
+                                    .sig_inph(in_inphase),
+                                    .sig_quad(in_quadrature));
 
     (*keep*) wire signed [17:0] signal_inphase;
     (*keep*) wire signed [17:0] signal_quadrature;
@@ -132,7 +133,7 @@ module d3_exam_top(input clock_50,
                                     .sym_clk_en(sym_clk_ena),
                                     .phase4(clk_phase[3:2]),
                                     .reset(reset),
-                                    .data_in(inphase_in),
+                                    .data_in(in_inphase),
                                     .data_out(signal_inphase));
 
 
@@ -157,6 +158,7 @@ module d3_exam_top(input clock_50,
     //
     /**************************************************************************/
 
-    `include "d3_exam_quadrature.vh"
+    // NOT USED :)
+    //`include "d3_exam_quadrature.vh"
 
 endmodule

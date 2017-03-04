@@ -14,7 +14,7 @@ ref_level_gen ref_level_gen_mod_inphase(.clk(sys_clk),
                                 .reset(reset),
                                 .hold(lfsr_cycle_out_periodic),
                                 .clear(lfsr_cycle_out_periodic_behind),
-                                .dec_var(inphase_out),
+                                .dec_var(out_inphase),
                                 .ref_level(ref_level_inphase),
                                 .avg_power(avg_power_inphase));
 
@@ -29,14 +29,14 @@ always @(posedge sys_clk)
 (*keep*) wire [1:0] data_stream_out_inphase;
 slicer_4_ask slicer_4_ask_mod_inphase(.clk(sys_clk),
                               .clk_en(sym_clk_ena),
-                              .in_phs_sig(inphase_out),
+                              .in_phs_sig(out_inphase),
                               .ref_level(ref_level_inphase),
                               .sym_out(data_stream_out_inphase));
 
 // Signal Verification Modules
 // Re-Mapper to 4-ASK on inphase using reference level in order to compare results
-(*keep*) wire signed [17:0] inphase_out_mapped;
-(*noprune*) reg signed [17:0] inphase_out_del;
+(*keep*) wire signed [17:0] out_inphase_mapped;
+(*noprune*) reg signed [17:0] out_inphase_del;
 (*keep*) wire signed [17:0] diff_err_inphase;
 (*keep*) wire signed [17:0] SYMBOL_P2_ref_inphase, SYMBOL_P1_ref_inphase, SYMBOL_N1_ref_inphase, SYMBOL_N2_ref_inphase;
 (*noprune*) reg signed [17:0] SYMBOL_P2_reg_inphase, SYMBOL_P1_reg_inphase, SYMBOL_N1_reg_inphase, SYMBOL_N2_reg_inphase;
@@ -44,7 +44,7 @@ mapper_4_ask_ref mapper_4_ask_mod_inphase(.clk(sys_clk),
                                 .clk_en(sym_clk_ena),
                                 .data(data_stream_out_inphase),
                                 .ref_level(ref_level_inphase),
-                                .in_phs_sig(inphase_out_mapped),
+                                .sig_out(out_inphase_mapped),
                                 .SYMBOL_P2(SYMBOL_P2_ref_inphase),
                                 .SYMBOL_P1(SYMBOL_P1_ref_inphase),
                                 .SYMBOL_N1(SYMBOL_N1_ref_inphase),
@@ -60,8 +60,8 @@ end
 
 // Calculation of error (note that the mapper introduces 1 clock of delay)
 always @(posedge sys_clk)
-    inphase_out_del = inphase_out;
-assign diff_err_inphase = inphase_out_del - inphase_out_mapped;
+    out_inphase_del = out_inphase;
+assign diff_err_inphase = out_inphase_del - out_inphase_mapped;
 
 // Squared and DC error calculation for MER
 (*keep*) wire [17:0] acc_sq_err_out_inphase;

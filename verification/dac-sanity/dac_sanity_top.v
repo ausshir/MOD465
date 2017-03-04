@@ -68,11 +68,12 @@ module dac_sanity_top(input clock_50,
                               .lfsr_counter(lfsr_counter));
 
     (*keep*) wire signed [17:0] mapped_inphase, mapped_quadrature;
-    mapper_16_qam mapper_16_qam_mod(.clk(sys_clk),
+    mapper_16_qam_ref mapper_16_qam(.clk(sys_clk),
                                     .clk_en(sym_clk_ena),
                                     .data(data_stream_tx),
-                                    .in_phs_sig(mapped_inphase),
-                                    .quad_sig(mapped_quadrature));
+                                    .ref_level(18'd87381),
+                                    .sig_inph(mapped_inphase),
+                                    .sig_quad(mapped_quadrature));
 
     (*keep*) wire signed [17:0] signal_inphase, signal_quadrature;
     upsampler_4 upsampler_4_inphase(.clk(sys_clk),
@@ -115,7 +116,7 @@ module dac_sanity_top(input clock_50,
     wire signed [17:0] louis_mapped_inphase;
     wire signed [17:0] louis_signal_inphase;
     louis_mapper louis_mapper_mod(.sig_in({LFSR[15], LFSR[0]}),
-                                 .reference_level(18'd87381),
+                                 .reference_level(`SYMBOL_REF),
                                  .sig_out(louis_mapped_inphase));
 
     assign louis_signal_inphase = louis_mapped_inphase;
@@ -123,19 +124,20 @@ module dac_sanity_top(input clock_50,
     // And some funny combos
     wire signed [17:0] combo_mapped_inphase;
     louis_mapper combo_mapper_mod(.sig_in(data_stream_tx),
-                                 .reference_level(18'd87381),
+                                 .reference_level(`SYMBOL_REF),
                                  .sig_out(combo_mapped_inphase));
 
      (*keep*) wire signed [17:0] combo2_mapped_inphase, combo2_mapped_quadrature;
-     mapper_16_qam combo_mapper_16_qam_mod(.clk(sys_clk),
-                                     .clk_en(sym_clk_ena),
-                                     .data({LFSR[15], LFSR[0]}),
-                                     .in_phs_sig(combo2_mapped_inphase),
-                                     .quad_sig(combo2_mapped_quadrature));
+     mapper_16_qam_ref combo_mapper_16_qam(.clk(sys_clk),
+                                            .clk_en(sym_clk_ena),
+                                            .data(data_stream_tx),
+                                            .ref_level(`SYMBOL_REF),
+                                            .sig_inph(combo2_mapped_inphase),
+                                            .sig_quad(combo2_mapped_quadrature));
 
     (*keep*) wire signed [17:0] combo3_mapped_inphase;
     mapper_4_ask_ref mapper_4_mod(.data(data_stream_tx),
-                                  .ref_level(18'd87381),
+                                  .ref_level(`SYMBOL_REF),
                                   .sig_out(combo3_mapped_inphase));
 
 

@@ -4,7 +4,9 @@
 // Accumulates and generates a reference level in order to slice the signal into symbols
 //  Also creates an estimate of the average output power
 
-`include "defines.vh"
+`ifndef _DEFINES_VH
+    `include "defines.vh"
+`endif
 
 module ref_level_gen(input clk,
                     input clk_en,

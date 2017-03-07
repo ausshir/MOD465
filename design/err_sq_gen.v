@@ -3,7 +3,10 @@
 
 // Square accumulated error
 
-`include "defines.vh"
+`ifndef _DEFINES_VH
+    `include "defines.vh"
+`endif
+
 
 // NOTE: To understand these outputs, we are summing the square of all numbers
 //  However, we must truncate 17 bits then `LFSR_LEN bits

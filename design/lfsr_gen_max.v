@@ -5,7 +5,9 @@
 //  Made to output a random 2-bit number to simulate binary data payloads
 // Based on http://www.ece.ualberta.ca/~elliott/ee552/studentAppNotes/1999f/Drivers_Ed/lfsr.html
 
-`include "defines.vh"
+`ifndef _DEFINES_VH
+    `include "defines.vh"
+`endif
 
 module lfsr_gen_max(input clk,
                    input clk_en,
@@ -81,7 +83,7 @@ module lfsr_gen_max(input clk,
         end
     end
 
-    assign sym_out = {LFSR_reg[15], LFSR_reg[0], LFSR_reg[15], LFSR_reg[0]};
+    assign sym_out = {LFSR_reg[1], LFSR_reg[0], LFSR_reg[1], LFSR_reg[0]}; //should be 0,15
     assign seq_out = {LFSR_fb, LFSR_reg};
 
 

@@ -5,9 +5,8 @@
 
 `include "../../design/clk_gen.v"
 `include "../../design/lfsr_gen_max.v"
-`include "../../design/mapper_16_qam.v"
+`include "../../design/mapper_16_qam_ref.v"
 `include "../../design/upsampler_4.v"
-`include "../../design/srrc_gold_tx_flt.v"
 `include "../../design/srrc_gold_rx_flt.v"
 
 `include "../../design/defines.vh"

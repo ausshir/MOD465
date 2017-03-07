@@ -1,7 +1,9 @@
 `ifndef _MAPPER_16_QAM_V_
 `define _MAPPER_16_QAM_V_
 
-`include "defines.vh"
+`ifndef _DEFINES_VH
+    `include "defines.vh"
+`endif
 
 module mapper_16_qam_ref(input clk,
                            input clk_en,

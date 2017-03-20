@@ -2,7 +2,7 @@ close all;
 
 F_s = 1;
 N_sps = 4;
-shared_span = 199;
+shared_span = 145;
 
 %% TX Filter
 % SRRC, n Points, 0.12 rolloff, 0.875MHz BW
@@ -15,13 +15,13 @@ tx_OB2 = 1.53;
 tx_rolloff = 0.12;
 tx_span = shared_span;
 tx_fd = 0.125;
-tx_shape = 1.5;
-tx_beta = 0.12;
+tx_shape = 0;
+tx_beta = tx_rolloff;
 
 %tx_h_srrc = firrcos(tx_span-1,tx_fd,tx_rolloff,1,'rolloff','sqrt');
 tx_h_srrc = rcosdesign(tx_beta, (tx_span-1)/N_sps, N_sps, 'sqrt');
-%tx_w = kaiser(tx_span, tx_shape).';
-%tx_h_srrc = (tx_h_srrc .* tx_w);
+tx_w = kaiser(tx_span, tx_shape).';
+tx_h_srrc = (tx_h_srrc .* tx_w);
 
 [tx_H, tx_rad] = freqz(tx_h_srrc,1,8192,'whole');
 
@@ -75,53 +75,24 @@ rcv_h_srrc = rcosdesign(rcv_beta, (rcv_span-1)/N_sps, N_sps, 'sqrt');
 
 h_sys = conv(tx_h_srrc(1:end), rcv_h_srrc(1:end));
 h_isi_norm = (h_sys)/max(h_sys);
-isi = vpa(sum(vpa((h_isi_norm(3:4:end)).^2))) - vpa(1);
+isi = [vpa(sum(vpa((h_isi_norm(1:4:end)).^2))) - vpa(1), ...
+    vpa(sum(vpa((h_isi_norm(2:4:end)).^2))) - vpa(1), ...
+    vpa(sum(vpa((h_isi_norm(3:4:end)).^2))) - vpa(1), ...
+    vpa(sum(vpa((h_isi_norm(4:4:end)).^2))) - vpa(1)];
 
-isi
+isi_idx = find(isi > 0);
 
-if(isi < 0)
-    isi = vpa(sum(vpa((h_isi_norm(1:4:end)).^2))) - vpa(1);
     figure(2);
     subplot(2,1,1)
     stem(h_isi_norm);
     title(num2str(length(h_isi_norm)));
     subplot(2,1,2)
-    stem(h_isi_norm(1:4:end));
-    title(num2str(length(h_isi_norm(1:4:end))));
-end
-    
-if(isi < 0)
-    isi = vpa(sum(vpa((h_isi_norm(2:4:end)).^2))) - vpa(1);
-    figure(2);
-    subplot(2,1,1)
-    stem(h_isi_norm);
-    title(num2str(length(h_isi_norm)));
-    subplot(2,1,2)
-    stem(h_isi_norm(2:4:end));
-    title(num2str(length(h_isi_norm(2:4:end))));
-end
+    h_isi_plot = h_isi_norm;
+    h_isi_plot(h_isi_plot==1) = 0;
+    stem(h_isi_plot(isi_idx:4:end));
+    title(num2str(length(h_isi_plot(isi_idx:4:end))));
 
-if(isi < 0)
-    isi = vpa(sum(vpa((h_isi_norm(4:4:end)).^2))) - vpa(1);
-    figure(2);
-    subplot(2,1,1)
-    stem(h_isi_norm);
-    title(num2str(length(h_isi_norm)));
-    subplot(2,1,2)
-    stem(h_isi_norm(4:4:end));
-    title(num2str(length(h_isi_norm(4:4:end))));
-
-else
-    figure(2);
-    subplot(2,1,1)
-    stem(h_isi_norm);
-    title(num2str(length(h_isi_norm)));
-    subplot(2,1,2)
-    stem(h_isi_norm(3:4:end));
-    title(num2str(length(h_isi_norm(3:4:end))));
-end
-
-MER = 10*log10(1/isi)
+MER = 10*log10(1/isi(isi_idx))
 
 figure(h1)
 dim = [.4 .5 .3 .3];
@@ -190,16 +161,16 @@ fclose(fileID);
 %% Output the RX Filter Coefficients
 
 fileID = fopen('LUT/srrc_rx_gold_coefs.vh','w');
-
+ 
 fprintf(fileID, '\n//RX Filter 18''sd Multiplier Coefficients (headroom)\n');
-rcv_h_srrc_18sd = round(remove_headroom(rcv_h_srrc, 0.999) * (2^17));
+rcv_h_srrc_18sd = round(remove_headroom(rcv_h_srrc, 4, 0.99) * (2^17));
 for i = 1:(round(length(rcv_h_srrc))/2) + 1
     if(rcv_h_srrc_18sd(i) < 0)
         fprintf(fileID, 'assign coef[%3d] = -18''sd %6d;\n', i-1, -rcv_h_srrc_18sd(i));
     else
-
+ 
         fprintf(fileID, 'assign coef[%3d] =  18''sd %6d;\n', i-1, rcv_h_srrc_18sd(i));
     end
 end
-
-fclose(fileID);
+ 
+ fclose(fileID);

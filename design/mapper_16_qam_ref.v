@@ -12,6 +12,7 @@ module mapper_16_qam_ref(input clk,
                            output reg signed [17:0] sig_inph,
                            output reg signed [17:0] sig_quad);
 
+
     reg signed [17:0] SYMBOL_P2, SYMBOL_P1, SYMBOL_N1, SYMBOL_N2;
     always @* begin
         SYMBOL_P2 <= {{ref_level + {1'b0, ref_level[17:1]}}};

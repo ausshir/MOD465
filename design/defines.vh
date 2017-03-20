@@ -23,7 +23,7 @@
     `define SYMBOL_REF 18'd87381
 
     `define LFSR_SEED 1
-    `define LFSR_LEN 16'd9
+    `define LFSR_LEN 16'd22
 
     `define INPHASE 1:0
     `define QUADRATURE 3:2

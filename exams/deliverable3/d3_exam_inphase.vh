@@ -29,7 +29,7 @@ always @(posedge sys_clk)
 (*keep*) wire [1:0] data_stream_out_inphase;
 slicer_4_ask slicer_4_ask_mod_inphase(.clk(sys_clk),
                               .clk_en(sym_clk_ena),
-                              .in_phs_sig(out_inphase),
+                              .in(out_inphase),
                               .ref_level(ref_level_inphase),
                               .sym_out(data_stream_out_inphase));
 

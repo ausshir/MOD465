@@ -1,0 +1,278 @@
+# Loading project d4-sim
+ls
+# compile_all.do
+# d4-sim.cr.mti
+# d4-sim.mpf
+# d4_sim_tb.v
+# d4_top_v.sdo
+# d4_top_v.sdo_typ.csd
+# transcript
+# vsim.wlf
+# wave.do
+# work
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module d4_top
+# -- Compiling module d4_sim_tb
+# 
+# Top level modules:
+# 	d4_sim_tb
+# vsim -L altera_ver -L cycloneive_ver d4_sim_tb 
+# Loading work.d4_sim_tb
+# Loading work.d4_top
+# Loading altera_ver.dffeas
+# Loading cycloneive_ver.cycloneive_lcell_comb
+# Loading cycloneive_ver.cycloneive_ram_block
+# Loading cycloneive_ver.cycloneive_ram_register
+# Loading cycloneive_ver.cycloneive_ram_pulse_generator
+# Loading cycloneive_ver.cycloneive_mac_out
+# Loading cycloneive_ver.cycloneive_mac_mult
+# Loading cycloneive_ver.cycloneive_mac_data_reg
+# Loading cycloneive_ver.cycloneive_mac_sign_reg
+# Loading cycloneive_ver.cycloneive_mac_mult_internal
+# Loading cycloneive_ver.cycloneive_io_ibuf
+# Loading cycloneive_ver.cycloneive_io_obuf
+# Loading cycloneive_ver.cycloneive_clkctrl
+# Loading cycloneive_ver.cycloneive_mux41
+# Loading cycloneive_ver.cycloneive_ena_reg
+# SDF 10.1d Compiler 2012.11 Nov  2 2012
+# SDF 10.1d Compiler 2012.11 Nov  2 2012
+# Loading instances from ../../exams/deliverable4/simulation/modelsim/d4_top_v.sdo
+# Loading instances from d4_top_v.sdo
+# ** Warning: (vsim-3017) d4_sim_tb.v(34): [TFMPC] - Too few port connections. Expected 24, found 4.
+#         Region: /d4_sim_tb/sut
+# ** Warning: (vsim-3722) d4_sim_tb.v(34): [TFMPC] - Missing connection for port 'SW'.
+# ** Warning: (vsim-3722) d4_sim_tb.v(34): [TFMPC] - Missing connection for port 'ADC_DA'.
+# ** Warning: (vsim-3722) d4_sim_tb.v(34): [TFMPC] - Missing connection for port 'ADC_DB'.
+# ** Warning: (vsim-3722) d4_sim_tb.v(34): [TFMPC] - Missing connection for port 'LEDG'.
+# ** Warning: (vsim-3722) d4_sim_tb.v(34): [TFMPC] - Missing connection for port 'LEDR'.
+# ** Warning: (vsim-3722) d4_sim_tb.v(34): [TFMPC] - Missing connection for port 'DAC_DA'.
+# ** Warning: (vsim-3722) d4_sim_tb.v(34): [TFMPC] - Missing connection for port 'DAC_DB'.
+# ** Warning: (vsim-3722) d4_sim_tb.v(34): [TFMPC] - Missing connection for port 'ADC_CLK_A'.
+# ** Warning: (vsim-3722) d4_sim_tb.v(34): [TFMPC] - Missing connection for port 'ADC_CLK_B'.
+# ** Warning: (vsim-3722) d4_sim_tb.v(34): [TFMPC] - Missing connection for port 'ADC_OEB_A'.
+# ** Warning: (vsim-3722) d4_sim_tb.v(34): [TFMPC] - Missing connection for port 'ADC_OEB_B'.
+# ** Warning: (vsim-3722) d4_sim_tb.v(34): [TFMPC] - Missing connection for port 'DAC_CLK_A'.
+# ** Warning: (vsim-3722) d4_sim_tb.v(34): [TFMPC] - Missing connection for port 'DAC_CLK_B'.
+# ** Warning: (vsim-3722) d4_sim_tb.v(34): [TFMPC] - Missing connection for port 'DAC_MODE'.
+# ** Warning: (vsim-3722) d4_sim_tb.v(34): [TFMPC] - Missing connection for port 'DAC_WRT_A'.
+# ** Warning: (vsim-3722) d4_sim_tb.v(34): [TFMPC] - Missing connection for port 'DAC_WRT_B'.
+# ** Warning: (vsim-3722) d4_sim_tb.v(34): [TFMPC] - Missing connection for port 'sys_clk'.
+# ** Warning: (vsim-3722) d4_sim_tb.v(34): [TFMPC] - Missing connection for port 'sam_clk_en'.
+# ** Warning: (vsim-3722) d4_sim_tb.v(34): [TFMPC] - Missing connection for port 'sym_clk_en'.
+# ** Warning: (vsim-3722) d4_sim_tb.v(34): [TFMPC] - Missing connection for port 'phase'.
+# Loading altera_ver.PRIM_GDFF_LOW
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: Design size of 2 instances exceeds ModelSim ALTERA recommended capacity.
+# This may because you are loading cell libraries which are not recommended with
+# the ModelSim Altera version. Expect performance to be adversely affected.
+# Loading timing data from ../../exams/deliverable4/simulation/modelsim/d4_top_v.sdo
+# Loading timing data from d4_top_v.sdo
+# ** Note: (vsim-3587) SDF Backannotation Successfully Completed.
+#    Time: 0 ps  Iteration: 0  Instance: /d4_sim_tb File: d4_sim_tb.v
+# Error opening /home/aus892/engr-ece/EE465/MOD465/verification/d4-sim/(vsim-8607) /opt/altera/13.0SP1/modelsim_ase/altera/verilog/src/cycloneive_atoms.v
+# Path name '/home/aus892/engr-ece/EE465/MOD465/verification/d4-sim/(vsim-8607) /opt/altera/13.0SP1/modelsim_ase/altera/verilog/src/cycloneive_atoms.v' doesn't exist.
+# Error opening /home/aus892/engr-ece/EE465/MOD465/verification/d4-sim/(vsim-8607) /opt/altera/13.0SP1/modelsim_ase/altera/verilog/src/cycloneive_atoms.v
+# Path name '/home/aus892/engr-ece/EE465/MOD465/verification/d4-sim/(vsim-8607) /opt/altera/13.0SP1/modelsim_ase/altera/verilog/src/cycloneive_atoms.v' doesn't exist.
+# A time value could not be extracted from the current line
+run 25000
+run 25000000

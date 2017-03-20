@@ -41,8 +41,10 @@ add wave -noupdate -divider {Performance Evaluation}
 add wave -noupdate -format Analog-Step -height 84 -max 65273.0 -min -65430.0 /total_path_tb/err_diff
 add wave -noupdate -height 15 /total_path_tb/acc_sq_err_out
 add wave -noupdate -height 15 /total_path_tb/acc_out_full
+add wave -noupdate -height 15 -radix decimal /total_path_tb/acc_dc_err_out_inphase
+add wave -noupdate -height 15 -radix decimal /total_path_tb/acc_out_full_dc_inphase
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {855650 ns} 0} {{Cursor 2} {82530 ns} 0}
+WaveRestoreCursors {{Cursor 1} {869730 ns} 0} {{Cursor 2} {82530 ns} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 346
 configure wave -valuecolwidth 135
@@ -58,4 +60,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits us
 update
-WaveRestoreZoom {68130 ns} {1643170 ns}
+WaveRestoreZoom {751250 ns} {1276250 ns}

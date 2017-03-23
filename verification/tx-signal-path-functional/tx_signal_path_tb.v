@@ -3,13 +3,14 @@
 
 `timescale 1ns/1ns
 
+`include "../../design/defines.vh"
+
 `include "../../design/clk_gen.v"
 `include "../../design/lfsr_gen_max.v"
 `include "../../design/mapper_16_qam_ref.v"
 `include "../../design/upsampler_4.v"
-`include "../../design/srrc_gold_rx_flt.v"
-
-`include "../../design/defines.vh"
+//`include "../../design/srrc_gold_rx_flt.v"
+`include "../../design/srrc_prac_tx_flt.v"
 
 `define SIMULATION
 
@@ -55,7 +56,7 @@ module tx_signal_path_tb();
     lfsr_gen_max lfsr(clk_25, clk_15625_en, reset, seq_out, sym_out, cycle_out, cycle_out_periodic, cycle_out_periodic_ahead, cycle_out_periodic_behind, lfsr_counter);
     mapper_16_qam mapper(clk_25, clk_15625_en, sym_out, in_phs_sig, quad_sig);
     upsampler_4 upsampler(clk_25, clk_625_en, clk_15625_en, phase[3:2], reset, in_phs_sig, upsampled_sig);
-    srrc_gold_rx_flt filter(clk_25, clk_tb, clk_625_en, clk_15625_en, reset, upsampled_sig_out, channel);
+    srrc_prac_tx_flt filter(clk_25, clk_625_en, clk_15625_en, reset, upsampled_sig_out, channel);
 
 endmodule
 `endif

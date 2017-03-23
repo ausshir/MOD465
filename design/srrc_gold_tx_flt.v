@@ -4,11 +4,9 @@
 `include "defines.vh"
 
 module srrc_gold_tx_flt(input clk,
-                        input fastclk,
                         input sam_clk_en,
                         input sym_clk_en,
                         input reset,
-                        input [1:0] phase4,
                         input signed [17:0] in,
                         output reg signed [17:0] out);
 

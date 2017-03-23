@@ -163,7 +163,7 @@ fclose(fileID);
 fileID = fopen('LUT/srrc_rx_gold_coefs.vh','w');
  
 fprintf(fileID, '\n//RX Filter 18''sd Multiplier Coefficients (headroom)\n');
-rcv_h_srrc_18sd = round(remove_headroom(rcv_h_srrc, 4, 0.99) * (2^17));
+rcv_h_srrc_18sd = round(remove_headroom(rcv_h_srrc, 4, 0.999) * (2^17));
 for i = 1:(round(length(rcv_h_srrc))/2) + 1
     if(rcv_h_srrc_18sd(i) < 0)
         fprintf(fileID, 'assign coef[%3d] = -18''sd %6d;\n', i-1, -rcv_h_srrc_18sd(i));

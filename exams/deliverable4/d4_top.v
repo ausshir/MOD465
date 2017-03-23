@@ -5,6 +5,7 @@
 `include "../../design/mapper_16_qam_ref.v"
 `include "../../design/upsampler_4.v"
 `include "../../design/srrc_gold_rx_flt.v"
+`include "../../design/srrc_prac_tx_flt.v"
 
 `include "../../design/config_sam_delay.v"
 `include "../../design/config_sym_delay.v"
@@ -42,7 +43,10 @@ module d4_top(input clock_50,
                    output sym_clk,
                    output sam_clk_en,
                    output sym_clk_en,
-                   output [3:0] phase);
+                   output [3:0] phase,
+
+                   output reg signed [17:0] DAC_A_in, DAC_B_in,
+                   output reg signed [17:0] tx_up_scaled_inphase);
 
     // System
 
@@ -63,7 +67,7 @@ module d4_top(input clock_50,
     // ADC and DAC Setup
     reg [13:0] registered_ADC_A;
     reg [13:0] registered_ADC_B;
-    (*noprune*) reg signed [17:0] DAC_A_in, DAC_B_in;
+    //reg signed [17:0] DAC_A_in, DAC_B_in;
 
     assign DAC_CLK_A = sys_clk;
     assign DAC_CLK_B = sys_clk;
@@ -147,23 +151,22 @@ module d4_top(input clock_50,
 
     // SIGNAL CHAIN - Matched Filters
 
-	 reg [17:0] tx_up_scaled_inphase;
-	 always @*
-		case(SW[17:16])
-			2'b01: tx_up_scaled_inphase = {tx_up_inphase[17], tx_up_inphase[17:1]};
-			2'b10: tx_up_scaled_inphase = {tx_up_inphase[17], tx_up_inphase[17], tx_up_inphase[17:2]};
-			2'b11: tx_up_scaled_inphase = {tx_up_inphase[17],tx_up_inphase[17], tx_up_inphase[17], tx_up_inphase[17:3]};
-			default: tx_up_scaled_inphase = {tx_up_inphase[17:0]};
-		endcase
+    //reg [17:0] tx_up_scaled_inphase;
+    always @*
+        case(SW[17:16])
+            2'b01: tx_up_scaled_inphase = {tx_up_inphase[17], tx_up_inphase[17:1]};
+            2'b10: tx_up_scaled_inphase = {tx_up_inphase[17], tx_up_inphase[17], tx_up_inphase[17:2]};
+            2'b11: tx_up_scaled_inphase = {tx_up_inphase[17],tx_up_inphase[17], tx_up_inphase[17], tx_up_inphase[17:3]};
+            default: tx_up_scaled_inphase = {tx_up_inphase[17:0]};
+        endcase
 
     wire signed [17:0] tx_chan_inphase;
-    srrc_gold_rx_flt gold_tx(.clk(sys_clk),
-                                .fastclk(clock_50),
-                                .sam_clk_en(sam_clk_en),
-                                .sym_clk_en(sym_clk_en),
-                                .reset(reset),
-                                .in(tx_up_scaled_inphase),
-                                .out(tx_chan_inphase));
+    srrc_prac_tx_flt gold_tx(.clk(sys_clk),
+                             .sam_clk_en(sam_clk_en),
+                             .sym_clk_en(sym_clk_en),
+                             .reset(reset),
+                             .in(tx_up_scaled_inphase),
+                             .out(tx_chan_inphase));
 
     /*
 	 wire signed [17:0] rx_up_inphase;

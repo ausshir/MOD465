@@ -20,6 +20,9 @@ add wave -noupdate -divider {Signal Path}
 add wave -noupdate -format Analog-Step -height 84 -max 131071.00000000001 -min -131071.0 /total_path_tb/tx_sig_inphase
 add wave -noupdate -format Analog-Step -height 84 -max 131071.00000000001 -min -131071.0 /total_path_tb/tx_up_inphase
 add wave -noupdate -format Analog-Step -height 84 -max 107637.0 -min -95101.0 /total_path_tb/tx_chan_inphase
+add wave -noupdate -height 15 /total_path_tb/gold_tx_tb/count4
+add wave -noupdate -height 15 -expand -subitemconfig {{/total_path_tb/gold_tx_tb/bin[28]} {-height 15} {/total_path_tb/gold_tx_tb/bin[27]} {-height 15} {/total_path_tb/gold_tx_tb/bin[26]} {-height 15} {/total_path_tb/gold_tx_tb/bin[25]} {-height 15} {/total_path_tb/gold_tx_tb/bin[24]} {-height 15} {/total_path_tb/gold_tx_tb/bin[23]} {-height 15} {/total_path_tb/gold_tx_tb/bin[22]} {-height 15} {/total_path_tb/gold_tx_tb/bin[21]} {-height 15} {/total_path_tb/gold_tx_tb/bin[20]} {-height 15} {/total_path_tb/gold_tx_tb/bin[19]} {-height 15} {/total_path_tb/gold_tx_tb/bin[18]} {-height 15} {/total_path_tb/gold_tx_tb/bin[17]} {-height 15} {/total_path_tb/gold_tx_tb/bin[16]} {-height 15} {/total_path_tb/gold_tx_tb/bin[15]} {-height 15} {/total_path_tb/gold_tx_tb/bin[14]} {-height 15} {/total_path_tb/gold_tx_tb/bin[13]} {-height 15} {/total_path_tb/gold_tx_tb/bin[12]} {-height 15} {/total_path_tb/gold_tx_tb/bin[11]} {-height 15} {/total_path_tb/gold_tx_tb/bin[10]} {-height 15} {/total_path_tb/gold_tx_tb/bin[9]} {-height 15} {/total_path_tb/gold_tx_tb/bin[8]} {-height 15} {/total_path_tb/gold_tx_tb/bin[7]} {-height 15} {/total_path_tb/gold_tx_tb/bin[6]} {-height 15} {/total_path_tb/gold_tx_tb/bin[5]} {-height 15} {/total_path_tb/gold_tx_tb/bin[4]} {-height 15} {/total_path_tb/gold_tx_tb/bin[3]} {-height 15} {/total_path_tb/gold_tx_tb/bin[2]} {-height 15} {/total_path_tb/gold_tx_tb/bin[1]} {-height 15} {/total_path_tb/gold_tx_tb/bin[0]} {-height 15}} /total_path_tb/gold_tx_tb/bin
+add wave -noupdate -height 15 /total_path_tb/gold_tx_tb/bin_out
 add wave -noupdate -format Analog-Step -height 84 -max 130976.99999999999 -min -131050.0 /total_path_tb/rx_up_inphase
 add wave -noupdate -divider Synchronization
 add wave -noupdate -height 15 /total_path_tb/sam_clk_en
@@ -44,8 +47,8 @@ add wave -noupdate -height 15 /total_path_tb/acc_out_full
 add wave -noupdate -height 15 -radix decimal /total_path_tb/acc_dc_err_out_inphase
 add wave -noupdate -height 15 -radix decimal /total_path_tb/acc_out_full_dc_inphase
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {869730 ns} 0} {{Cursor 2} {82530 ns} 0}
-quietly wave cursor active 1
+WaveRestoreCursors {{Cursor 1} {869730 ns} 0} {{Cursor 2} {1888 ns} 0}
+quietly wave cursor active 2
 configure wave -namecolwidth 346
 configure wave -valuecolwidth 135
 configure wave -justifyvalue left
@@ -60,4 +63,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits us
 update
-WaveRestoreZoom {751250 ns} {1276250 ns}
+WaveRestoreZoom {0 ns} {4922 ns}

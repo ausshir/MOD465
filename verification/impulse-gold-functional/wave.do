@@ -12,12 +12,18 @@ add wave -noupdate -height 15 -radix unsigned /impulse_gold_tb/imp_count
 add wave -noupdate -format Analog-Step -height 84 -max 131071.00000000001 /impulse_gold_tb/stimulus
 add wave -noupdate -format Analog-Step -height 84 -max 64215.000000000007 -min -13415.0 -radix decimal /impulse_gold_tb/response
 add wave -noupdate -divider {Filter Internal Data}
-add wave -noupdate -divider {Multiplier Filter Internal Data}
-add wave -noupdate -height 15 /impulse_gold_tb/sut/sum_level_1
-add wave -noupdate -height 15 /impulse_gold_tb/sut/sum_level_2
+add wave -noupdate -height 15 /impulse_gold_tb/sut/in
+add wave -noupdate -height 15 /impulse_gold_tb/sut/count4
+add wave -noupdate -height 15 /impulse_gold_tb/sut/bin
+add wave -noupdate -height 15 /impulse_gold_tb/sut/bin_out
 add wave -noupdate -height 15 /impulse_gold_tb/sut/sum_level_3
+add wave -noupdate -height 15 /impulse_gold_tb/sut/sum_level_4
+add wave -noupdate -height 15 /impulse_gold_tb/sut/sum_level_5
+add wave -noupdate -height 15 /impulse_gold_tb/sut/sum_level_6
+add wave -noupdate -height 15 /impulse_gold_tb/sut/sum_level_7
+add wave -noupdate -divider {Multiplier Filter Internal Data}
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {9591 ns} 0}
+WaveRestoreCursors {{Cursor 1} {6920 ns} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 357
 configure wave -valuecolwidth 100
@@ -33,4 +39,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits us
 update
-WaveRestoreZoom {0 ns} {115500 ns}
+WaveRestoreZoom {96284 ns} {110722 ns}

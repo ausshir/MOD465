@@ -11,10 +11,10 @@ tx_OB2 = 1.53;
 
 F_s = 1;
 N_sps = 4;
-tx_span = 121;
+tx_span = 115;
 tx_fd = 0.125;
-tx_shape = 2.2675;
-tx_beta = 0.081306;
+tx_shape = 2.1796;
+tx_beta = 0.081747;
 
 %tx_h_srrc = firrcos(tx_span-1,tx_fd,tx_rolloff,1,'rolloff','sqrt');
 tx_h_srrc = rcosdesign(tx_beta, (tx_span-1)/N_sps, N_sps, 'sqrt');
@@ -103,7 +103,7 @@ hold off
 fileID = fopen('LUT/srrc_tx_practical_coefs.vh','w');
 
 fprintf(fileID, '\n//TX Filter 18''sd P2 LUT Coefficients (headroom)\n');
-tx_h_srrc_18sd = round(remove_headroom(tx_h_srrc, 4, 0.999) * (2^17) * 0.5);
+tx_h_srrc_18sd = round(remove_headroom(tx_h_srrc, 4, 0.999) * (2^17) * 1);
 for i = 1:(length(tx_h_srrc))
     if(tx_h_srrc_18sd(i) < 0)
         fprintf(fileID, 'assign PRECOMP_P2[%3d] = -18''sd %6d;\n', i-1, -tx_h_srrc_18sd(i));
@@ -116,7 +116,7 @@ end
 fprintf(fileID,'\n\n');
 
 fprintf(fileID, '\n//TX Filter 18''sd P1 LUT Coefficients (headroom)\n');
-tx_h_srrc_18sd = round(remove_headroom(tx_h_srrc, 4, 0.999) * (2^17) * 0.167);
+tx_h_srrc_18sd = round(remove_headroom(tx_h_srrc, 4, 0.999) * (2^17) * (2/3));
 for i = 1:(length(tx_h_srrc))
     if(tx_h_srrc_18sd(i) < 0)
         fprintf(fileID, 'assign PRECOMP_P1[%3d] = -18''sd %6d;\n', i-1, -tx_h_srrc_18sd(i));
@@ -129,7 +129,7 @@ end
 fprintf(fileID,'\n\n');
 
 fprintf(fileID, '\n//TX Filter 18''sd N1 LUT Coefficients (headroom)\n');
-tx_h_srrc_18sd = round(remove_headroom(tx_h_srrc, 4, 0.999) * (2^17) * -0.167);
+tx_h_srrc_18sd = round(remove_headroom(tx_h_srrc, 4, 0.999) * (2^17) * -(2/3));
 for i = 1:(length(tx_h_srrc))
     if(tx_h_srrc_18sd(i) < 0)
         fprintf(fileID, 'assign PRECOMP_N1[%3d] = -18''sd %6d;\n', i-1, -tx_h_srrc_18sd(i));
@@ -142,7 +142,7 @@ end
 fprintf(fileID,'\n\n');
 
 fprintf(fileID, '\n//TX Filter 18''sd N2 LUT Coefficients (headroom)\n');
-tx_h_srrc_18sd = round(remove_headroom(tx_h_srrc, 4, 0.999) * (2^17) * -0.5);
+tx_h_srrc_18sd = round(remove_headroom(tx_h_srrc, 4, 0.999) * (2^17) * -1);
 for i = 1:(length(tx_h_srrc))
     if(tx_h_srrc_18sd(i) < 0)
         fprintf(fileID, 'assign PRECOMP_N2[%3d] = -18''sd %6d;\n', i-1, -tx_h_srrc_18sd(i));

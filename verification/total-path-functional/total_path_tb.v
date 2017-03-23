@@ -11,6 +11,7 @@
 `include "../../design/mapper_16_qam_ref.v"
 `include "../../design/upsampler_4.v"
 `include "../../design/srrc_gold_rx_flt.v"
+`include "../../design/srrc_prac_tx_flt.v"
 
 `include "../../design/config_sam_delay.v"
 `include "../../design/config_sym_delay.v"
@@ -92,17 +93,15 @@ module total_path_tb();
     // SIGNAL CHAIN - Matched Filters
 
     wire signed [17:0] tx_chan_inphase;
-    srrc_gold_rx_flt gold_tx_tb(.clk(sys_clk),
-                                .fastclk(clk_tb),
+    srrc_prac_tx_flt gold_tx_tb(.clk(sys_clk),
                                 .sam_clk_en(sam_clk_en),
                                 .sym_clk_en(sym_clk_en),
                                 .reset(reset),
-                                .in({tx_up_inphase[17], tx_up_inphase[17:1]}),
+                                .in(tx_up_inphase[17:0]),
                                 .out(tx_chan_inphase));
 
     wire signed [17:0] rx_up_inphase;
     srrc_gold_rx_flt gold_rx_tb(.clk(sys_clk),
-                                .fastclk(clk_tb),
                                 .sam_clk_en(sam_clk_en),
                                 .sym_clk_en(sym_clk_en),
                                 .reset(reset),

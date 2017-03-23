@@ -10,269 +10,1012 @@ ls
 # vsim.wlf
 # wave.do
 # work
+cd ..
+# reading /opt/altera/13.0SP1/modelsim_ase/linux/../modelsim.ini
+ls
+# bpsk-functional
+# clk-functional
+# d4-sim
+# dac-sanity
+# error-functional
+# frequency_response_meas
+# impulse2-functional
+# impulse-functional
+# impulse-gold-functional
+# impulse_response_meas.zip
+# ref-functional
+# total-path-functional
+# tx-signal-path-functional
+cd impulse-gold-functional
 do compile_all.do
 # Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
-# -- Compiling module d4_top
-# -- Compiling module d4_sim_tb
+# -- Compiling module clk_gen
+# -- Compiling module srrc_gold_tx_flt
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_mult_tx_flt
+# -- Compiling module impulse_gold_tb
 # 
 # Top level modules:
-# 	d4_sim_tb
-# vsim -L altera_ver -L cycloneive_ver d4_sim_tb 
-# Loading work.d4_sim_tb
-# Loading work.d4_top
-# Loading altera_ver.dffeas
-# Loading cycloneive_ver.cycloneive_lcell_comb
-# Loading cycloneive_ver.cycloneive_ram_block
-# Loading cycloneive_ver.cycloneive_ram_register
-# Loading cycloneive_ver.cycloneive_ram_pulse_generator
-# Loading cycloneive_ver.cycloneive_mac_out
-# Loading cycloneive_ver.cycloneive_mac_mult
-# Loading cycloneive_ver.cycloneive_mac_data_reg
-# Loading cycloneive_ver.cycloneive_mac_sign_reg
-# Loading cycloneive_ver.cycloneive_mac_mult_internal
-# Loading cycloneive_ver.cycloneive_io_ibuf
-# Loading cycloneive_ver.cycloneive_io_obuf
-# Loading cycloneive_ver.cycloneive_clkctrl
-# Loading cycloneive_ver.cycloneive_mux41
-# Loading cycloneive_ver.cycloneive_ena_reg
-# SDF 10.1d Compiler 2012.11 Nov  2 2012
-# SDF 10.1d Compiler 2012.11 Nov  2 2012
-# Loading instances from ../../exams/deliverable4/simulation/modelsim/d4_top_v.sdo
-# Loading instances from d4_top_v.sdo
-# ** Warning: (vsim-3017) d4_sim_tb.v(34): [TFMPC] - Too few port connections. Expected 24, found 4.
-#         Region: /d4_sim_tb/sut
-# ** Warning: (vsim-3722) d4_sim_tb.v(34): [TFMPC] - Missing connection for port 'SW'.
-# ** Warning: (vsim-3722) d4_sim_tb.v(34): [TFMPC] - Missing connection for port 'ADC_DA'.
-# ** Warning: (vsim-3722) d4_sim_tb.v(34): [TFMPC] - Missing connection for port 'ADC_DB'.
-# ** Warning: (vsim-3722) d4_sim_tb.v(34): [TFMPC] - Missing connection for port 'LEDG'.
-# ** Warning: (vsim-3722) d4_sim_tb.v(34): [TFMPC] - Missing connection for port 'LEDR'.
-# ** Warning: (vsim-3722) d4_sim_tb.v(34): [TFMPC] - Missing connection for port 'DAC_DA'.
-# ** Warning: (vsim-3722) d4_sim_tb.v(34): [TFMPC] - Missing connection for port 'DAC_DB'.
-# ** Warning: (vsim-3722) d4_sim_tb.v(34): [TFMPC] - Missing connection for port 'ADC_CLK_A'.
-# ** Warning: (vsim-3722) d4_sim_tb.v(34): [TFMPC] - Missing connection for port 'ADC_CLK_B'.
-# ** Warning: (vsim-3722) d4_sim_tb.v(34): [TFMPC] - Missing connection for port 'ADC_OEB_A'.
-# ** Warning: (vsim-3722) d4_sim_tb.v(34): [TFMPC] - Missing connection for port 'ADC_OEB_B'.
-# ** Warning: (vsim-3722) d4_sim_tb.v(34): [TFMPC] - Missing connection for port 'DAC_CLK_A'.
-# ** Warning: (vsim-3722) d4_sim_tb.v(34): [TFMPC] - Missing connection for port 'DAC_CLK_B'.
-# ** Warning: (vsim-3722) d4_sim_tb.v(34): [TFMPC] - Missing connection for port 'DAC_MODE'.
-# ** Warning: (vsim-3722) d4_sim_tb.v(34): [TFMPC] - Missing connection for port 'DAC_WRT_A'.
-# ** Warning: (vsim-3722) d4_sim_tb.v(34): [TFMPC] - Missing connection for port 'DAC_WRT_B'.
-# ** Warning: (vsim-3722) d4_sim_tb.v(34): [TFMPC] - Missing connection for port 'sys_clk'.
-# ** Warning: (vsim-3722) d4_sim_tb.v(34): [TFMPC] - Missing connection for port 'sam_clk_en'.
-# ** Warning: (vsim-3722) d4_sim_tb.v(34): [TFMPC] - Missing connection for port 'sym_clk_en'.
-# ** Warning: (vsim-3722) d4_sim_tb.v(34): [TFMPC] - Missing connection for port 'phase'.
-# Loading altera_ver.PRIM_GDFF_LOW
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6154): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-8607) /opt/altera/13.0SP1/modelsim_ase/linux/../altera/verilog/src/cycloneive_atoms.v(6155): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: Design size of 2 instances exceeds ModelSim ALTERA recommended capacity.
-# This may because you are loading cell libraries which are not recommended with
-# the ModelSim Altera version. Expect performance to be adversely affected.
-# Loading timing data from ../../exams/deliverable4/simulation/modelsim/d4_top_v.sdo
-# Loading timing data from d4_top_v.sdo
-# ** Note: (vsim-3587) SDF Backannotation Successfully Completed.
-#    Time: 0 ps  Iteration: 0  Instance: /d4_sim_tb File: d4_sim_tb.v
-# Error opening /home/aus892/engr-ece/EE465/MOD465/verification/d4-sim/(vsim-8607) /opt/altera/13.0SP1/modelsim_ase/altera/verilog/src/cycloneive_atoms.v
-# Path name '/home/aus892/engr-ece/EE465/MOD465/verification/d4-sim/(vsim-8607) /opt/altera/13.0SP1/modelsim_ase/altera/verilog/src/cycloneive_atoms.v' doesn't exist.
-# Error opening /home/aus892/engr-ece/EE465/MOD465/verification/d4-sim/(vsim-8607) /opt/altera/13.0SP1/modelsim_ase/altera/verilog/src/cycloneive_atoms.v
-# Path name '/home/aus892/engr-ece/EE465/MOD465/verification/d4-sim/(vsim-8607) /opt/altera/13.0SP1/modelsim_ase/altera/verilog/src/cycloneive_atoms.v' doesn't exist.
-# A time value could not be extracted from the current line
+# 	srrc_gold_tx_flt
+# 	srrc_gold_rx_flt
+# 	impulse_gold_tb
+# vsim impulse_gold_tb 
+# Loading work.impulse_gold_tb
+# Loading work.clk_gen
+# Loading work.srrc_prac_mult_tx_flt
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module srrc_gold_tx_flt
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_mult_tx_flt
+# -- Compiling module impulse_gold_tb
+# 
+# Top level modules:
+# 	srrc_gold_tx_flt
+# 	srrc_prac_mult_tx_flt
+# 	impulse_gold_tb
+# vsim impulse_gold_tb 
+# Loading work.impulse_gold_tb
+# Loading work.clk_gen
+# Loading work.srrc_gold_rx_flt
+add wave -position end  sim:/impulse_gold_tb/sut/x
+write format wave -window .main_pane.wave.interior.cs.body.pw.wf /home/aus892/engr-ece/EE465/MOD465/verification/impulse-gold-functional/wave.do
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module srrc_gold_tx_flt
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_mult_tx_flt
+# -- Compiling module impulse_gold_tb
+# 
+# Top level modules:
+# 	srrc_gold_tx_flt
+# 	srrc_prac_mult_tx_flt
+# 	impulse_gold_tb
+# vsim impulse_gold_tb 
+# Loading work.impulse_gold_tb
+# Loading work.clk_gen
+# Loading work.srrc_gold_rx_flt
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module srrc_gold_tx_flt
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_mult_tx_flt
+# -- Compiling module impulse_gold_tb
+# 
+# Top level modules:
+# 	srrc_gold_tx_flt
+# 	srrc_prac_mult_tx_flt
+# 	impulse_gold_tb
+# vsim impulse_gold_tb 
+# Loading work.impulse_gold_tb
+# Loading work.clk_gen
+# Loading work.srrc_gold_rx_flt
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module srrc_gold_tx_flt
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_mult_tx_flt
+# -- Compiling module impulse_gold_tb
+# 
+# Top level modules:
+# 	srrc_gold_tx_flt
+# 	srrc_prac_mult_tx_flt
+# 	impulse_gold_tb
+# vsim impulse_gold_tb 
+# Loading work.impulse_gold_tb
+# Loading work.clk_gen
+# Loading work.srrc_gold_rx_flt
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module srrc_gold_tx_flt
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_mult_tx_flt
+# -- Compiling module impulse_gold_tb
+# 
+# Top level modules:
+# 	srrc_gold_tx_flt
+# 	srrc_prac_mult_tx_flt
+# 	impulse_gold_tb
+# vsim impulse_gold_tb 
+# Loading work.impulse_gold_tb
+# Loading work.clk_gen
+# Loading work.srrc_gold_rx_flt
+add wave -position 13  sim:/impulse_gold_tb/sut/mult_out
+write format wave -window .main_pane.wave.interior.cs.body.pw.wf /home/aus892/engr-ece/EE465/MOD465/verification/impulse-gold-functional/wave.do
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module srrc_gold_tx_flt
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_mult_tx_flt
+# -- Compiling module impulse_gold_tb
+# 
+# Top level modules:
+# 	srrc_gold_tx_flt
+# 	srrc_prac_mult_tx_flt
+# 	impulse_gold_tb
+# vsim impulse_gold_tb 
+# Loading work.impulse_gold_tb
+# Loading work.clk_gen
+# Loading work.srrc_gold_rx_flt
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module srrc_gold_tx_flt
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_mult_tx_flt
+# -- Compiling module impulse_gold_tb
+# 
+# Top level modules:
+# 	srrc_gold_tx_flt
+# 	srrc_prac_mult_tx_flt
+# 	impulse_gold_tb
+# vsim impulse_gold_tb 
+# Loading work.impulse_gold_tb
+# Loading work.clk_gen
+# Loading work.srrc_gold_rx_flt
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module srrc_gold_tx_flt
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_mult_tx_flt
+# -- Compiling module impulse_gold_tb
+# 
+# Top level modules:
+# 	srrc_gold_tx_flt
+# 	srrc_prac_mult_tx_flt
+# 	impulse_gold_tb
+# vsim impulse_gold_tb 
+# Loading work.impulse_gold_tb
+# Loading work.clk_gen
+# Loading work.srrc_gold_rx_flt
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module srrc_gold_tx_flt
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_mult_tx_flt
+# -- Compiling module impulse_gold_tb
+# 
+# Top level modules:
+# 	srrc_gold_tx_flt
+# 	srrc_prac_mult_tx_flt
+# 	impulse_gold_tb
+# vsim impulse_gold_tb 
+# Loading work.impulse_gold_tb
+# Loading work.clk_gen
+# Loading work.srrc_gold_rx_flt
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module srrc_gold_tx_flt
+# ** Error: ../../design/srrc_gold_tx_flt.v(28): (vlog-2730) Undefined variable: 'phase4'.
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_tx_flt
+# ** Error: ../../design/srrc_prac_tx_flt.v(121): Declarations not allowed in unnamed block.
+# ** Error: ../../design/srrc_prac_tx_flt.v(122): Illegal declaration after the statement near line '119'.  Declarations must precede statements.  Look for stray semicolons.
+# ** Error: ../../design/srrc_prac_tx_flt.v(123): near ")": syntax error, unexpected ')', expecting ';'
+# -- Compiling module impulse_gold_tb
+# ** Error: /opt/altera/13.0SP1/modelsim_ase/linux/vlog failed.
+# Error in macro ./compile_all.do line 1
+# /opt/altera/13.0SP1/modelsim_ase/linux/vlog failed.
+#     while executing
+# "vlog impulse_gold_tb.v"
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_tx_flt
+# ** Error: ../../design/srrc_prac_tx_flt.v(121): Declarations not allowed in unnamed block.
+# ** Error: ../../design/srrc_prac_tx_flt.v(122): Illegal declaration after the statement near line '119'.  Declarations must precede statements.  Look for stray semicolons.
+# ** Error: ../../design/srrc_prac_tx_flt.v(123): near ")": syntax error, unexpected ')', expecting ';'
+# -- Compiling module impulse_gold_tb
+# ** Error: /opt/altera/13.0SP1/modelsim_ase/linux/vlog failed.
+# Error in macro ./compile_all.do line 1
+# /opt/altera/13.0SP1/modelsim_ase/linux/vlog failed.
+#     while executing
+# "vlog impulse_gold_tb.v"
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_tx_flt
+# -- Compiling module impulse_gold_tb
+# 
+# Top level modules:
+# 	srrc_gold_rx_flt
+# 	srrc_prac_tx_flt
+# 	impulse_gold_tb
+# vsim impulse_gold_tb 
+# Loading work.impulse_gold_tb
+# Loading work.clk_gen
+# ** Error: (vsim-3033) impulse_gold_tb.v(77): Instantiation of 'srrc_prac_rx_flt' failed. The design unit was not found.
+#         Region: /impulse_gold_tb
+#         Searched libraries:
+#             /home/aus892/engr-ece/EE465/MOD465/verification/impulse-gold-functional/work
+# Error loading design
+# Error: Error loading design 
+#        Pausing macro execution 
+# MACRO ./compile_all.do PAUSED at line 2
+write format wave -window .main_pane.wave.interior.cs.body.pw.wf /home/aus892/engr-ece/EE465/MOD465/verification/impulse-gold-functional/wave.do
+# could not find wave window
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_tx_flt
+# -- Compiling module impulse_gold_tb
+# 
+# Top level modules:
+# 	srrc_gold_rx_flt
+# 	impulse_gold_tb
+# vsim impulse_gold_tb 
+# Loading work.impulse_gold_tb
+# Loading work.clk_gen
+# Loading work.srrc_prac_tx_flt
+# ** Fatal: (vsim-3365) impulse_gold_tb.v(77): Too many port connections. Expected 6, found 7.
+#    Time: 0 ns  Iteration: 0  Instance: /impulse_gold_tb/sut File: ../../design/srrc_prac_tx_flt.v
+# FATAL ERROR while loading design
+# Error loading design
+# Error: Error loading design 
+#        Pausing macro execution 
+# MACRO ./compile_all.do PAUSED at line 2
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_tx_flt
+# -- Compiling module impulse_gold_tb
+# 
+# Top level modules:
+# 	srrc_gold_rx_flt
+# 	impulse_gold_tb
+# vsim impulse_gold_tb 
+# Loading work.impulse_gold_tb
+# Loading work.clk_gen
+# Loading work.srrc_prac_tx_flt
+# ** Error: (vish-4014) No objects found matching '/impulse_gold_tb/sut/sum_level_1'.
+# Executing ONERROR command at macro ./wave.do line 16
+# ** Error: (vish-4014) No objects found matching '/impulse_gold_tb/sut/mult_out'.
+# Executing ONERROR command at macro ./wave.do line 17
+# ** Error: (vish-4014) No objects found matching '/impulse_gold_tb/sut/sum_level_2'.
+# Executing ONERROR command at macro ./wave.do line 18
+# ** Error: (vish-4014) No objects found matching '/impulse_gold_tb/sut/x'.
+# Executing ONERROR command at macro ./wave.do line 20
+write format wave -window .main_pane.wave.interior.cs.body.pw.wf /home/aus892/engr-ece/EE465/MOD465/verification/impulse-gold-functional/wave.do
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_tx_flt
+# -- Compiling module impulse_gold_tb
+# 
+# Top level modules:
+# 	srrc_gold_rx_flt
+# 	impulse_gold_tb
+# vsim impulse_gold_tb 
+# Loading work.impulse_gold_tb
+# Loading work.clk_gen
+# Loading work.srrc_prac_tx_flt
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_tx_flt
+# -- Compiling module impulse_gold_tb
+# 
+# Top level modules:
+# 	srrc_gold_rx_flt
+# 	impulse_gold_tb
+# vsim impulse_gold_tb 
+# Loading work.impulse_gold_tb
+# Loading work.clk_gen
+# Loading work.srrc_prac_tx_flt
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_tx_flt
+# ** Error: impulse_gold_tb.v(12): Cannot open `include file "defines.vh".
+# -- Compiling module impulse_gold_tb
+# ** Error: /opt/altera/13.0SP1/modelsim_ase/linux/vlog failed.
+# Error in macro ./compile_all.do line 1
+# /opt/altera/13.0SP1/modelsim_ase/linux/vlog failed.
+#     while executing
+# "vlog impulse_gold_tb.v"
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_tx_flt
+# -- Compiling module impulse_gold_tb
+# 
+# Top level modules:
+# 	srrc_gold_rx_flt
+# 	impulse_gold_tb
+# vsim impulse_gold_tb 
+# Loading work.impulse_gold_tb
+# Loading work.clk_gen
+# Loading work.srrc_prac_tx_flt
+add wave -position 12  sim:/impulse_gold_tb/sut/in
+add wave -position 13  sim:/impulse_gold_tb/sut/bin
+add wave -position 14  sim:/impulse_gold_tb/sut/count4
+add wave -position 15  sim:/impulse_gold_tb/sut/bin_out
+add wave -position 16  sim:/impulse_gold_tb/sut/sum_level_3
+add wave -position 17  sim:/impulse_gold_tb/sut/sum_level_4
+add wave -position 18  sim:/impulse_gold_tb/sut/sum_level_5
+add wave -position 19  sim:/impulse_gold_tb/sut/sum_level_6
+add wave -position 20  sim:/impulse_gold_tb/sut/sum_level_7
+write format wave -window .main_pane.wave.interior.cs.body.pw.wf /home/aus892/engr-ece/EE465/MOD465/verification/impulse-gold-functional/wave.do
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_tx_flt
+# -- Compiling module impulse_gold_tb
+# 
+# Top level modules:
+# 	srrc_gold_rx_flt
+# 	impulse_gold_tb
+# vsim impulse_gold_tb 
+# Loading work.impulse_gold_tb
+# Loading work.clk_gen
+# Loading work.srrc_prac_tx_flt
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_tx_flt
+# -- Compiling module impulse_gold_tb
+# ** Error: impulse_gold_tb.v(62): (vlog-2730) Undefined variable: 'SYMBOL_P1'.
+# ** Error: impulse_gold_tb.v(64): near "else": syntax error, unexpected else, expecting ';'
+# ** Error: impulse_gold_tb.v(71): near "and": syntax error, unexpected and
+# ** Error: /opt/altera/13.0SP1/modelsim_ase/linux/vlog failed.
+# Error in macro ./compile_all.do line 1
+# /opt/altera/13.0SP1/modelsim_ase/linux/vlog failed.
+#     while executing
+# "vlog impulse_gold_tb.v"
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_tx_flt
+# -- Compiling module impulse_gold_tb
+# ** Error: impulse_gold_tb.v(64): near "else": syntax error, unexpected else, expecting ';'
+# ** Error: impulse_gold_tb.v(71): near "and": syntax error, unexpected and
+# ** Error: /opt/altera/13.0SP1/modelsim_ase/linux/vlog failed.
+# Error in macro ./compile_all.do line 1
+# /opt/altera/13.0SP1/modelsim_ase/linux/vlog failed.
+#     while executing
+# "vlog impulse_gold_tb.v"
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_tx_flt
+# -- Compiling module impulse_gold_tb
+# ** Error: impulse_gold_tb.v(71): near "and": syntax error, unexpected and
+# ** Error: /opt/altera/13.0SP1/modelsim_ase/linux/vlog failed.
+# Error in macro ./compile_all.do line 1
+# /opt/altera/13.0SP1/modelsim_ase/linux/vlog failed.
+#     while executing
+# "vlog impulse_gold_tb.v"
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_tx_flt
+# -- Compiling module impulse_gold_tb
+# 
+# Top level modules:
+# 	srrc_gold_rx_flt
+# 	impulse_gold_tb
+# vsim impulse_gold_tb 
+# Loading work.impulse_gold_tb
+# Loading work.clk_gen
+# Loading work.srrc_prac_tx_flt
+add wave -position 9  sim:/impulse_gold_tb/impulse_ready
+write format wave -window .main_pane.wave.interior.cs.body.pw.wf /home/aus892/engr-ece/EE465/MOD465/verification/impulse-gold-functional/wave.do
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_tx_flt
+# -- Compiling module impulse_gold_tb
+# 
+# Top level modules:
+# 	srrc_gold_rx_flt
+# 	impulse_gold_tb
+# vsim impulse_gold_tb 
+# Loading work.impulse_gold_tb
+# Loading work.clk_gen
+# Loading work.srrc_prac_tx_flt
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_tx_flt
+# -- Compiling module impulse_gold_tb
+# 
+# Top level modules:
+# 	srrc_gold_rx_flt
+# 	impulse_gold_tb
+# vsim impulse_gold_tb 
+# Loading work.impulse_gold_tb
+# Loading work.clk_gen
+# Loading work.srrc_prac_tx_flt
+# ** Error: (vish-4014) No objects found matching '/impulse_gold_tb/impulse_ready'.
+# Executing ONERROR command at macro ./wave.do line 12
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_tx_flt
+# -- Compiling module impulse_gold_tb
+# 
+# Top level modules:
+# 	srrc_gold_rx_flt
+# 	impulse_gold_tb
+# vsim impulse_gold_tb 
+# Loading work.impulse_gold_tb
+# Loading work.clk_gen
+# Loading work.srrc_prac_tx_flt
+# ** Error: (vish-4014) No objects found matching '/impulse_gold_tb/impulse_ready'.
+# Executing ONERROR command at macro ./wave.do line 12
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_tx_flt
+# -- Compiling module impulse_gold_tb
+# 
+# Top level modules:
+# 	srrc_gold_rx_flt
+# 	impulse_gold_tb
+# vsim impulse_gold_tb 
+# Loading work.impulse_gold_tb
+# Loading work.clk_gen
+# Loading work.srrc_prac_tx_flt
+# ** Error: (vish-4014) No objects found matching '/impulse_gold_tb/impulse_ready'.
+# Executing ONERROR command at macro ./wave.do line 12
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_tx_flt
+# -- Compiling module impulse_gold_tb
+# 
+# Top level modules:
+# 	srrc_gold_rx_flt
+# 	impulse_gold_tb
+# vsim impulse_gold_tb 
+# Loading work.impulse_gold_tb
+# Loading work.clk_gen
+# Loading work.srrc_prac_tx_flt
+# ** Error: (vish-4014) No objects found matching '/impulse_gold_tb/impulse_ready'.
+# Executing ONERROR command at macro ./wave.do line 12
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_tx_flt
+# -- Compiling module impulse_gold_tb
+# 
+# Top level modules:
+# 	srrc_gold_rx_flt
+# 	impulse_gold_tb
+# vsim impulse_gold_tb 
+# Loading work.impulse_gold_tb
+# Loading work.clk_gen
+# Loading work.srrc_prac_tx_flt
+# ** Error: (vish-4014) No objects found matching '/impulse_gold_tb/impulse_ready'.
+# Executing ONERROR command at macro ./wave.do line 12
+write format wave -window .main_pane.wave.interior.cs.body.pw.wf /home/aus892/engr-ece/EE465/MOD465/verification/impulse-gold-functional/wave.do
+quit -sim
+cd ..
+ls
+# bpsk-functional
+# clk-functional
+# d4-sim
+# dac-sanity
+# error-functional
+# frequency_response_meas
+# impulse2-functional
+# impulse-functional
+# impulse-gold-functional
+# impulse_response_meas.zip
+# ref-functional
+# total-path-functional
+# tx-signal-path-functional
+cd tx-signal-path-functional
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module lfsr_gen_max
+# ** Warning: ../../design/lfsr_gen_max.v(86): (vlog-2576) [BSOB] - Bit-select into 'LFSR_reg' is out of bounds.
+# ** Warning: ../../design/lfsr_gen_max.v(86): (vlog-2576) [BSOB] - Bit-select into 'LFSR_reg' is out of bounds.
+# -- Compiling module mapper_16_qam_ref
+# ** Error: ../../design/mapper_16_qam_ref.v(26): (vlog-2163) Macro `INPHASE is undefined.
+# ** Error: ../../design/mapper_16_qam_ref.v(26): near "]": syntax error, unexpected ']'
+# ** Error: ../../design/mapper_16_qam_ref.v(35): (vlog-2163) Macro `QUADRATURE is undefined.
+# ** Error: ../../design/mapper_16_qam_ref.v(35): near "]": syntax error, unexpected ']'
+# -- Compiling module upsampler_4
+# -- Compiling module srrc_prac_tx_flt
+# -- Compiling module tx_signal_path_tb
+# ** Error: /opt/altera/13.0SP1/modelsim_ase/linux/vlog failed.
+# Error in macro ./compile_all.do line 1
+# /opt/altera/13.0SP1/modelsim_ase/linux/vlog failed.
+#     while executing
+# "vlog tx_signal_path_tb.v"
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module lfsr_gen_max
+# -- Compiling module mapper_16_qam_ref
+# -- Compiling module upsampler_4
+# -- Compiling module srrc_prac_tx_flt
+# -- Compiling module tx_signal_path_tb
+# 
+# Top level modules:
+# 	mapper_16_qam_ref
+# 	srrc_prac_tx_flt
+# 	tx_signal_path_tb
+# vsim tx_signal_path_tb 
+# Loading work.tx_signal_path_tb
+# Loading work.clk_gen
+# Loading work.lfsr_gen_max
+# Loading work.mapper_16_qam
+# Loading work.upsampler_4
+# ** Error: (vsim-3033) tx_signal_path_tb.v(59): Instantiation of 'srrc_ptrac_tx_flt' failed. The design unit was not found.
+#         Region: /tx_signal_path_tb
+#         Searched libraries:
+#             /home/aus892/engr-ece/EE465/MOD465/verification/tx-signal-path-functional/work
+# Error loading design
+# Error: Error loading design 
+#        Pausing macro execution 
+# MACRO ./compile_all.do PAUSED at line 2
+cd tx-signal-path-functional
+# couldn't change working directory to "tx-signal-path-functional": no such file or directory
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module lfsr_gen_max
+# -- Compiling module mapper_16_qam_ref
+# -- Compiling module upsampler_4
+# -- Compiling module srrc_prac_tx_flt
+# -- Compiling module tx_signal_path_tb
+# 
+# Top level modules:
+# 	mapper_16_qam_ref
+# 	tx_signal_path_tb
+# vsim tx_signal_path_tb 
+# Loading work.tx_signal_path_tb
+# Loading work.clk_gen
+# Loading work.lfsr_gen_max
+# Loading work.mapper_16_qam
+# Loading work.upsampler_4
+# Loading work.srrc_prac_tx_flt
+# ** Error: (vish-4014) No objects found matching '/tx_signal_path_tb/filter/in_reg'.
+# Executing ONERROR command at macro ./wave.do line 19
+add wave -position end  sim:/tx_signal_path_tb/filter/in
+add wave -position end  sim:/tx_signal_path_tb/filter/out
+write format wave -window .main_pane.wave.interior.cs.body.pw.wf /home/aus892/engr-ece/EE465/MOD465/verification/tx-signal-path-functional/wave.do
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module lfsr_gen_max
+# -- Compiling module mapper_16_qam_ref
+# -- Compiling module upsampler_4
+# -- Compiling module srrc_prac_tx_flt
+# -- Compiling module tx_signal_path_tb
+# 
+# Top level modules:
+# 	mapper_16_qam_ref
+# 	tx_signal_path_tb
+# vsim tx_signal_path_tb 
+# Loading work.tx_signal_path_tb
+# Loading work.clk_gen
+# Loading work.lfsr_gen_max
+# Loading work.mapper_16_qam
+# Loading work.upsampler_4
+# Loading work.srrc_prac_tx_flt
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module lfsr_gen_max
+# -- Compiling module mapper_16_qam_ref
+# -- Compiling module upsampler_4
+# -- Compiling module srrc_prac_tx_flt
+# -- Compiling module tx_signal_path_tb
+# 
+# Top level modules:
+# 	mapper_16_qam_ref
+# 	tx_signal_path_tb
+# vsim tx_signal_path_tb 
+# Loading work.tx_signal_path_tb
+# Loading work.clk_gen
+# Loading work.lfsr_gen_max
+# Loading work.mapper_16_qam
+# Loading work.upsampler_4
+# Loading work.srrc_prac_tx_flt
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module lfsr_gen_max
+# -- Compiling module mapper_16_qam_ref
+# -- Compiling module upsampler_4
+# -- Compiling module srrc_prac_tx_flt
+# -- Compiling module tx_signal_path_tb
+# 
+# Top level modules:
+# 	mapper_16_qam_ref
+# 	tx_signal_path_tb
+# vsim tx_signal_path_tb 
+# Loading work.tx_signal_path_tb
+# Loading work.clk_gen
+# Loading work.lfsr_gen_max
+# Loading work.mapper_16_qam
+# Loading work.upsampler_4
+# Loading work.srrc_prac_tx_flt
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module lfsr_gen_max
+# -- Compiling module mapper_16_qam_ref
+# -- Compiling module upsampler_4
+# -- Compiling module srrc_prac_tx_flt
+# -- Compiling module tx_signal_path_tb
+# 
+# Top level modules:
+# 	mapper_16_qam_ref
+# 	tx_signal_path_tb
+# vsim tx_signal_path_tb 
+# Loading work.tx_signal_path_tb
+# Loading work.clk_gen
+# Loading work.lfsr_gen_max
+# Loading work.mapper_16_qam
+# Loading work.upsampler_4
+# Loading work.srrc_prac_tx_flt
+quit -sim
+cd ..
+cd impulse-gold-functional
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_tx_flt
+# -- Compiling module impulse_gold_tb
+# 
+# Top level modules:
+# 	srrc_gold_rx_flt
+# 	impulse_gold_tb
+# vsim impulse_gold_tb 
+# Loading work.impulse_gold_tb
+# Loading work.clk_gen
+# Loading work.srrc_prac_tx_flt
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_tx_flt
+# -- Compiling module impulse_gold_tb
+# 
+# Top level modules:
+# 	srrc_gold_rx_flt
+# 	impulse_gold_tb
+# vsim impulse_gold_tb 
+# Loading work.impulse_gold_tb
+# Loading work.clk_gen
+# Loading work.srrc_prac_tx_flt
+cd ..
+# Cannot change directory while a simulation is in progress.
+# Use the "quit -sim" command to unload the design first.
+quit -sim
+cd ..
+ls
+# bpsk-functional
+# clk-functional
+# d4-sim
+# dac-sanity
+# error-functional
+# frequency_response_meas
+# impulse2-functional
+# impulse-functional
+# impulse-gold-functional
+# impulse_response_meas.zip
+# ref-functional
+# total-path-functional
+# tx-signal-path-functional
+cd total-path-functional
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# ** Warning: total_path_tb.v(7): (vlog-2263) Redefinition of macro: LFSR_LEN.
+# -- Compiling module clk_gen
+# -- Compiling module lfsr_gen_max
+# ** Warning: ../../design/lfsr_gen_max.v(86): (vlog-2576) [BSOB] - Bit-select into 'LFSR_reg' is out of bounds.
+# ** Warning: ../../design/lfsr_gen_max.v(86): (vlog-2576) [BSOB] - Bit-select into 'LFSR_reg' is out of bounds.
+# -- Compiling module mapper_16_qam_ref
+# -- Compiling module upsampler_4
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_tx_flt
+# -- Compiling module config_sam_delay
+# -- Compiling module config_sym_delay
+# -- Compiling module config_data_delay
+# -- Compiling module downsampler_4
+# -- Compiling module slicer_4_ask
+# -- Compiling module ref_level_gen
+# -- Compiling module mapper_4_ask_ref
+# -- Compiling module err_sq_gen
+# -- Compiling module err_dc_gen
+# -- Compiling module total_path_tb
+# 
+# Top level modules:
+# 	total_path_tb
+# vsim total_path_tb 
+# Loading work.total_path_tb
+# Loading work.clk_gen
+# Loading work.lfsr_gen_max
+# Loading work.mapper_16_qam_ref
+# Loading work.upsampler_4
+# Loading work.srrc_prac_tx_flt
+# Loading work.srrc_gold_rx_flt
+# Loading work.config_sam_delay
+# Loading work.config_sym_delay
+# Loading work.config_data_delay
+# Loading work.downsampler_4
+# Loading work.ref_level_gen
+# Loading work.slicer_4_ask
+# Loading work.mapper_4_ask_ref
+# Loading work.err_sq_gen
+# Loading work.err_dc_gen
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module lfsr_gen_max
+# -- Compiling module mapper_16_qam_ref
+# -- Compiling module upsampler_4
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_tx_flt
+# -- Compiling module config_sam_delay
+# -- Compiling module config_sym_delay
+# -- Compiling module config_data_delay
+# -- Compiling module downsampler_4
+# -- Compiling module slicer_4_ask
+# -- Compiling module ref_level_gen
+# -- Compiling module mapper_4_ask_ref
+# -- Compiling module err_sq_gen
+# -- Compiling module err_dc_gen
+# -- Compiling module total_path_tb
+# 
+# Top level modules:
+# 	total_path_tb
+# vsim total_path_tb 
+# Loading work.total_path_tb
+# Loading work.clk_gen
+# Loading work.lfsr_gen_max
+# Loading work.mapper_16_qam_ref
+# Loading work.upsampler_4
+# Loading work.srrc_prac_tx_flt
+# Loading work.srrc_gold_rx_flt
+# Loading work.config_sam_delay
+# Loading work.config_sym_delay
+# Loading work.config_data_delay
+# Loading work.downsampler_4
+# Loading work.ref_level_gen
+# Loading work.slicer_4_ask
+# Loading work.mapper_4_ask_ref
+# Loading work.err_sq_gen
+# Loading work.err_dc_gen
+add wave -position 20  sim:/total_path_tb/gold_tx_tb/bin
+add wave -position 21  sim:/total_path_tb/gold_tx_tb/bin_out
+restart -f
+run 250000
+add wave -position 20  sim:/total_path_tb/gold_tx_tb/count4
+restart -f
 run 25000
-run 25000000
+run 25000
+run 25000
+run 25000
+run 25000
+run 25000
+restart -f
+write format wave -window .main_pane.wave.interior.cs.body.pw.wf /home/aus892/engr-ece/EE465/MOD465/verification/total-path-functional/wave.do
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module lfsr_gen_max
+# -- Compiling module mapper_16_qam_ref
+# -- Compiling module upsampler_4
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_tx_flt
+# -- Compiling module config_sam_delay
+# -- Compiling module config_sym_delay
+# -- Compiling module config_data_delay
+# -- Compiling module downsampler_4
+# -- Compiling module slicer_4_ask
+# -- Compiling module ref_level_gen
+# -- Compiling module mapper_4_ask_ref
+# -- Compiling module err_sq_gen
+# -- Compiling module err_dc_gen
+# -- Compiling module total_path_tb
+# 
+# Top level modules:
+# 	total_path_tb
+# vsim total_path_tb 
+# Loading work.total_path_tb
+# Loading work.clk_gen
+# Loading work.lfsr_gen_max
+# Loading work.mapper_16_qam_ref
+# Loading work.upsampler_4
+# Loading work.srrc_prac_tx_flt
+# Loading work.srrc_gold_rx_flt
+# Loading work.config_sam_delay
+# Loading work.config_sym_delay
+# Loading work.config_data_delay
+# Loading work.downsampler_4
+# Loading work.ref_level_gen
+# Loading work.slicer_4_ask
+# Loading work.mapper_4_ask_ref
+# Loading work.err_sq_gen
+# Loading work.err_dc_gen
+add wave -position 21  sim:/total_path_tb/gold_tx_tb/in
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module lfsr_gen_max
+# -- Compiling module mapper_16_qam_ref
+# -- Compiling module upsampler_4
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_tx_flt
+# -- Compiling module config_sam_delay
+# -- Compiling module config_sym_delay
+# -- Compiling module config_data_delay
+# -- Compiling module downsampler_4
+# -- Compiling module slicer_4_ask
+# -- Compiling module ref_level_gen
+# -- Compiling module mapper_4_ask_ref
+# -- Compiling module err_sq_gen
+# -- Compiling module err_dc_gen
+# -- Compiling module total_path_tb
+# 
+# Top level modules:
+# 	total_path_tb
+# vsim total_path_tb 
+# Loading work.total_path_tb
+# Loading work.clk_gen
+# Loading work.lfsr_gen_max
+# Loading work.mapper_16_qam_ref
+# Loading work.upsampler_4
+# Loading work.srrc_prac_tx_flt
+# Loading work.srrc_gold_rx_flt
+# Loading work.config_sam_delay
+# Loading work.config_sym_delay
+# Loading work.config_data_delay
+# Loading work.downsampler_4
+# Loading work.ref_level_gen
+# Loading work.slicer_4_ask
+# Loading work.mapper_4_ask_ref
+# Loading work.err_sq_gen
+# Loading work.err_dc_gen
+add wave -position 21  sim:/total_path_tb/gold_tx_tb/in
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module lfsr_gen_max
+# -- Compiling module mapper_16_qam_ref
+# -- Compiling module upsampler_4
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_tx_flt
+# -- Compiling module config_sam_delay
+# -- Compiling module config_sym_delay
+# -- Compiling module config_data_delay
+# -- Compiling module downsampler_4
+# -- Compiling module slicer_4_ask
+# -- Compiling module ref_level_gen
+# -- Compiling module mapper_4_ask_ref
+# -- Compiling module err_sq_gen
+# -- Compiling module err_dc_gen
+# -- Compiling module total_path_tb
+# 
+# Top level modules:
+# 	total_path_tb
+# vsim total_path_tb 
+# Loading work.total_path_tb
+# Loading work.clk_gen
+# Loading work.lfsr_gen_max
+# Loading work.mapper_16_qam_ref
+# Loading work.upsampler_4
+# Loading work.srrc_prac_tx_flt
+# Loading work.srrc_gold_rx_flt
+# Loading work.config_sam_delay
+# Loading work.config_sym_delay
+# Loading work.config_data_delay
+# Loading work.downsampler_4
+# Loading work.ref_level_gen
+# Loading work.slicer_4_ask
+# Loading work.mapper_4_ask_ref
+# Loading work.err_sq_gen
+# Loading work.err_dc_gen
+add wave -position 21  sim:/total_path_tb/gold_tx_tb/in
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module lfsr_gen_max
+# -- Compiling module mapper_16_qam_ref
+# -- Compiling module upsampler_4
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_tx_flt
+# -- Compiling module config_sam_delay
+# -- Compiling module config_sym_delay
+# -- Compiling module config_data_delay
+# -- Compiling module downsampler_4
+# -- Compiling module slicer_4_ask
+# -- Compiling module ref_level_gen
+# -- Compiling module mapper_4_ask_ref
+# -- Compiling module err_sq_gen
+# -- Compiling module err_dc_gen
+# -- Compiling module total_path_tb
+# 
+# Top level modules:
+# 	total_path_tb
+# vsim total_path_tb 
+# Loading work.total_path_tb
+# Loading work.clk_gen
+# Loading work.lfsr_gen_max
+# Loading work.mapper_16_qam_ref
+# Loading work.upsampler_4
+# Loading work.srrc_prac_tx_flt
+# Loading work.srrc_gold_rx_flt
+# Loading work.config_sam_delay
+# Loading work.config_sym_delay
+# Loading work.config_data_delay
+# Loading work.downsampler_4
+# Loading work.ref_level_gen
+# Loading work.slicer_4_ask
+# Loading work.mapper_4_ask_ref
+# Loading work.err_sq_gen
+# Loading work.err_dc_gen
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module lfsr_gen_max
+# -- Compiling module mapper_16_qam_ref
+# -- Compiling module upsampler_4
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_tx_flt
+# -- Compiling module config_sam_delay
+# -- Compiling module config_sym_delay
+# -- Compiling module config_data_delay
+# -- Compiling module downsampler_4
+# -- Compiling module slicer_4_ask
+# -- Compiling module ref_level_gen
+# -- Compiling module mapper_4_ask_ref
+# -- Compiling module err_sq_gen
+# -- Compiling module err_dc_gen
+# -- Compiling module total_path_tb
+# 
+# Top level modules:
+# 	total_path_tb
+# vsim total_path_tb 
+# Loading work.total_path_tb
+# Loading work.clk_gen
+# Loading work.lfsr_gen_max
+# Loading work.mapper_16_qam_ref
+# Loading work.upsampler_4
+# Loading work.srrc_prac_tx_flt
+# Loading work.srrc_gold_rx_flt
+# Loading work.config_sam_delay
+# Loading work.config_sym_delay
+# Loading work.config_data_delay
+# Loading work.downsampler_4
+# Loading work.ref_level_gen
+# Loading work.slicer_4_ask
+# Loading work.mapper_4_ask_ref
+# Loading work.err_sq_gen
+# Loading work.err_dc_gen

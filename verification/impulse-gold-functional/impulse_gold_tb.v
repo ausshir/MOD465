@@ -3,11 +3,12 @@
 
 `timescale 1ns/1ns
 
+`include "../../design/defines.vh"
+
 `include "../../design/clk_gen.v"
-`include "../../design/srrc_gold_tx_flt.v"
+//`include "../../design/srrc_gold_tx_flt.v"
 `include "../../design/srrc_gold_rx_flt.v"
-`include "../../design/srrc_prac_mult_tx_flt.v"
-`include "defines.vh"
+`include "../../design/srrc_prac_tx_flt.v"
 
 module impulse_gold_tb();
 
@@ -53,9 +54,20 @@ module impulse_gold_tb();
             imp_count = imp_count + 6'b1;
     end
 
+    reg impulse_done;
+    always @(posedge sys_clk or posedge reset)
+        if(reset)
+            impulse_done = 1'b0;
+        else if(sam_clk_en)
+            if(stimulus == `SYMBOL_P1)
+                impulse_done = 1'b1;
+
+
     always @* begin
-        if(imp_count == 6'd34)
-            stimulus = 18'sd131071;
+        if(imp_count < 6'd30)
+            stimulus = 18'd0;
+        else if(sym_clk_en && ~impulse_done)
+                stimulus = `SYMBOL_P1;
         else
             stimulus = 18'h0;
     end
@@ -74,7 +86,7 @@ module impulse_gold_tb();
     end
 
     // Instantiate SUT.. may need phase[3:2]
-    srrc_prac_mult_tx_flt sut(sys_clk, clk_tb, sam_clk_en, sym_clk_en, reset, stimulus, response);
+    srrc_prac_tx_flt sut(sys_clk, sam_clk_en, sym_clk_en, reset, stimulus, response);
 
     // end the simulation
     //initial begin

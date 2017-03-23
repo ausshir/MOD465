@@ -15,10 +15,10 @@ module mapper_16_qam_ref(input clk,
 
     reg signed [17:0] SYMBOL_P2, SYMBOL_P1, SYMBOL_N1, SYMBOL_N2;
     always @* begin
-        SYMBOL_P2 <= {{ref_level + {1'b0, ref_level[17:1]}}};
-        SYMBOL_P1 <= {{1'b0, ref_level[17:1]}};
-        SYMBOL_N1 <= {-{1'b0, ref_level[17:1]}};
-        SYMBOL_N2 <= {-{ref_level + {1'b0, ref_level[17:1]}}};
+        SYMBOL_P2 <= ref_level + {1'b0, ref_level[17:1]};
+        SYMBOL_P1 <= {1'b0, ref_level[17:1]};
+        SYMBOL_N1 <= -{1'b0, ref_level[17:1]};
+        SYMBOL_N2 <= -(ref_level + {1'b0, ref_level[17:1]});
     end
 
     // Inphase Mapping using grey code on last two bits of the symbol

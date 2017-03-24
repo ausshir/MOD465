@@ -83,7 +83,7 @@ module lfsr_gen_max(input clk,
         end
     end
 
-    assign sym_out = {LFSR_reg[19], LFSR_reg[3], LFSR_reg[15], LFSR_reg[0]}; //should be 0,15
+    assign sym_out = {LFSR_reg[2], LFSR_reg[5], LFSR_reg[4], LFSR_reg[0]}; //should be 0,15
     assign seq_out = {LFSR_fb, LFSR_reg};
 
 
@@ -128,7 +128,6 @@ module lfsr_gen_max(input clk,
             cycle_out_periodic = 0;
         else if(clk_en)
             cycle_out_periodic = cycle_out_pre_periodic;
-
 
     always @*
         if(lfsr_counter == 2)

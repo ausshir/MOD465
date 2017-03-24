@@ -1019,3 +1019,402 @@ do compile_all.do
 # Loading work.mapper_4_ask_ref
 # Loading work.err_sq_gen
 # Loading work.err_dc_gen
+quit -sim
+cd ..
+ls
+# bpsk-functional
+# clk-functional
+# d4-sim
+# dac-sanity
+# error-functional
+# frequency_response_meas
+# impulse2-functional
+# impulse-functional
+# impulse-gold-functional
+# impulse_response_meas.zip
+# ref-functional
+# total-path-functional
+# tx-signal-path-functional
+cd impulse-gold-functional
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_tx_flt
+# ** Error: ../../design/srrc_prac_tx_flt.v(61): (vlog-2730) Undefined variable: 'sum_level_3'.
+# ** Error: ../../design/srrc_prac_tx_flt.v(71): 'Formal' must not be declared to be an array: sum_level_3.
+# -- Compiling module impulse_gold_tb
+# ** Error: /opt/altera/13.0SP1/modelsim_ase/linux/vlog failed.
+# Error in macro ./compile_all.do line 1
+# /opt/altera/13.0SP1/modelsim_ase/linux/vlog failed.
+#     while executing
+# "vlog impulse_gold_tb.v"
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_tx_flt
+# -- Compiling module impulse_gold_tb
+# 
+# Top level modules:
+# 	srrc_gold_rx_flt
+# 	impulse_gold_tb
+# vsim impulse_gold_tb 
+# Loading work.impulse_gold_tb
+# Loading work.clk_gen
+# Loading work.srrc_prac_tx_flt
+# ** Error: (vish-4014) No objects found matching '/impulse_gold_tb/sut/count4'.
+# Executing ONERROR command at macro ./wave.do line 16
+add wave -position 36  sim:/impulse_gold_tb/sut/sum_level_7
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_tx_flt
+# -- Compiling module impulse_gold_tb
+# 
+# Top level modules:
+# 	srrc_gold_rx_flt
+# 	impulse_gold_tb
+# vsim impulse_gold_tb 
+# Loading work.impulse_gold_tb
+# Loading work.clk_gen
+# Loading work.srrc_prac_tx_flt
+# ** Error: (vish-4014) No objects found matching '/impulse_gold_tb/sut/count4'.
+# Executing ONERROR command at macro ./wave.do line 16
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_tx_flt
+# -- Compiling module impulse_gold_tb
+# 
+# Top level modules:
+# 	srrc_gold_rx_flt
+# 	impulse_gold_tb
+# vsim impulse_gold_tb 
+# Loading work.impulse_gold_tb
+# Loading work.clk_gen
+# Loading work.srrc_prac_tx_flt
+# ** Error: (vish-4014) No objects found matching '/impulse_gold_tb/sut/count4'.
+# Executing ONERROR command at macro ./wave.do line 16
+quit -sim
+cd ..
+cd total-path-functional
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module lfsr_gen_max
+# -- Compiling module mapper_16_qam_ref
+# -- Compiling module upsampler_4
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_tx_flt
+# -- Compiling module config_sam_delay
+# -- Compiling module config_sym_delay
+# -- Compiling module config_data_delay
+# -- Compiling module downsampler_4
+# -- Compiling module slicer_4_ask
+# -- Compiling module ref_level_gen
+# -- Compiling module mapper_4_ask_ref
+# -- Compiling module err_sq_gen
+# -- Compiling module err_dc_gen
+# -- Compiling module total_path_tb
+# 
+# Top level modules:
+# 	total_path_tb
+# vsim total_path_tb 
+# Loading work.total_path_tb
+# Loading work.clk_gen
+# Loading work.lfsr_gen_max
+# Loading work.mapper_16_qam_ref
+# Loading work.upsampler_4
+# Loading work.srrc_prac_tx_flt
+# Loading work.srrc_gold_rx_flt
+# Loading work.config_sam_delay
+# Loading work.config_sym_delay
+# Loading work.config_data_delay
+# Loading work.downsampler_4
+# Loading work.ref_level_gen
+# Loading work.slicer_4_ask
+# Loading work.mapper_4_ask_ref
+# Loading work.err_sq_gen
+# Loading work.err_dc_gen
+# ** Error: (vish-4014) No objects found matching '/total_path_tb/gold_tx_tb/count4'.
+# Executing ONERROR command at macro ./wave.do line 23
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module lfsr_gen_max
+# -- Compiling module mapper_16_qam_ref
+# -- Compiling module upsampler_4
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_tx_flt
+# -- Compiling module config_sam_delay
+# -- Compiling module config_sym_delay
+# -- Compiling module config_data_delay
+# -- Compiling module downsampler_4
+# -- Compiling module slicer_4_ask
+# -- Compiling module ref_level_gen
+# -- Compiling module mapper_4_ask_ref
+# -- Compiling module err_sq_gen
+# -- Compiling module err_dc_gen
+# -- Compiling module total_path_tb
+# 
+# Top level modules:
+# 	total_path_tb
+# vsim total_path_tb 
+# Loading work.total_path_tb
+# Loading work.clk_gen
+# Loading work.lfsr_gen_max
+# Loading work.mapper_16_qam_ref
+# Loading work.upsampler_4
+# Loading work.srrc_prac_tx_flt
+# Loading work.srrc_gold_rx_flt
+# Loading work.config_sam_delay
+# Loading work.config_sym_delay
+# Loading work.config_data_delay
+# Loading work.downsampler_4
+# Loading work.ref_level_gen
+# Loading work.slicer_4_ask
+# Loading work.mapper_4_ask_ref
+# Loading work.err_sq_gen
+# Loading work.err_dc_gen
+# ** Error: (vish-4014) No objects found matching '/total_path_tb/gold_tx_tb/count4'.
+# Executing ONERROR command at macro ./wave.do line 23
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module lfsr_gen_max
+# -- Compiling module mapper_16_qam_ref
+# -- Compiling module upsampler_4
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_tx_flt
+# -- Compiling module config_sam_delay
+# -- Compiling module config_sym_delay
+# -- Compiling module config_data_delay
+# -- Compiling module downsampler_4
+# -- Compiling module slicer_4_ask
+# -- Compiling module ref_level_gen
+# -- Compiling module mapper_4_ask_ref
+# -- Compiling module err_sq_gen
+# -- Compiling module err_dc_gen
+# -- Compiling module total_path_tb
+# 
+# Top level modules:
+# 	total_path_tb
+# vsim total_path_tb 
+# Loading work.total_path_tb
+# Loading work.clk_gen
+# Loading work.lfsr_gen_max
+# Loading work.mapper_16_qam_ref
+# Loading work.upsampler_4
+# Loading work.srrc_prac_tx_flt
+# Loading work.srrc_gold_rx_flt
+# Loading work.config_sam_delay
+# Loading work.config_sym_delay
+# Loading work.config_data_delay
+# Loading work.downsampler_4
+# Loading work.ref_level_gen
+# Loading work.slicer_4_ask
+# Loading work.mapper_4_ask_ref
+# Loading work.err_sq_gen
+# Loading work.err_dc_gen
+# ** Error: (vish-4014) No objects found matching '/total_path_tb/gold_tx_tb/count4'.
+# Executing ONERROR command at macro ./wave.do line 23
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module lfsr_gen_max
+# -- Compiling module mapper_16_qam_ref
+# -- Compiling module upsampler_4
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_tx_flt
+# -- Compiling module config_sam_delay
+# -- Compiling module config_sym_delay
+# -- Compiling module config_data_delay
+# -- Compiling module downsampler_4
+# -- Compiling module slicer_4_ask
+# -- Compiling module ref_level_gen
+# -- Compiling module mapper_4_ask_ref
+# -- Compiling module err_sq_gen
+# -- Compiling module err_dc_gen
+# -- Compiling module total_path_tb
+# 
+# Top level modules:
+# 	total_path_tb
+# vsim total_path_tb 
+# Loading work.total_path_tb
+# Loading work.clk_gen
+# Loading work.lfsr_gen_max
+# Loading work.mapper_16_qam_ref
+# Loading work.upsampler_4
+# Loading work.srrc_prac_tx_flt
+# Loading work.srrc_gold_rx_flt
+# Loading work.config_sam_delay
+# Loading work.config_sym_delay
+# Loading work.config_data_delay
+# Loading work.downsampler_4
+# Loading work.ref_level_gen
+# Loading work.slicer_4_ask
+# Loading work.mapper_4_ask_ref
+# Loading work.err_sq_gen
+# Loading work.err_dc_gen
+# ** Error: (vish-4014) No objects found matching '/total_path_tb/gold_tx_tb/count4'.
+# Executing ONERROR command at macro ./wave.do line 23
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module lfsr_gen_max
+# -- Compiling module mapper_16_qam_ref
+# -- Compiling module upsampler_4
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_tx_flt
+# -- Compiling module config_sam_delay
+# -- Compiling module config_sym_delay
+# -- Compiling module config_data_delay
+# -- Compiling module downsampler_4
+# -- Compiling module slicer_4_ask
+# -- Compiling module ref_level_gen
+# -- Compiling module mapper_4_ask_ref
+# -- Compiling module err_sq_gen
+# -- Compiling module err_dc_gen
+# -- Compiling module total_path_tb
+# 
+# Top level modules:
+# 	total_path_tb
+# vsim total_path_tb 
+# Loading work.total_path_tb
+# Loading work.clk_gen
+# Loading work.lfsr_gen_max
+# Loading work.mapper_16_qam_ref
+# Loading work.upsampler_4
+# Loading work.srrc_prac_tx_flt
+# Loading work.srrc_gold_rx_flt
+# Loading work.config_sam_delay
+# Loading work.config_sym_delay
+# Loading work.config_data_delay
+# Loading work.downsampler_4
+# Loading work.ref_level_gen
+# Loading work.slicer_4_ask
+# Loading work.mapper_4_ask_ref
+# Loading work.err_sq_gen
+# Loading work.err_dc_gen
+# ** Error: (vish-4014) No objects found matching '/total_path_tb/gold_tx_tb/count4'.
+# Executing ONERROR command at macro ./wave.do line 23
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module lfsr_gen_max
+# -- Compiling module mapper_16_qam_ref
+# -- Compiling module upsampler_4
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_tx_flt
+# -- Compiling module config_sam_delay
+# -- Compiling module config_sym_delay
+# -- Compiling module config_data_delay
+# -- Compiling module downsampler_4
+# -- Compiling module slicer_4_ask
+# -- Compiling module ref_level_gen
+# -- Compiling module mapper_4_ask_ref
+# -- Compiling module err_sq_gen
+# -- Compiling module err_dc_gen
+# -- Compiling module total_path_tb
+# 
+# Top level modules:
+# 	total_path_tb
+# vsim total_path_tb 
+# Loading work.total_path_tb
+# Loading work.clk_gen
+# Loading work.lfsr_gen_max
+# Loading work.mapper_16_qam_ref
+# Loading work.upsampler_4
+# Loading work.srrc_prac_tx_flt
+# Loading work.srrc_gold_rx_flt
+# Loading work.config_sam_delay
+# Loading work.config_sym_delay
+# Loading work.config_data_delay
+# Loading work.downsampler_4
+# Loading work.ref_level_gen
+# Loading work.slicer_4_ask
+# Loading work.mapper_4_ask_ref
+# Loading work.err_sq_gen
+# Loading work.err_dc_gen
+# ** Error: (vish-4014) No objects found matching '/total_path_tb/gold_tx_tb/count4'.
+# Executing ONERROR command at macro ./wave.do line 23
+write format wave -window .main_pane.wave.interior.cs.body.pw.wf /home/aus892/engr-ece/EE465/MOD465/verification/total-path-functional/wave.do
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module lfsr_gen_max
+# -- Compiling module mapper_16_qam_ref
+# -- Compiling module upsampler_4
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_tx_flt
+# -- Compiling module config_sam_delay
+# -- Compiling module config_sym_delay
+# -- Compiling module config_data_delay
+# -- Compiling module downsampler_4
+# -- Compiling module slicer_4_ask
+# -- Compiling module ref_level_gen
+# -- Compiling module mapper_4_ask_ref
+# -- Compiling module err_sq_gen
+# -- Compiling module err_dc_gen
+# -- Compiling module total_path_tb
+# 
+# Top level modules:
+# 	total_path_tb
+# vsim total_path_tb 
+# Loading work.total_path_tb
+# Loading work.clk_gen
+# Loading work.lfsr_gen_max
+# Loading work.mapper_16_qam_ref
+# Loading work.upsampler_4
+# Loading work.srrc_prac_tx_flt
+# Loading work.srrc_gold_rx_flt
+# Loading work.config_sam_delay
+# Loading work.config_sym_delay
+# Loading work.config_data_delay
+# Loading work.downsampler_4
+# Loading work.ref_level_gen
+# Loading work.slicer_4_ask
+# Loading work.mapper_4_ask_ref
+# Loading work.err_sq_gen
+# Loading work.err_dc_gen
+run 250000
+cd ..
+# Cannot change directory while a simulation is in progress.
+# Use the "quit -sim" command to unload the design first.
+quit -sim
+cd ..
+ls
+# bpsk-functional
+# clk-functional
+# d4-sim
+# dac-sanity
+# error-functional
+# frequency_response_meas
+# impulse2-functional
+# impulse-functional
+# impulse-gold-functional
+# impulse_response_meas.zip
+# ref-functional
+# total-path-functional
+# tx-signal-path-functional
+cd impulse-gold-functional
+do compile_all.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clk_gen
+# -- Compiling module srrc_gold_rx_flt
+# -- Compiling module srrc_prac_tx_flt
+# -- Compiling module impulse_gold_tb
+# 
+# Top level modules:
+# 	srrc_gold_rx_flt
+# 	impulse_gold_tb
+# vsim impulse_gold_tb 
+# Loading work.impulse_gold_tb
+# Loading work.clk_gen
+# Loading work.srrc_prac_tx_flt
+# ** Error: (vish-4014) No objects found matching '/impulse_gold_tb/sut/count4'.
+# Executing ONERROR command at macro ./wave.do line 16
+# Window cannot be closed because the modal window "Quit Vsim" is still open.

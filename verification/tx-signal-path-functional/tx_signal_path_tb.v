@@ -4,6 +4,7 @@
 `timescale 1ns/1ns
 
 `include "../../design/defines.vh"
+`define LFSR_LEN 16'd6
 
 `include "../../design/clk_gen.v"
 `include "../../design/lfsr_gen_max.v"

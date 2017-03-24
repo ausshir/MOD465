@@ -83,7 +83,7 @@ module lfsr_gen_max(input clk,
         end
     end
 
-    assign sym_out = {LFSR_reg[2], LFSR_reg[3], LFSR_reg[4], LFSR_reg[0]}; //should be 0,15
+    assign sym_out = {LFSR_reg[2], LFSR_reg[3], LFSR_reg[1], LFSR_reg[0]}; //should be 0,15
     assign seq_out = {LFSR_fb, LFSR_reg};
 
 

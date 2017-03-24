@@ -4,7 +4,7 @@
 `timescale 1ns/1ns
 
 `include "../../design/defines.vh"
-`define LFSR_LEN 16'd22
+`define LFSR_LEN 16'd6
 
 `include "../../design/clk_gen.v"
 `include "../../design/lfsr_gen_max.v"
@@ -114,7 +114,7 @@ module total_path_tb();
                                        .sam_clk_en(sam_clk_en),
                                        .sym_clk_en(sym_clk_en),
                                        .reset(reset),
-                                       .delay(2'd0),
+                                       .delay(2'd1),
                                        .in(rx_up_inphase),
                                        .out(rx_up_sync_inphase));
 
@@ -123,7 +123,7 @@ module total_path_tb();
                                       .sam_clk_en(sam_clk_en),
                                       .sym_clk_en(sym_clk_en),
                                       .reset(reset),
-                                      .delay(8'd52),
+                                      .delay(8'd38),
                                       .in(tx_sig_inphase),
                                       .out(tx_sig_sync_inphase));
 

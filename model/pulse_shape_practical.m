@@ -103,7 +103,7 @@ hold off
 fileID = fopen('LUT/srrc_tx_practical_coefs.vh','w');
 
 fprintf(fileID, '\n//TX Filter 18''sd P2 LUT Coefficients (headroom)\n');
-tx_h_srrc_18sd = round(remove_headroom(tx_h_srrc, 4, 1.05) * (2^17) * (1/2));
+tx_h_srrc_18sd = round(remove_headroom(tx_h_srrc, 4, 0.95) * (2^17) * (1/2));
 for i = 1:(length(tx_h_srrc))
     if(tx_h_srrc_18sd(i) < 0)
         fprintf(fileID, 'assign PRECOMP_P2[%3d] = -18''sd %6d;\n', i-1, -tx_h_srrc_18sd(i));
@@ -116,7 +116,7 @@ end
 fprintf(fileID,'\n\n');
 
 fprintf(fileID, '\n//TX Filter 18''sd P1 LUT Coefficients (headroom)\n');
-tx_h_srrc_18sd = round(remove_headroom(tx_h_srrc, 4, 1.05) * (2^17) * (1/6));
+tx_h_srrc_18sd = round(remove_headroom(tx_h_srrc, 4, 0.95) * (2^17) * (1/6));
 for i = 1:(length(tx_h_srrc))
     if(tx_h_srrc_18sd(i) < 0)
         fprintf(fileID, 'assign PRECOMP_P1[%3d] = -18''sd %6d;\n', i-1, -tx_h_srrc_18sd(i));
@@ -129,7 +129,7 @@ end
 fprintf(fileID,'\n\n');
 
 fprintf(fileID, '\n//TX Filter 18''sd N1 LUT Coefficients (headroom)\n');
-tx_h_srrc_18sd = round(remove_headroom(tx_h_srrc, 4, 1.05) * (2^17) * -(1/6));
+tx_h_srrc_18sd = round(remove_headroom(tx_h_srrc, 4, .95) * (2^17) * -(1/6));
 for i = 1:(length(tx_h_srrc))
     if(tx_h_srrc_18sd(i) < 0)
         fprintf(fileID, 'assign PRECOMP_N1[%3d] = -18''sd %6d;\n', i-1, -tx_h_srrc_18sd(i));
@@ -142,7 +142,7 @@ end
 fprintf(fileID,'\n\n');
 
 fprintf(fileID, '\n//TX Filter 18''sd N2 LUT Coefficients (headroom)\n');
-tx_h_srrc_18sd = round(remove_headroom(tx_h_srrc, 4, 1.05) * (2^17) * -(1/2));
+tx_h_srrc_18sd = round(remove_headroom(tx_h_srrc, 4, 0.95) * (2^17) * -(1/2));
 for i = 1:(length(tx_h_srrc))
     if(tx_h_srrc_18sd(i) < 0)
         fprintf(fileID, 'assign PRECOMP_N2[%3d] = -18''sd %6d;\n', i-1, -tx_h_srrc_18sd(i));

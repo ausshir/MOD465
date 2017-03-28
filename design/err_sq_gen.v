@@ -18,20 +18,20 @@ module err_sq_gen(input clk,
                   input hold,
                   input signed [17:0] err,
                   output reg signed [17:0] acc_sq_err_out,
-                  output signed [17+`LFSR_LEN:0] acc_out_full);
+                  output signed [17+17+`LFSR_LEN:0] acc_out_full);
 
     reg signed [35:0] sq_err;
     always @*
         sq_err = err*err; // In 2s34 Format
 
-    reg signed [17:0] tr_sq_err;
+    reg signed [34:0] tr_sq_err;
     always @*
-        tr_sq_err = sq_err[34:17]; // In 1s17 Format
+        tr_sq_err = sq_err[34:0]; // In 1s34 Format
 
-    reg signed [17+`LFSR_LEN:0] sum_sq_err;
-    reg signed [17+`LFSR_LEN:0] sum_sq_err_acc;
+    reg signed [17+17+`LFSR_LEN:0] sum_sq_err;
+    reg signed [17+17+`LFSR_LEN:0] sum_sq_err_acc;
     always @*
-        sum_sq_err_acc = sum_sq_err + tr_sq_err;
+        sum_sq_err_acc = sum_sq_err + tr_sq_err; // In 23s34 Format
 
     always @(posedge clk or posedge reset)
         if(reset)
@@ -46,7 +46,7 @@ module err_sq_gen(input clk,
         if(reset)
             acc_sq_err_out = 0;
         else if(hold)
-            acc_sq_err_out = sum_sq_err[17+`LFSR_LEN:`LFSR_LEN]; //grab top 17 bits
+            acc_sq_err_out = sum_sq_err[17+17+`LFSR_LEN:17+`LFSR_LEN]; //grab top 17 bits
 
     assign acc_out_full = sum_sq_err;
 

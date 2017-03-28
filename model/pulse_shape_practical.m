@@ -21,7 +21,7 @@ tx_h_srrc = rcosdesign(tx_beta, (tx_span-1)/N_sps, N_sps, 'sqrt');
 tx_w = kaiser(tx_span, tx_shape).';
 tx_h_srrc = (tx_h_srrc .* tx_w);
 
-[tx_H, tx_rad] = freqz(tx_h_srrc,1,8192,'whole');
+[tx_H, tx_rad] = freqz(tx_h_srrc,1,32768,'whole');
 
 tx_cutoff_bin_OB1_start = 1+ceil(tx_BW/(tx_rate) * length(tx_H));
 tx_cutoff_bin_OB2_start = 1+ceil((tx_BW + tx_OB1)/(tx_rate) * length(tx_H));

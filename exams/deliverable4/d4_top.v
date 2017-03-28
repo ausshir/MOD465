@@ -166,13 +166,28 @@ module d4_top(input clock_50,
         endcase
     */
 
-    (*keep*) wire signed [17:0] tx_chan_inphase;
+    (*keep*) wire signed [17:0] tx_chan_prac_inphase, tx_chan_gold_inphase;
+    (*noprune*) reg signed [17:0] tx_chan_inphase;
     srrc_prac_tx_flt tx_flt_inph(.clk(sys_clk),
                                  .sam_clk_en(sam_clk_en),
                                  .sym_clk_en(sym_clk_en),
                                  .reset(reset),
                                  .in(tx_up_inphase),
-                                 .out(tx_chan_inphase));
+                                 .out(tx_chan_prac_inphase));
+
+    srrc_gold_tx_flt tx_flt_gold_inph(.clk(sys_clk),
+                                      .sam_clk_en(sam_clk_en),
+                                      .sym_clk_en(sym_clk_en),
+                                      .reset(reset),
+                                      .in(tx_up_inphase),
+                                      .out(tx_chan_gold_inphase));
+
+    always @*
+        case(SW[14:13])
+            2'b01: tx_chan_inphase = tx_chan_prac_inphase;
+            2'b10: tx_chan_inphase = tx_chan_gold_inphase;
+            default: tx_chan_inphase = 0;
+        endcase
 
     (*keep*) wire signed [17:0] rx_up_inphase;
     srrc_gold_rx_flt rx_flt_inph(.clk(sys_clk),
@@ -260,7 +275,7 @@ module d4_top(input clock_50,
         err_diff = rx_inphase - rx_sig_mapped;
 
     (*keep*) wire signed [17:0] acc_sq_err_out;
-    (*keep*) wire signed [17+`LFSR_LEN:0] acc_out_full;
+    (*keep*) wire signed [17+17+`LFSR_LEN:0] acc_out_full;
     err_sq_gen err_sq(.clk(sys_clk),
                          .clk_en(sym_clk_en),
                          .reset(reset),

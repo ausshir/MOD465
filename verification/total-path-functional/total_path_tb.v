@@ -185,7 +185,7 @@ module total_path_tb();
         err_diff = rx_inphase - rx_sig_mapped;
 
     wire signed [17:0] acc_sq_err_out;
-    wire signed [17+`LFSR_LEN:0] acc_out_full;
+    wire signed [34+`LFSR_LEN:0] acc_out_full;
     err_sq_gen err_sq_tb(.clk(sys_clk),
                          .clk_en(sym_clk_en),
                          .reset(reset),
@@ -195,7 +195,7 @@ module total_path_tb();
                          .acc_out_full(acc_out_full));
 
     wire [17:0] acc_dc_err_out_inphase;
-    wire [`LFSR_LEN + 17:0] acc_out_full_dc_inphase;
+    wire [`LFSR_LEN+17:0] acc_out_full_dc_inphase;
     err_dc_gen err_dc_gen_tb(.clk(sys_clk),
                              .clk_en(sym_clk_en),
                              .reset(reset),

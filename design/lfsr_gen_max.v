@@ -10,7 +10,8 @@
 `endif
 
 module lfsr_gen_max(input clk,
-                   input clk_en,
+                   input sam_clk_en,
+                   input sym_clk_en,
                    input reset,
                    output [21:0] seq_out,
                    output [3:0] sym_out,
@@ -69,7 +70,7 @@ module lfsr_gen_max(input clk,
             LFSR_fb <= 0;
         end
 
-        else if(clk_en) begin
+        else if(sam_clk_en) begin
             for(i=`LFSR_LEN-2; i>=1; i=i-1) begin
                 if(taps[i-1] == 1'b1) begin
                     LFSR_reg[i] <= LFSR_reg[i-1] ^ LFSR_fb;
@@ -94,7 +95,7 @@ module lfsr_gen_max(input clk,
     always @(posedge clk or posedge reset)
         if(reset)
             lfsr_counter = 1;
-        else if(clk_en)
+        else if(sam_clk_en)
             if(seq_out == `LFSR_SEED)
                 lfsr_counter = 1;
             else
@@ -108,41 +109,46 @@ module lfsr_gen_max(input clk,
     always @(posedge clk or posedge reset)
         if(reset)
             lfsr_cycle_counter = 0;
-        else if(clk_en)
+        else if(sam_clk_en)
             if(lfsr_counter == {{`LFSR_LEN}{1'b1}})
                 lfsr_cycle_counter = lfsr_cycle_counter + 2'b1;
+
+    reg cycle_out_periodic_sig;
+    always @(posedge clk or posedge reset)
+        if(reset)
+            cycle_out_periodic_sig = 1'b0;
+        else if(sym_clk_en)
+            if((lfsr_counter == {{`LFSR_LEN}{1'b1}}) && (lfsr_cycle_counter == 2'b11))
+                cycle_out_periodic_sig = 1'b1;
+            else
+                cycle_out_periodic_sig = 1'b0;
+
+    // Shift Register
+    reg x[2:0];
+    always @(posedge clk or posedge reset)
+        if(reset)
+            for(i=0; i<=2; i=i+1) begin
+                x[i] <= 0;
+            end
+        else if(sym_clk_en)
+            for(i=0; i<=2; i=i+1) begin
+                if(i == 0)
+                    x[0] <= cycle_out_periodic_sig;
+                else
+                    x[i] <= x[i-1];
+            end
+
+    always @* begin
+        cycle_out_periodic_ahead <= x[0];
+        cycle_out_periodic <= x[1];
+        cycle_out_periodic_behind <= x[2];
+    end
 
     always @(posedge clk or posedge reset)
         if(reset)
             cycle_out_once = 1'b0;
-        else if((lfsr_counter == {{`LFSR_LEN}{1'b1}}) && (lfsr_cycle_counter == 2'b11))
+        else if(cycle_out_periodic)
             cycle_out_once = 1'b1;
-
-    always @(posedge clk or posedge reset)
-        if(reset)
-            cycle_out_periodic = 1'b0;
-        else if((lfsr_counter == {{`LFSR_LEN}{1'b1}}) && (lfsr_cycle_counter == 2'b11))
-            cycle_out_periodic = 1'b1;
-        else
-            cycle_out_periodic = 1'b0;
-
-    always @(posedge clk or posedge reset)
-        if(reset)
-            cycle_out_periodic_ahead = 1'b0;
-        else if((lfsr_counter == ({{`LFSR_LEN}{1'b1}} -1)) && (lfsr_cycle_counter == 2'b10))
-            cycle_out_periodic_ahead = 1'b1;
-        else
-            cycle_out_periodic_ahead = 1'b0;
-
-    always @(posedge clk or posedge reset)
-        if(reset)
-            cycle_out_periodic_behind = 1'b0;
-        else if((lfsr_counter == 1) && (lfsr_cycle_counter == 2'b11))
-            cycle_out_periodic_behind = 1'b1;
-        else
-            cycle_out_periodic_behind = 1'b0;
-
-
 
 
 

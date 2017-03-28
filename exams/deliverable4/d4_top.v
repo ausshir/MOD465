@@ -4,12 +4,16 @@
 `include "../../design/lfsr_gen_max.v"
 `include "../../design/mapper_16_qam_ref.v"
 `include "../../design/upsampler_4.v"
-`include "../../design/srrc_gold_rx_flt.v"
-`include "../../design/srrc_prac_tx_flt.v"
 
 `include "../../design/config_sam_delay.v"
+`include "../../design/config_sam_delay_prac.v"
 `include "../../design/config_sym_delay.v"
 `include "../../design/config_data_delay.v"
+
+`include "../../design/srrc_gold_rx_flt.v"
+`include "../../design/srrc_gold_tx_flt.v"
+`include "../../design/srrc_prac_tx_flt.v"
+
 `include "../../design/downsampler_4.v"
 `include "../../design/slicer_4_ask.v"
 `include "../../design/ref_level_gen.v"
@@ -43,10 +47,9 @@ module d4_top(input clock_50,
                    output sym_clk,
                    output sam_clk_en,
                    output sym_clk_en,
-                   output [3:0] phase,
-
-                   output reg signed [17:0] DAC_A_in, DAC_B_in,
-                   output reg signed [17:0] tx_up_scaled_inphase);
+                   output reg [1:0] rx_data_out,
+                   output reg rx_data_correct,
+						 output reg signed [17:0] err_diff);
 
     // System
 
@@ -60,14 +63,14 @@ module d4_top(input clock_50,
         LEDG[5:4] = 2'b0;
 
     // Reset Switch on KEY0
-    wire reset, aux_reset;
+    (*keep*) wire reset, aux_reset;
     assign reset = ~KEY[0];
     assign aux_reset = ~KEY[1];
 
     // ADC and DAC Setup
-    reg [13:0] registered_ADC_A;
-    reg [13:0] registered_ADC_B;
-    //reg signed [17:0] DAC_A_in, DAC_B_in;
+    (*noprune*) reg [13:0] registered_ADC_A;
+    (*noprune*) reg [13:0] registered_ADC_B;
+    (*noprune*) reg signed [17:0] DAC_A_in, DAC_B_in;
 
     assign DAC_CLK_A = sys_clk;
     assign DAC_CLK_B = sys_clk;
@@ -105,8 +108,8 @@ module d4_top(input clock_50,
         registered_ADC_B <= ADC_DB;
 
     // Defined as outputs
-    // wire sys_clk, sam_clk, sym_clk, sam_clk_en, sym_clk_en;
-    // wire [3:0] phase;
+    // (*keep*) wire sys_clk, sam_clk, sym_clk, sam_clk_en, sym_clk_en;
+    (*keep*) wire [3:0] phase;
     clk_gen clocks(.clk_in(clock_50),
                       .reset(reset),
                       .sys_clk(sys_clk),
@@ -116,13 +119,14 @@ module d4_top(input clock_50,
                       .sym_clk_ena(sym_clk_en),
                       .clk_phase(phase));
 
-    wire [3:0] tx_data;
-    wire [21:0] seq_out;
-    wire cycle_out_once, cycle_out_periodic, cycle_out_periodic_ahead, cycle_out_periodic_behind;
-    wire [`LFSR_LEN-1:0] lfsr_counter;
+    (*keep*) wire [3:0] tx_data;
+    (*keep*) wire [21:0] seq_out;
+    (*keep*) wire cycle_out_once, cycle_out_periodic, cycle_out_periodic_ahead, cycle_out_periodic_behind;
+    (*keep*) wire [`LFSR_LEN-1:0] lfsr_counter;
     lfsr_gen_max lfsr(.clk(sys_clk),
                          .reset(reset),
-                         .clk_en(sam_clk_en),
+                         .sam_clk_en(sam_clk_en),
+								 .sym_clk_en(sym_clk_en),
                          .seq_out(seq_out),
                          .sym_out(tx_data),
                          .cycle_out_once(cycle_out_once),
@@ -132,7 +136,7 @@ module d4_top(input clock_50,
                          .lfsr_counter(lfsr_counter));
 
     // TX Modules
-    wire signed [17:0] tx_sig_inphase, tx_sig_quadrature;
+    (*keep*) wire signed [17:0] tx_sig_inphase, tx_sig_quadrature;
     mapper_16_qam_ref mapper_tx(.clk(sys_clk),
                                    .clk_en(sam_clk_en),
                                    .data(tx_data),
@@ -140,7 +144,7 @@ module d4_top(input clock_50,
                                    .sig_inph(tx_sig_inphase),
                                    .sig_quad(tx_sig_quadrature));
 
-    wire signed [17:0] tx_up_inphase;
+    (*keep*) wire signed [17:0] tx_up_inphase;
     upsampler_4 upsampler_tx(.clk(sys_clk),
                                 .sam_clk_en(sam_clk_en),
                                 .sym_clk_en(sym_clk_en),
@@ -151,7 +155,8 @@ module d4_top(input clock_50,
 
     // SIGNAL CHAIN - Matched Filters
 
-    //reg [17:0] tx_up_scaled_inphase;
+    /*
+    (*noprune*) reg signed [17:0] tx_up_scaled_inphase;
     always @*
         case(SW[17:16])
             2'b01: tx_up_scaled_inphase = {tx_up_inphase[17], tx_up_inphase[17:1]};
@@ -159,54 +164,53 @@ module d4_top(input clock_50,
             2'b11: tx_up_scaled_inphase = {tx_up_inphase[17],tx_up_inphase[17], tx_up_inphase[17], tx_up_inphase[17:3]};
             default: tx_up_scaled_inphase = {tx_up_inphase[17:0]};
         endcase
+    */
 
-    wire signed [17:0] tx_chan_inphase;
-    srrc_prac_tx_flt gold_tx(.clk(sys_clk),
-                             .sam_clk_en(sam_clk_en),
-                             .sym_clk_en(sym_clk_en),
-                             .reset(reset),
-                             .in(tx_up_scaled_inphase),
-                             .out(tx_chan_inphase));
+    (*keep*) wire signed [17:0] tx_chan_inphase;
+    srrc_prac_tx_flt tx_flt_inph(.clk(sys_clk),
+                                 .sam_clk_en(sam_clk_en),
+                                 .sym_clk_en(sym_clk_en),
+                                 .reset(reset),
+                                 .in(tx_up_inphase),
+                                 .out(tx_chan_inphase));
 
-    /*
-	 wire signed [17:0] rx_up_inphase;
-    srrc_gold_rx_flt gold_rx(.clk(sys_clk),
-                                .fastclk(clock_50),
-                                .sam_clk_en(sam_clk_en),
-                                .sym_clk_en(sym_clk_en),
-                                .reset(reset),
-                                .in(tx_chan_inphase),
+    (*keep*) wire signed [17:0] rx_up_inphase;
+    srrc_gold_rx_flt rx_flt_inph(.clk(sys_clk),
+                                 .sam_clk_en(sam_clk_en),
+                                 .sym_clk_en(sym_clk_en),
+                                 .reset(reset),
+                                 .in(tx_chan_inphase),
                                 .out(rx_up_inphase));
 
     // RX Modules
-    wire signed [17:0] rx_up_sync_inphase;
+    (*keep*) wire signed [17:0] rx_up_sync_inphase;
     config_sam_delay config_sam_del(.clk(sys_clk),
                                        .sam_clk_en(sam_clk_en),
                                        .sym_clk_en(sym_clk_en),
                                        .reset(reset),
-                                       .delay(2'd0),
+                                       .delay(2'd2),
                                        .in(rx_up_inphase),
                                        .out(rx_up_sync_inphase));
 
-    wire signed [17:0] tx_sig_sync_inphase;
+    (*keep*) wire signed [17:0] tx_sig_sync_inphase;
     config_sym_delay config_sym_del(.clk(sys_clk),
                                       .sam_clk_en(sam_clk_en),
                                       .sym_clk_en(sym_clk_en),
                                       .reset(reset),
-                                      .delay(8'd52),
+                                      .delay(8'd38),
                                       .in(tx_sig_inphase),
                                       .out(tx_sig_sync_inphase));
 
-    wire [1:0] tx_data_delay;
+    (*keep*) wire [1:0] tx_data_delay;
     config_data_delay config_data_del(.clk(sys_clk),
                                          .sam_clk_en(sam_clk_en),
                                          .sym_clk_en(sym_clk_en),
                                          .reset(reset),
-                                         .delay(8'd52),
+                                         .delay(8'd38),
                                          .in(tx_data[1:0]),
                                          .out(tx_data_delay));
 
-    wire signed [17:0] rx_inphase;
+    (*keep*) wire signed [17:0] rx_inphase;
     downsampler_4 downsample(.clk(sys_clk),
                                 .sym_clk_en(sym_clk_en),
                                 .reset(reset),
@@ -216,7 +220,7 @@ module d4_top(input clock_50,
 
 
     // Data Decoding
-    wire signed [17:0] rx_ref_level, rx_avg_power;
+    (*keep*) wire signed [17:0] rx_ref_level, rx_avg_power;
     ref_level_gen ref_level_rx(.clk(sys_clk),
                                .clk_en(sym_clk_en),
                                .reset(reset),
@@ -226,15 +230,21 @@ module d4_top(input clock_50,
                                .ref_level(rx_ref_level),
                                .avg_power(rx_avg_power));
 
-    wire [1:0] rx_data;
+    (*keep*) wire [1:0] rx_data;
     slicer_4_ask slicer(.clk(sys_clk),
                            .clk_en(sym_clk_en),
                            .in(rx_inphase),
                            .ref_level(rx_ref_level),
                            .sym_out(rx_data));
 
-    wire signed [17:0] rx_sig_mapped;
-    wire signed [17:0] symbol_p2, symbol_p1, symbol_n1, symbol_n2;
+    always @*
+        rx_data_correct = (rx_data == tx_data_delay);
+
+    always @*
+        rx_data_out = rx_data;
+
+    (*keep*) wire signed [17:0] rx_sig_mapped;
+    (*keep*) wire signed [17:0] symbol_p2, symbol_p1, symbol_n1, symbol_n2;
     mapper_4_ask_ref mapper_rx(.clk(sys_clk),
                                   .clk_en(sym_clk_en),
                                   .data(rx_data),
@@ -246,12 +256,11 @@ module d4_top(input clock_50,
                                   .SYMBOL_N2(symbol_n2));
 
     // Performance Evaluation
-    reg signed [17:0] err_diff;
     always @*
         err_diff = rx_inphase - rx_sig_mapped;
 
-    wire signed [17:0] acc_sq_err_out;
-    wire signed [17+`LFSR_LEN:0] acc_out_full;
+    (*keep*) wire signed [17:0] acc_sq_err_out;
+    (*keep*) wire signed [17+`LFSR_LEN:0] acc_out_full;
     err_sq_gen err_sq(.clk(sys_clk),
                          .clk_en(sym_clk_en),
                          .reset(reset),
@@ -260,8 +269,8 @@ module d4_top(input clock_50,
                          .acc_sq_err_out(acc_sq_err_out),
                          .acc_out_full(acc_out_full));
 
-    wire [17:0] acc_dc_err_out_inphase;
-    wire [`LFSR_LEN + 17:0] acc_out_full_dc_inphase;
+    (*keep*) wire [17:0] acc_dc_err_out_inphase;
+    (*keep*) wire [`LFSR_LEN + 17:0] acc_out_full_dc_inphase;
     err_dc_gen err_dc_gen(.clk(sys_clk),
                              .clk_en(sym_clk_en),
                              .reset(reset),
@@ -270,6 +279,5 @@ module d4_top(input clock_50,
                              .acc_dc_err_out(acc_dc_err_out_inphase),
                              .acc_out_full(acc_out_full_dc_inphase));
 
-    */
 
 endmodule

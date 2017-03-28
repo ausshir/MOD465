@@ -66,7 +66,8 @@ module total_path_tb();
     wire [`LFSR_LEN-1:0] lfsr_counter;
     lfsr_gen_max lfsr_tb(.clk(sys_clk),
                          .reset(reset),
-                         .clk_en(sym_clk_en),
+                         .sam_clk_en(sam_clk_en),
+                         .sym_clk_en(sym_clk_en),
                          .seq_out(seq_out),
                          .sym_out(tx_data),
                          .cycle_out_once(cycle_out_once),

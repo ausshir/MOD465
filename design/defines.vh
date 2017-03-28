@@ -16,8 +16,8 @@
     //`define SYMBOL_N1 -18'sd 21845 //-0.166
     //`define SYMBOL_N2 -18'sd 65536 //-0.5 with -131072 max -FS
 
-    `define SYMBOL_P1  18'sd 131071 //1 with 131071 max +FS
-    `define SYMBOL_P2  18'sd 43690 //0.33333
+    `define SYMBOL_P2  18'sd 131071 //1 with 131071 max +FS
+    `define SYMBOL_P1  18'sd 43690 //0.33333
     `define SYMBOL_N1 -18'sd 43690 //-0.33333
     `define SYMBOL_N2 -18'sd 131071 //-1 with -131072 max -FS
     `define SYMBOL_REF 18'd87381

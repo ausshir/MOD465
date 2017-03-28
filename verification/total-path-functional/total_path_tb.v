@@ -10,9 +10,8 @@
 `include "../../design/lfsr_gen_max.v"
 `include "../../design/mapper_16_qam_ref.v"
 `include "../../design/upsampler_4.v"
-`include "../../design/srrc_gold_rx_flt.v"
-`include "../../design/srrc_prac_tx_flt.v"
 
+`include "../../design/config_sam_delay_prac.v"
 `include "../../design/config_sam_delay.v"
 `include "../../design/config_sym_delay.v"
 `include "../../design/config_data_delay.v"
@@ -20,6 +19,10 @@
 `include "../../design/slicer_4_ask.v"
 `include "../../design/ref_level_gen.v"
 `include "../../design/mapper_4_ask_ref.v"
+
+`include "../../design/srrc_gold_rx_flt.v"
+`include "../../design/srrc_gold_tx_flt.v"
+`include "../../design/srrc_prac_tx_flt.v"
 
 `include "../../design/err_sq_gen.v"
 `include "../../design/err_dc_gen.v"
@@ -93,7 +96,7 @@ module total_path_tb();
     // SIGNAL CHAIN - Matched Filters
 
     wire signed [17:0] tx_chan_inphase;
-    srrc_prac_tx_flt gold_tx_tb(.clk(sys_clk),
+    srrc_prac_tx_flt prac_tx_tb(.clk(sys_clk),
                                 .sam_clk_en(sam_clk_en),
                                 .sym_clk_en(sym_clk_en),
                                 .reset(reset),
@@ -114,7 +117,7 @@ module total_path_tb();
                                        .sam_clk_en(sam_clk_en),
                                        .sym_clk_en(sym_clk_en),
                                        .reset(reset),
-                                       .delay(2'd1),
+                                       .delay(2'd2), // For gold standard delay=2
                                        .in(rx_up_inphase),
                                        .out(rx_up_sync_inphase));
 
@@ -123,7 +126,7 @@ module total_path_tb();
                                       .sam_clk_en(sam_clk_en),
                                       .sym_clk_en(sym_clk_en),
                                       .reset(reset),
-                                      .delay(8'd38),
+                                      .delay(8'd38), // For gold standard delay=38
                                       .in(tx_sig_inphase),
                                       .out(tx_sig_sync_inphase));
 
@@ -132,7 +135,7 @@ module total_path_tb();
                                          .sam_clk_en(sam_clk_en),
                                          .sym_clk_en(sym_clk_en),
                                          .reset(reset),
-                                         .delay(8'd52),
+                                         .delay(8'd38),
                                          .in(tx_data[1:0]),
                                          .out(tx_data_delay));
 

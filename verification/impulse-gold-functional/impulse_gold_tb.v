@@ -8,6 +8,7 @@
 `include "../../design/clk_gen.v"
 //`include "../../design/srrc_gold_tx_flt.v"
 `include "../../design/srrc_gold_rx_flt.v"
+`include "../../design/srrc_gold_tx_flt.v"
 `include "../../design/srrc_prac_tx_flt.v"
 
 module impulse_gold_tb();
@@ -45,7 +46,8 @@ module impulse_gold_tb();
     // Impulse Generation
     reg [8:0] imp_count;
     reg signed [17:0] stimulus;
-    wire signed [17:0] response;
+    wire signed [17:0] response, response2;
+    wire signed [17:0] channel, channel2;
 
     always @(posedge sys_clk or posedge reset) begin
         if(reset)
@@ -82,11 +84,15 @@ module impulse_gold_tb();
             else if(imp_count == 6'd34 && filewrite == 1)
                 filewrite = 0;
             else if(filewrite)
-                $fwrite(file,"%d,%d\n", $time, response);
+                $fwrite(file,"%d,%d,%d\n", $time, response, response2);
     end
 
     // Instantiate SUT.. may need phase[3:2]
-    srrc_prac_tx_flt sut(sys_clk, sam_clk_en, sym_clk_en, reset, stimulus, response);
+    srrc_prac_tx_flt prac_tx_flt(sys_clk, sam_clk_en, sym_clk_en, reset, stimulus, channel);
+    srrc_gold_rx_flt gold_rx_flt_1(sys_clk, sam_clk_en, sym_clk_en, reset, channel, response);
+
+    srrc_gold_tx_flt gold_tx_flt(sys_clk, sam_clk_en, sym_clk_en, reset, stimulus, channel2);
+    srrc_gold_rx_flt gold_rx_flt_2(sys_clk, sam_clk_en, sym_clk_en, reset, channel2, response2);
 
     // end the simulation
     //initial begin

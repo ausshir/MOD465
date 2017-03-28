@@ -12,14 +12,15 @@ module mapper_4_ask_ref(input clk,
                         output reg signed [17:0] SYMBOL_N2);
 
     always @* begin
-        SYMBOL_P2 <= {{ref_level + {1'b0, ref_level[17:1]}}};
-        SYMBOL_P1 <= {{1'b0, ref_level[17:1]}};
-        SYMBOL_N1 <= {-{1'b0, ref_level[17:1]}};
-        SYMBOL_N2 <= {-{ref_level + {1'b0, ref_level[17:1]}}};
+        SYMBOL_P2 <= ref_level + {1'b0, ref_level[17:1]};
+        SYMBOL_P1 <= {1'b0, ref_level[17:1]};
+        SYMBOL_N1 <= -{1'b0, ref_level[17:1]};
+        SYMBOL_N2 <= -(ref_level + {1'b0, ref_level[17:1]});
     end
 
+    // Inphase Mapping using grey code on last two bits of the symbol
     always @*
-        case(data)
+        case(data[`INPHASE])
             2'b00 : sig_out = SYMBOL_P2;
             2'b01 : sig_out = SYMBOL_P1;
             2'b11 : sig_out = SYMBOL_N1;

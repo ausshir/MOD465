@@ -23,8 +23,8 @@ module ref_level_gen(input clk,
     endfunction
 
     // Accumulate positive values
-    reg signed [17+`LFSR_LEN:0] acc_full_reg;
-    reg signed [17+`LFSR_LEN:0] acc_full;
+    reg signed [17 + 2 +`LFSR_LEN:0] acc_full_reg;
+    reg signed [17 + 2 +`LFSR_LEN:0] acc_full;
     always @*
         if(dec_var[17] == 1'b0)
             acc_full = acc_full_reg + dec_var;
@@ -45,7 +45,7 @@ module ref_level_gen(input clk,
             ref_level = 18'd0;
         else if(clk_en)
             if(hold)
-                    ref_level = acc_full_reg >>> `LFSR_LEN;
+                ref_level = acc_full_reg >>> (`LFSR_LEN + 2);
             else
                 ref_level = ref_level;
 

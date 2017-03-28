@@ -5,6 +5,10 @@
     `include "defines.vh"
 `endif
 
+`ifndef _CONFIG_SAM_DELAY_PRAC_V_
+    `include "config_sam_delay_prac.v"
+`endif
+
 module srrc_prac_tx_flt(input clk,
                         input sam_clk_en,
                         input sym_clk_en,
@@ -55,10 +59,17 @@ module srrc_prac_tx_flt(input clk,
 
     // Adder Tree
     reg signed [17:0] sum_level_1[57:0];
-    always @(posedge clk) begin
-        for(i=0; i<=56; i=i+1)
-            sum_level_1[i] <= bin_out[(2*i)] + bin_out[(2*i)+1];
-        sum_level_1[57] <= bin_out[114];
+    always @(posedge clk or posedge reset) begin
+        if(reset) begin
+            for(i=0; i<=56; i=i+1)
+                sum_level_1[i] <= 0;
+            sum_level_1[57] <= 0;
+        end
+        else begin
+            for(i=0; i<=56; i=i+1)
+                sum_level_1[i] <= bin_out[(2*i)] + bin_out[(2*i)+1];
+            sum_level_1[57] <= bin_out[114];
+        end
     end
 
     reg signed [17:0] sum_level_2[29:0];
@@ -99,12 +110,26 @@ module srrc_prac_tx_flt(input clk,
     end
 
     // Finally we register the output
+    reg signed [17:0] out_pre;
     always @(posedge clk or posedge reset) begin
         if(reset)
-            out = 0;
+            out_pre = 0;
         else if(sam_clk_en)
-            out = sum_level_7;
+            out_pre = sum_level_7;
     end
+
+    // Add a configurable delay chain in order to match the delay from the gold standard filter
+    wire signed [17:0] out_delayed;
+    config_sam_delay_prac config_sam_del_prac_tb(.clk(clk),
+                                                 .sam_clk_en(sam_clk_en),
+                                                 .sym_clk_en(sym_clk_en),
+                                                 .reset(reset),
+                                                 .delay(5'd14), // Difference in length between this filter and gold standard
+                                                 .in(out_pre),
+                                                 .out(out_delayed));
+
+    always @*
+        out = out_delayed;
 
 endmodule
 `endif

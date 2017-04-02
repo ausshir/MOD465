@@ -6,12 +6,11 @@
 `endif
 
 module upsampler_4(input clk,
-                     input sam_clk_en,
-                     input sym_clk_en,
-                     input [1:0] phase4,
-                     input reset,
-                     input signed [17:0] data_in,
-                     output reg signed [17:0] data_out);
+                   input sam_clk_en,
+                   input sym_clk_en,
+                   input reset,
+                   input signed [17:0] data_in,
+                   output reg signed [17:0] data_out);
 
     // 2-bit counter to zero_stuff samples
     reg [1:0] count_4;
@@ -27,7 +26,7 @@ module upsampler_4(input clk,
         if(reset)
             data_out = 0;
         else if(sam_clk_en)
-            if(phase4 == 2'd0)
+            if(count_4 == 2'd0)
                 data_out = data_in;
             else
                 data_out = 0;

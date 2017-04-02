@@ -35,10 +35,11 @@ add wave -noupdate -clampanalog 1 -format Analog-Step -height 74 -max 66687.0 -m
 add wave -noupdate -divider Performance
 add wave -noupdate /total_path_tb/ref_level_inph
 add wave -noupdate /total_path_tb/avg_power_inph
-add wave -noupdate /total_path_tb/acc_err_sq_inph
-add wave -noupdate /total_path_tb/acc_err_dc_inph
+add wave -noupdate /total_path_tb/acc_sq_err_inph
+add wave -noupdate /total_path_tb/acc_sq_err_full_inph
+add wave -noupdate /total_path_tb/acc_dc_err_inph
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {215810 ns} 0} {{Cursor 2} {0 ns} 0}
+WaveRestoreCursors {{Cursor 1} {7662527 ns} 0} {{Cursor 2} {0 ns} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 346
 configure wave -valuecolwidth 135
@@ -54,4 +55,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits us
 update
-WaveRestoreZoom {9858 ns} {537922 ns}
+WaveRestoreZoom {0 ns} {8400 us}

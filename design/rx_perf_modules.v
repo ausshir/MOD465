@@ -15,8 +15,9 @@ module rx_perf_modules(input sys_clk,
                        output [1:0] rx_data,
                        output signed [17:0] ref_level,
                        output signed [17:0] avg_power,
-                       output signed [17:0] acc_err_sq,
-                       output signed [17:0] acc_err_dc);
+                       output signed [17:0] acc_sq_err_dec,
+                       output signed [17+17+`LFSR_LEN:0] acc_sq_err_full,
+                       output signed [17:0] acc_dc_err);
 
     (*keep*) wire signed [17:0] rx_down;
     downsampler_4 downsample(.clk(sys_clk),
@@ -59,22 +60,23 @@ module rx_perf_modules(input sys_clk,
     always @*
         err_diff = rx_down - rx_remapped;
 
-    (*keep*) wire signed [17+17+`LFSR_LEN:0] acc_out_full_sq;
     err_sq_gen err_sq(.clk(sys_clk),
                        .clk_en(sym_clk_en),
                        .reset(reset),
                        .hold(cycle_periodic),
+                       .clear(cycle_periodic_behind),
                        .err(err_diff),
-                       .acc_sq_err_out(acc_err_sq),
-                       .acc_out_full(acc_out_full_sq));
+                       .acc_sq_err_dec(acc_sq_err_dec),
+                       .acc_sq_err_full(acc_sq_err_full));
 
     (*keep*) wire [`LFSR_LEN + 17:0] acc_out_full_dc;
     err_dc_gen err_dc_gen(.clk(sys_clk),
                            .clk_en(sym_clk_en),
                            .reset(reset),
                            .hold(cycle_periodic),
+                           .clear(cycle_periodic_behind),
                            .err(err_diff),
-                           .acc_dc_err_out(acc_err_dc),
+                           .acc_dc_err_out(acc_dc_err),
                            .acc_out_full(acc_out_full_dc));
 
 endmodule

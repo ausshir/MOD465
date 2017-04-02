@@ -16,9 +16,10 @@ module err_sq_gen(input clk,
                   input clk_en,
                   input reset, // to clear accumulators
                   input hold,
+                  input clear,
                   input signed [17:0] err,
-                  output reg signed [17:0] acc_sq_err_out,
-                  output signed [17+17+`LFSR_LEN:0] acc_out_full);
+                  output reg signed [17:0] acc_sq_err_dec,
+                  output reg signed [17+17+`LFSR_LEN:0] acc_sq_err_full);
 
     reg signed [35:0] sq_err;
     always @*
@@ -36,19 +37,26 @@ module err_sq_gen(input clk,
     always @(posedge clk or posedge reset)
         if(reset)
             sum_sq_err = 0;
-        else if(clk_en && hold)
+        else if(clear)
             sum_sq_err = 0;
         else if(clk_en)
             sum_sq_err = sum_sq_err_acc;
 
-    // Note that HOLD comes out slightly before clk_en
     always @(posedge clk or posedge reset)
         if(reset)
-            acc_sq_err_out = 0;
-        else if(hold)
-            acc_sq_err_out = sum_sq_err[17+17+`LFSR_LEN:17+`LFSR_LEN]; //grab top 17 bits
+            acc_sq_err_dec = 0;
+        else if(clk_en && hold)
+            acc_sq_err_dec = sum_sq_err[17+17+`LFSR_LEN:17+`LFSR_LEN]; //grab top 17 bits in 18s0 or 17u0 format
+        else
+            acc_sq_err_dec = acc_sq_err_dec;
 
-    assign acc_out_full = sum_sq_err;
+    always @(posedge clk or posedge reset)
+        if(reset)
+            acc_sq_err_full = 0;
+        else if(clk_en && hold)
+            acc_sq_err_full = sum_sq_err; //Grab all data in a variable format with at least 17 integer bits and the rest fractional
+        else
+            acc_sq_err_full = acc_sq_err_full;
 
 endmodule
 `endif

@@ -4,7 +4,7 @@
 `timescale 1ns/1ns
 
 `include "../../design/defines.vh"
-`define LFSR_LEN 16'd6
+`define LFSR_LEN 16'd10
 
 `include "../../design/clk_gen.v"
 `include "../../design/lfsr_gen_max.v"
@@ -119,7 +119,8 @@ module total_path_tb();
 
     // RX Modules
     wire [3:0] rx_data;
-    wire signed [17:0] acc_err_sq_inph, acc_err_dc_inph, ref_level_inph, avg_power_inph;
+    wire signed [17:0] acc_sq_err_inph, acc_dc_err_inph, ref_level_inph, avg_power_inph;
+    wire signed [17+17+`LFSR_LEN:0] acc_sq_err_full_inph;
     rx_perf_modules rx_inph(.sys_clk(sys_clk),
                             .sam_clk_en(sam_clk_en),
                             .sym_clk_en(sym_clk_en),
@@ -130,8 +131,9 @@ module total_path_tb();
                             .rx_data(rx_data[1:0]),
                             .ref_level(ref_level_inph),
                             .avg_power(avg_power_inph),
-                            .acc_err_sq(acc_err_sq_inph),
-                            .acc_err_dc(acc_err_dc_inph));
+                            .acc_sq_err_dec(acc_sq_err_inph),
+                            .acc_sq_err_full(acc_sq_err_full_inph),
+                            .acc_dc_err(acc_dc_err_inph));
 
 endmodule
 `endif

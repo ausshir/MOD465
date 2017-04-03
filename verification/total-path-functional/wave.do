@@ -6,6 +6,7 @@ add wave -noupdate /total_path_tb/reset
 add wave -noupdate /total_path_tb/sys_clk
 add wave -noupdate /total_path_tb/sam_clk
 add wave -noupdate /total_path_tb/sym_clk
+add wave -noupdate /total_path_tb/hb_clk_en
 add wave -noupdate /total_path_tb/sam_clk_en
 add wave -noupdate /total_path_tb/sym_clk_en
 add wave -noupdate /total_path_tb/phase
@@ -21,9 +22,14 @@ add wave -noupdate -divider -height 25 {TX Signals}
 add wave -noupdate -clampanalog 1 -format Analog-Step -height 74 -max 131071.0 -min -131071.0 /total_path_tb/tx_inph/tx_sig
 add wave -noupdate -clampanalog 1 -format Analog-Step -height 74 -max 131071.0 -min -131071.0 /total_path_tb/tx_inph/tx_up
 add wave -noupdate -clampanalog 1 -format Analog-Step -height 74 -max 79727.000000000015 -min -76556.0 /total_path_tb/tx_inph/tx_srrc
+add wave -noupdate -format Analog-Step -height 74 -max 92087.999999999985 -min -93668.0 /total_path_tb/tx_inph/tx_up_hba
+add wave -noupdate -format Analog-Step -height 74 -max 46043.999999999993 -min -46834.0 /total_path_tb/tx_inph/tx_hb_hba
+add wave -noupdate -format Analog-Step -height 74 -max 46043.999999999993 -min -46834.0 /total_path_tb/tx_inph/tx_up_hbb
+add wave -noupdate -format Analog-Step -height 74 -max 23021.999999999996 -min -23417.0 /total_path_tb/tx_inph/tx_hb_hbb
 add wave -noupdate -divider -height 25 Channel
 add wave -noupdate -clampanalog 1 -format Analog-Step -height 75 -max 79727.0 -min -79727.0 /total_path_tb/tx_inph/tx_channel
 add wave -noupdate -format Analog-Step -height 74 -max 104702.0 -min -102332.0 /total_path_tb/rx_up_inph
+add wave -noupdate /total_path_tb/tx_inph/tx_up_hbb
 add wave -noupdate -divider -height 25 Alignment
 add wave -noupdate -format Analog-Step -height 74 -max 104702.0 -min -102332.0 /total_path_tb/rx_up_sync_inph
 add wave -noupdate -format Analog-Step -height 74 -max 131071.0 -min -131071.0 /total_path_tb/tx_sig_delay_inph
@@ -39,8 +45,8 @@ add wave -noupdate /total_path_tb/acc_sq_err_inph
 add wave -noupdate /total_path_tb/acc_sq_err_full_inph
 add wave -noupdate /total_path_tb/acc_dc_err_inph
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {7662527 ns} 0} {{Cursor 2} {0 ns} 0}
-quietly wave cursor active 1
+WaveRestoreCursors {{Cursor 1} {7662527 ns} 0} {{Cursor 2} {195730 ns} 0}
+quietly wave cursor active 2
 configure wave -namecolwidth 346
 configure wave -valuecolwidth 135
 configure wave -justifyvalue left
@@ -55,4 +61,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits us
 update
-WaveRestoreZoom {0 ns} {8400 us}
+WaveRestoreZoom {65322 ns} {327978 ns}

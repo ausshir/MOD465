@@ -1,30 +1,25 @@
 onerror {resume}
 quietly WaveActivateNextPane {} 0
-add wave -noupdate -height 15 /impulse_gold_tb/clk_tb
-add wave -noupdate -height 15 /impulse_gold_tb/reset
-add wave -noupdate -height 15 /impulse_gold_tb/sys_clk
-add wave -noupdate -height 15 /impulse_gold_tb/sam_clk
-add wave -noupdate -height 15 /impulse_gold_tb/sym_clk
-add wave -noupdate -height 15 /impulse_gold_tb/sam_clk_en
-add wave -noupdate -height 15 /impulse_gold_tb/sym_clk_en
-add wave -noupdate -height 15 /impulse_gold_tb/phase
-add wave -noupdate -height 15 -radix unsigned /impulse_gold_tb/imp_count
-add wave -noupdate -format Analog-Step -height 84 -max 131071.00000000001 /impulse_gold_tb/stimulus
+add wave -noupdate /impulse_gold_tb/clk_tb
+add wave -noupdate /impulse_gold_tb/reset
+add wave -noupdate /impulse_gold_tb/sys_clk
+add wave -noupdate /impulse_gold_tb/sam_clk
+add wave -noupdate /impulse_gold_tb/sym_clk
+add wave -noupdate /impulse_gold_tb/sam_clk_en
+add wave -noupdate /impulse_gold_tb/sym_clk_en
+add wave -noupdate /impulse_gold_tb/hb_clk_en
+add wave -noupdate /impulse_gold_tb/phase
+add wave -noupdate -radix unsigned /impulse_gold_tb/imp_count
+add wave -noupdate -format Analog-Step -height 84 -max 131070.99999999999 /impulse_gold_tb/stimulus
 add wave -noupdate -format Analog-Step -height 84 -max 22914.0 -min -4796.0 -radix decimal -childformat {{{/impulse_gold_tb/response[17]} -radix decimal} {{/impulse_gold_tb/response[16]} -radix decimal} {{/impulse_gold_tb/response[15]} -radix decimal} {{/impulse_gold_tb/response[14]} -radix decimal} {{/impulse_gold_tb/response[13]} -radix decimal} {{/impulse_gold_tb/response[12]} -radix decimal} {{/impulse_gold_tb/response[11]} -radix decimal} {{/impulse_gold_tb/response[10]} -radix decimal} {{/impulse_gold_tb/response[9]} -radix decimal} {{/impulse_gold_tb/response[8]} -radix decimal} {{/impulse_gold_tb/response[7]} -radix decimal} {{/impulse_gold_tb/response[6]} -radix decimal} {{/impulse_gold_tb/response[5]} -radix decimal} {{/impulse_gold_tb/response[4]} -radix decimal} {{/impulse_gold_tb/response[3]} -radix decimal} {{/impulse_gold_tb/response[2]} -radix decimal} {{/impulse_gold_tb/response[1]} -radix decimal} {{/impulse_gold_tb/response[0]} -radix decimal}} -subitemconfig {{/impulse_gold_tb/response[17]} {-height 15 -radix decimal} {/impulse_gold_tb/response[16]} {-height 15 -radix decimal} {/impulse_gold_tb/response[15]} {-height 15 -radix decimal} {/impulse_gold_tb/response[14]} {-height 15 -radix decimal} {/impulse_gold_tb/response[13]} {-height 15 -radix decimal} {/impulse_gold_tb/response[12]} {-height 15 -radix decimal} {/impulse_gold_tb/response[11]} {-height 15 -radix decimal} {/impulse_gold_tb/response[10]} {-height 15 -radix decimal} {/impulse_gold_tb/response[9]} {-height 15 -radix decimal} {/impulse_gold_tb/response[8]} {-height 15 -radix decimal} {/impulse_gold_tb/response[7]} {-height 15 -radix decimal} {/impulse_gold_tb/response[6]} {-height 15 -radix decimal} {/impulse_gold_tb/response[5]} {-height 15 -radix decimal} {/impulse_gold_tb/response[4]} {-height 15 -radix decimal} {/impulse_gold_tb/response[3]} {-height 15 -radix decimal} {/impulse_gold_tb/response[2]} {-height 15 -radix decimal} {/impulse_gold_tb/response[1]} {-height 15 -radix decimal} {/impulse_gold_tb/response[0]} {-height 15 -radix decimal}} /impulse_gold_tb/response
-add wave -noupdate -format Analog-Step -height 84 -max 57361.0 -min -11848.0 /impulse_gold_tb/response2
 add wave -noupdate -divider {Filter Internal Data}
-add wave -noupdate -divider {Multiplier Filter Internal Data}
-add wave -noupdate -height 15 -subitemconfig {{/impulse_gold_tb/gold_tx_flt/bin[144]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[143]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[142]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[141]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[140]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[139]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[138]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[137]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[136]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[135]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[134]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[133]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[132]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[131]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[130]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[129]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[128]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[127]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[126]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[125]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[124]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[123]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[122]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[121]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[120]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[119]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[118]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[117]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[116]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[115]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[114]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[113]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[112]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[111]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[110]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[109]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[108]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[107]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[106]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[105]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[104]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[103]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[102]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[101]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[100]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[99]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[98]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[97]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[96]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[95]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[94]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[93]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[92]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[91]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[90]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[89]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[88]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[87]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[86]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[85]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[84]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[83]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[82]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[81]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[80]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[79]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[78]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[77]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[76]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[75]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[74]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[73]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[72]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[71]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[70]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[69]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[68]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[67]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[66]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[65]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[64]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[63]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[62]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[61]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[60]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[59]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[58]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[57]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[56]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[55]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[54]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[53]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[52]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[51]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[50]} {-height 15} {/impulse_gold_tb/gold_tx_flt/bin[49]} {-height 15}} /impulse_gold_tb/gold_tx_flt/bin
-add wave -noupdate -height 15 /impulse_gold_tb/gold_tx_flt/bin_out
-add wave -noupdate -height 15 /impulse_gold_tb/gold_tx_flt/sum_level_1
-add wave -noupdate -height 15 /impulse_gold_tb/gold_tx_flt/sum_level_2
-add wave -noupdate -height 15 /impulse_gold_tb/gold_tx_flt/sum_level_3
-add wave -noupdate -height 15 /impulse_gold_tb/gold_tx_flt/sum_level_4
-add wave -noupdate -height 15 /impulse_gold_tb/gold_tx_flt/sum_level_5
-add wave -noupdate -height 15 /impulse_gold_tb/gold_tx_flt/sum_level_6
-add wave -noupdate -height 15 /impulse_gold_tb/gold_tx_flt/sum_level_7
+add wave -noupdate -expand /impulse_gold_tb/prac_hb_flt/sum_level_1
+add wave -noupdate /impulse_gold_tb/prac_hb_flt/mult_out
+add wave -noupdate /impulse_gold_tb/prac_hb_flt/sum_level_2
+add wave -noupdate /impulse_gold_tb/prac_hb_flt/sum_level_3
+add wave -noupdate /impulse_gold_tb/prac_hb_flt/sum_level_4
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {44120 ns} 0}
+WaveRestoreCursors {{Cursor 1} {12701 ns} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 357
 configure wave -valuecolwidth 100
@@ -40,4 +35,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits us
 update
-WaveRestoreZoom {0 ns} {115504 ns}
+WaveRestoreZoom {12176 ns} {13984 ns}

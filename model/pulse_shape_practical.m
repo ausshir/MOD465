@@ -16,8 +16,8 @@ tx_fd = 0.125;
 tx_shape = 2.1796;
 tx_beta = 0.081747;
 
-%tx_h_srrc = firrcos(tx_span-1,tx_fd,tx_rolloff,1,'rolloff','sqrt');
-tx_h_srrc = rcosdesign(tx_beta, (tx_span-1)/N_sps, N_sps, 'sqrt');
+tx_h_srrc = firrcos(tx_span-1,tx_fd,tx_rolloff,1,'rolloff','sqrt');
+%tx_h_srrc = rcosdesign(tx_beta, (tx_span-1)/N_sps, N_sps, 'sqrt');
 tx_w = kaiser(tx_span, tx_shape).';
 tx_h_srrc = (tx_h_srrc .* tx_w);
 
@@ -64,8 +64,8 @@ rcv_span = 145;
 rcv_fd = .125;
 rcv_beta = 0.12;
 
-rcv_h_srrc = rcosdesign(rcv_beta, (rcv_span-1)/N_sps, N_sps, 'sqrt');
-%rcv_h_srrc = firrcos(rcv_span-1,rcv_fd,rcv_rolloff,1,'rolloff','sqrt');
+%rcv_h_srrc = rcosdesign(rcv_beta, (rcv_span-1)/N_sps, N_sps, 'sqrt');
+rcv_h_srrc = firrcos(rcv_span-1,rcv_fd,rcv_rolloff,1,'rolloff','sqrt');
 
 %% ISI Modeling
 % Convolve the frequency responses

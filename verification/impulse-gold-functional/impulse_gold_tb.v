@@ -10,6 +10,7 @@
 `include "../../design/srrc_gold_rx_flt.v"
 `include "../../design/srrc_gold_tx_flt.v"
 `include "../../design/srrc_prac_tx_flt.v"
+`include "../../design/srrc_prac_hb_flt.v"
 
 module impulse_gold_tb();
 
@@ -32,9 +33,9 @@ module impulse_gold_tb();
         #880 reset = 0;
     end
 
-    wire sys_clk, sam_clk, sym_clk, sam_clk_en, sym_clk_en;
+    wire sys_clk, sam_clk, sym_clk, sam_clk_en, sym_clk_en, hb_clk_en;
     wire [3:0] phase;
-    clk_gen clk(clk_tb, reset, sys_clk, sam_clk, sym_clk, sam_clk_en, sym_clk_en, phase);
+    clk_gen clk(clk_tb, reset, sys_clk, sam_clk, sym_clk, sam_clk_en, sym_clk_en, hb_clk_en, phase);
 
     // Log File
     integer file;
@@ -88,11 +89,7 @@ module impulse_gold_tb();
     end
 
     // Instantiate SUT.. may need phase[3:2]
-    srrc_prac_tx_flt prac_tx_flt(sys_clk, sam_clk_en, sym_clk_en, reset, stimulus, channel);
-    srrc_gold_rx_flt gold_rx_flt_1(sys_clk, sam_clk_en, sym_clk_en, reset, channel, response);
-
-    srrc_gold_tx_flt gold_tx_flt(sys_clk, sam_clk_en, sym_clk_en, reset, stimulus, channel2);
-    srrc_gold_rx_flt gold_rx_flt_2(sys_clk, sam_clk_en, sym_clk_en, reset, channel2, response2);
+    srrc_prac_hb_flt prac_hb_flt(sys_clk, hb_clk_en, reset, stimulus, response);
 
     // end the simulation
     //initial begin

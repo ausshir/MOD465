@@ -1,0 +1,24 @@
+Fs = 1;
+Fp = 0.875/6.25;
+
+N = 8;
+
+h = firhalfband(N, Fp/(Fs/2));
+fvtool(h/max(h));
+
+%% Output the TX Filter Multiplier Coefficients
+
+fileID = fopen('LUT/srrc_tx_practical_mult_coefs.vh','w');
+
+fprintf(fileID, '\n//TX Filter 18''sd Multiplier Coefficients (headroom)\n');
+tx_h_srrc_18sd = round(remove_headroom(tx_h_srrc, 4, 0.999) * (2^17));
+for i = 1:(round(length(tx_h_srrc))/2) + 1
+    if(tx_h_srrc_18sd(i) < 0)
+        fprintf(fileID, 'assign coef[%3d] = -18''sd %6d;\n', i-1, -tx_h_srrc_18sd(i));
+    else
+
+        fprintf(fileID, 'assign coef[%3d] =  18''sd %6d;\n', i-1, tx_h_srrc_18sd(i));
+    end
+end
+
+fclose(fileID);

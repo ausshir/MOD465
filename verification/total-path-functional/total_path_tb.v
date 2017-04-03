@@ -4,12 +4,13 @@
 `timescale 1ns/1ns
 
 `include "../../design/defines.vh"
-`define LFSR_LEN 16'd10
+`define LFSR_LEN 16'd8
 
 `include "../../design/clk_gen.v"
 `include "../../design/lfsr_gen_max.v"
 `include "../../design/mapper_16_qam_ref.v"
 `include "../../design/upsampler_4.v"
+`include "../../design/upsampler_2.v"
 
 `include "../../design/config_sam_delay_prac.v"
 `include "../../design/config_sam_delay.v"
@@ -23,6 +24,7 @@
 `include "../../design/srrc_gold_rx_flt.v"
 `include "../../design/srrc_gold_tx_flt.v"
 `include "../../design/srrc_prac_tx_flt.v"
+`include "../../design/srrc_prac_hb_flt.v"
 
 `include "../../design/err_sq_gen.v"
 `include "../../design/err_dc_gen.v"
@@ -54,7 +56,7 @@ module total_path_tb();
     end
 
     // System
-    wire sys_clk, sam_clk, sym_clk, sam_clk_en, sym_clk_en;
+    wire sys_clk, sam_clk, sym_clk, sam_clk_en, sym_clk_en, hb_clk_en;
     wire [3:0] phase;
     clk_gen clocks_tb(.clk_in(clk_tb),
                       .reset(reset),
@@ -63,6 +65,7 @@ module total_path_tb();
                       .sym_clk(sym_clk),
                       .sam_clk_ena(sam_clk_en),
                       .sym_clk_ena(sym_clk_en),
+                      .hb_clk_ena(hb_clk_en),
                       .clk_phase(phase));
 
     wire [3:0] tx_data;
@@ -86,6 +89,7 @@ module total_path_tb();
     tx_modules tx_inph(.sys_clk(sys_clk),
                        .sam_clk_en(sam_clk_en),
                        .sym_clk_en(sym_clk_en),
+                       .hb_clk_en(hb_clk_en),
                        .reset(reset),
                        .tx_data(tx_data[1:0]),
                        .tx_sig(tx_sig_inph),

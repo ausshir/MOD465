@@ -13,6 +13,7 @@ module clk_gen( input clk_in,
                 output sym_clk,
                 output sam_clk_ena,
                 output sym_clk_ena,
+                output hb_clk_ena,
                 output [3:0] clk_phase );
 
     reg [4:0] down_count;
@@ -45,6 +46,14 @@ module clk_gen( input clk_in,
                           clk_phase == 4'd4 ||
                           clk_phase == 4'd8 ||
                           clk_phase == 4'd12);
+    assign hb_clk_ena = (clk_phase == 4'd0 ||
+                         clk_phase == 4'd2 ||
+                         clk_phase == 4'd4 ||
+                         clk_phase == 4'd6 ||
+                         clk_phase == 4'd8 ||
+                         clk_phase == 4'd10 ||
+                         clk_phase == 4'd12 ||
+                         clk_phase == 4'd14);
 
 /*
     reg [4:0] clk_acc;

@@ -12,7 +12,9 @@ module tx_modules(input sys_clk,
                   input reset,
                   input [1:0] tx_data,
                   output signed [17:0] tx_sig,
-                  output reg signed [17:0] tx_channel
+                  output signed [17:0] tx_srrc,
+                  output signed [17:0] tx_hb_hba, tx_hb_hbb, tx_up_hba, tx_up_hbb,
+                  output reg signed [17:0] tx_out
                   );
 
     wire signed [17:0] symbol_p2, symbol_p1, symbol_n1, symbol_n2;
@@ -34,7 +36,6 @@ module tx_modules(input sys_clk,
                              .data_in(tx_sig),
                              .data_out(tx_up));
 
-    wire signed [17:0] tx_srrc;
     srrc_prac_tx_flt flt_tx(.clk(sys_clk),
                             .sam_clk_en(sam_clk_en),
                             .sym_clk_en(sym_clk_en),
@@ -42,14 +43,14 @@ module tx_modules(input sys_clk,
                             .in(tx_up),
                             .out(tx_srrc));
 
-    wire signed [17:0] tx_up_hba, tx_up_hbb;
+    //wire signed [17:0] tx_up_hba, tx_up_hbb;
     upsampler_2 upsampler_hba_tx(.clk(sys_clk),
                                  .hb_clk_en(hb_clk_en),
                                  .reset(reset),
                                  .data_in(tx_srrc),
                                  .data_out(tx_up_hba));
 
-    wire signed [17:0] tx_hb_hba, tx_hb_hbb;
+    //wire signed [17:0] tx_hb_hba, tx_hb_hbb;
     srrc_prac_hb_flt flt_hba(.clk(sys_clk),
                              .hb_clk_en(hb_clk_en),
                              .reset(reset),
@@ -57,19 +58,19 @@ module tx_modules(input sys_clk,
                              .out(tx_hb_hba));
 
     upsampler_2 upsampler_hbb_tx(.clk(sys_clk),
-                                 .hb_clk_en(sys_clk),
+                                 .hb_clk_en(1'b1),
                                  .reset(reset),
                                  .data_in(tx_hb_hba),
                                  .data_out(tx_up_hbb));
 
     srrc_prac_hb_flt flt_hbb(.clk(sys_clk),
-                             .hb_clk_en(sys_clk),
+                             .hb_clk_en(1'b1),
                              .reset(reset),
                              .in(tx_up_hbb),
                              .out(tx_hb_hbb));
 
     always @*
-        tx_channel = tx_srrc;
+        tx_out = tx_hb_hbb;
 
 endmodule
 `endif

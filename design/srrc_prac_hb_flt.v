@@ -13,12 +13,22 @@ module srrc_prac_hb_flt (input clk,
 
     integer i;
     wire signed [17:0] coef[5:0];
+    reg signed [17:0] x_pre[10:0];
     reg signed [17:0] x[10:0];
+    reg signed [17:0] x_out[10:0];
 
     `include "../../model/LUT/halfband_coefs.vh"
 
-    // Shift Register
+    // Register for setup time
+    reg signed [17:0] in_reg;
     always @(posedge clk or posedge reset)
+        if(reset)
+            in_reg = 0;
+        else
+            in_reg = in;
+
+    // Shift Register
+    always @(negedge clk or posedge reset)
         if(reset)
             for(i=0; i<=10; i=i+1) begin
                 x[i] <= 0;
@@ -26,10 +36,12 @@ module srrc_prac_hb_flt (input clk,
         else if(hb_clk_en)
             for(i=0; i<=10; i=i+1) begin
                 if(i == 0)
-                    x[0] <= { in[17], in[17:1] };
+                    x[0] <= { in_reg[17], in_reg[17:1] };
                 else
                     x[i] <= x[i-1];
             end
+
+
 
     // Linear Phase filter folding
     reg signed [17:0] sum_level_1[5:0];
@@ -48,17 +60,13 @@ module srrc_prac_hb_flt (input clk,
 
     // Multipliers (Using NULL and FS coefficients to reduce)
     reg signed [35:0] mult_out[5:0];
-    always @(posedge clk or posedge reset) begin
-        if(reset)
-            for(i=0; i<=5; i=i+1)
-                mult_out[i] <= 0;
-        else
-            mult_out[0] <= sum_level_1[0] * coef[0];
-            mult_out[1] <= 0;
-            mult_out[2] <= sum_level_1[2] * coef[2];
-            mult_out[3] <= 0;
-            mult_out[4] <= sum_level_1[4] * coef[4];
-            mult_out[5] <= sum_level_1[5] <<< 17;
+    always @* begin
+        mult_out[0] <= sum_level_1[0] * coef[0];
+        mult_out[1] <= 0;
+        mult_out[2] <= sum_level_1[2] * coef[2];
+        mult_out[3] <= 0;
+        mult_out[4] <= sum_level_1[4] * coef[4];
+        mult_out[5] <= sum_level_1[5] <<< 17;
     end
 
     // Adder trees
@@ -70,7 +78,7 @@ module srrc_prac_hb_flt (input clk,
             end
         end
         else begin
-            for(i=0;i<=3;i=i+1)
+            for(i=0;i<=2;i=i+1)
                 sum_level_2[i] <= mult_out[(2*i)][34:17] + mult_out[(2*i)+1][34:17];
         end
 

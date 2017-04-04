@@ -20,6 +20,7 @@
 `include "../../design/slicer_4_ask.v"
 `include "../../design/ref_level_gen.v"
 `include "../../design/mapper_4_ask_ref.v"
+`include "../../design/tx_mixer.v"
 
 `include "../../design/srrc_gold_rx_flt.v"
 `include "../../design/srrc_gold_tx_flt.v"
@@ -85,7 +86,7 @@ module total_path_tb();
                          .lfsr_counter(lfsr_counter));
 
     // TX Modules
-    wire signed [17:0] tx_chan_inph, tx_sig_inph;
+    wire signed [17:0] tx_out_inph, tx_sig_inph;
     tx_modules tx_inph(.sys_clk(sys_clk),
                        .sam_clk_en(sam_clk_en),
                        .sym_clk_en(sym_clk_en),
@@ -93,7 +94,25 @@ module total_path_tb();
                        .reset(reset),
                        .tx_data(tx_data[1:0]),
                        .tx_sig(tx_sig_inph),
-                       .tx_channel(tx_chan_inph));
+                       .tx_out(tx_out_inph));
+
+    wire signed [17:0] tx_out_quad, tx_sig_quad;
+    tx_modules tx_quad(.sys_clk(sys_clk),
+                      .sam_clk_en(sam_clk_en),
+                      .sym_clk_en(sym_clk_en),
+                      .hb_clk_en(hb_clk_en),
+                      .reset(reset),
+                      .tx_data(tx_data[1:0]),
+                      .tx_sig(tx_sig_quad),
+                      .tx_out(tx_out_quad));
+
+    wire signed [17:0] tx_channel;
+    tx_mixer tx_mixer_tb(.clk(sys_clk),
+                         .sym_clk_en(sym_clk_en),
+                         .reset(reset),
+                         .tx_inph(tx_out_inph),
+                         .tx_quad(tx_out_quad),
+                         .tx_channel(tx_channel));
 
     // Channel and RX Filters
     wire signed [17:0] rx_up_inph;
@@ -101,7 +120,7 @@ module total_path_tb();
                                 .sam_clk_en(sam_clk_en),
                                 .sym_clk_en(sym_clk_en),
                                 .reset(reset),
-                                .in(tx_chan_inph),
+                                .in(tx_channel),
                                 .out(rx_up_inph));
 
     // Synchronization
